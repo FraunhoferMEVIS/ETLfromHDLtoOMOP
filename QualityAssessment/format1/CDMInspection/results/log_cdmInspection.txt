@@ -1,0 +1,467 @@
+2023-05-11 09:23:48	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-11 09:23:51	[Main thread]	ERROR	CdmInspection	cdmInspection	Not possible to execute the check, this function is only for v5 and above.
+2023-05-11 09:23:51	[Main thread]	ERROR	CdmInspection	cdmInspection	Is the CDM version available in the cdm_source table?
+2023-05-11 09:27:05	[Main thread]	FATAL	DatabaseConnector	executeSql	object 'con' not found
+2023-05-11 09:27:10	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-11 09:27:51	[Main thread]	FATAL			unexpected symbol in: "DatabaseConnector::executeSql(con,"INSERT INTO OMOP_format1.cdm_source ( DatabaseConnector::executeSql(con,"INSERT"
+2023-05-11 09:27:54	[Main thread]	FATAL	DatabaseConnector	.createErrorReport	Error executing SQL: org.postgresql.util.PSQLException: FEHLER: Spalte »vocabulary_version_concept_id« von Relation »cdm_source« existiert nicht   Position: 280 An error report has been created at  C:/Users/mfinster/Documents/errorReportSql.txt
+2023-05-11 09:29:02	[Main thread]	FATAL	DatabaseConnector	.createErrorReport	Error executing SQL: org.postgresql.util.PSQLException: FEHLER: Funktion getdate() existiert nicht   Hint: Keine Funktion stimmt mit dem angegebenen Namen und den Argumenttypen überein. Sie müssen möglicherweise ausdrückliche Typumwandlungen hinzufügen.   Position: 661 An error report has been created at  C:/Users/mfinster/Documents/errorReportSql.txt
+2023-05-11 09:29:33	[Main thread]	FATAL	DatabaseConnector	.createErrorReport	Error executing SQL: org.postgresql.util.PSQLException: FEHLER: Spalte »currence_date« existiert nicht   Position: 661 An error report has been created at  C:/Users/mfinster/Documents/errorReportSql.txt
+2023-05-11 09:29:59	[Main thread]	FATAL	DatabaseConnector	.createErrorReport	Error executing SQL: org.postgresql.util.PSQLException: FEHLER: ungültige Eingabesyntax für Typ date: »<your_source_release_date>«   Position: 591 An error report has been created at  C:/Users/mfinster/Documents/errorReportSql.txt
+2023-05-11 09:32:53	[Main thread]	FATAL	DatabaseConnector	.createErrorReport	Error executing SQL: org.postgresql.util.PSQLException: FEHLER: Wert zu lang für Typ character varying(25) An error report has been created at  C:/Users/mfinster/Documents/errorReportSql.txt
+2023-05-11 09:36:14	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 0.147 secs
+2023-05-11 09:36:23	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-11 09:36:23	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-11 09:36:24	[Main thread]	WARN	CdmInspection	3	Achilles Tables have not been found.
+2023-05-11 09:36:24	[Main thread]	ERROR	CdmInspection	cdmInspection	The output from Achilles is required. Please run Achilles first and make sure the result tables are in the OMOP_results schema
+2023-05-11 09:37:09	[Main thread]	WARN			vorhergehender Import ‘DatabaseConnector::month’ durch ‘lubridate::month’ während des Ladens von ‘Achilles’ ersetzt
+2023-05-11 09:37:09	[Main thread]	WARN			vorhergehender Import ‘DatabaseConnector::day’ durch ‘lubridate::day’ während des Ladens von ‘Achilles’ ersetzt
+2023-05-11 09:37:09	[Main thread]	WARN			vorhergehender Import ‘DatabaseConnector::year’ durch ‘lubridate::year’ während des Ladens von ‘Achilles’ ersetzt
+2023-05-11 17:23:25	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-11 17:23:25	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-11 17:23:26	[Main thread]	WARN	CdmInspection	3	Achilles Tables have not been found.
+2023-05-11 17:23:26	[Main thread]	ERROR	CdmInspection	cdmInspection	The output from Achilles is required. Please run Achilles first and make sure the result tables are in the OMOP_results schema
+2023-05-12 09:21:13	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-12 09:21:14	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-12 09:21:14	[Main thread]	WARN	CdmInspection	3	Achilles Tables have not been found.
+2023-05-12 09:21:14	[Main thread]	ERROR	CdmInspection	cdmInspection	The output from Achilles is required. Please run Achilles first and make sure the result tables are in the OMOP_results schema
+2023-05-12 09:23:44	[Main thread]	INFO	remotes	install_remote	Skipping install of 'ROhdsiWebApi' from a github remote, the SHA1 (455c8163) has not changed since last install.   Use `force = TRUE` to force installation 
+2023-05-12 09:23:44	[Main thread]	INFO	remotes	install_remote	Skipping install of 'CdmInspection' from a github remote, the SHA1 (ee2e0c52) has not changed since last install.   Use `force = TRUE` to force installation 
+2023-05-12 09:23:44	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-12 09:23:45	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 0.0855 secs
+2023-05-12 09:23:45	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-12 09:23:45	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-12 09:23:47	[Main thread]	INFO	CdmInspection	cdmInspection	CDM Inspection of database fdzformat started (cdm_version=5.4)
+2023-05-12 09:23:47	[Main thread]	INFO	CdmInspection	cdmInspection	Running Data Table Checks
+2023-05-12 09:23:47	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-12 09:23:58	[Main thread]	INFO	CdmInspection	executeQuery	>  Data tables count query executed successfully in 11.39 secs
+2023-05-12 09:23:58	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-12 09:23:59	[Main thread]	INFO	CdmInspection	executeQuery	>  Total number of records over time query executed successfully in 0.76 secs
+2023-05-12 09:23:59	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-12 09:24:00	[Main thread]	INFO	CdmInspection	executeQuery	>  Number of records per person query executed successfully in 0.83 secs
+2023-05-12 09:24:00	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-12 09:24:00	[Main thread]	INFO	CdmInspection	executeQuery	>  Number of records per person query executed successfully in 0.75 secs
+2023-05-12 09:24:00	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-12 09:24:01	[Main thread]	INFO	CdmInspection	.getCdmSource	> Vocabulary table successfully extracted
+2023-05-12 09:24:01	[Main thread]	INFO	CdmInspection	cdmInspection	Running Vocabulary Checks
+2023-05-12 09:24:01	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-12 09:24:02	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapping Completeness query executed successfully in 0.69 secs
+2023-05-12 09:24:02	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-12 09:24:02	[Main thread]	INFO	CdmInspection	executeQuery	>  Drug Level Mapping query executed successfully in 0.84 secs
+2023-05-12 09:24:02	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-12 09:24:03	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped drugs query executed successfully in 0.61 secs
+2023-05-12 09:24:03	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-12 09:24:04	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped conditions query executed successfully in 0.60 secs
+2023-05-12 09:24:04	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-12 09:24:04	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped measurements query executed successfully in 0.60 secs
+2023-05-12 09:24:04	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-12 09:24:05	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped observations query executed successfully in 0.60 secs
+2023-05-12 09:24:05	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-12 09:24:06	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped procedures query executed successfully in 0.63 secs
+2023-05-12 09:24:06	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-12 09:24:06	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped devices query executed successfully in 0.61 secs
+2023-05-12 09:24:06	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-12 09:24:07	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped visits query executed successfully in 0.62 secs
+2023-05-12 09:24:07	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-12 09:24:07	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped drugs query executed successfully in 0.59 secs
+2023-05-12 09:24:07	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-12 09:24:08	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped conditions query executed successfully in 0.62 secs
+2023-05-12 09:24:08	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-12 09:24:09	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped measurements query executed successfully in 0.65 secs
+2023-05-12 09:24:09	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-12 09:24:09	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped observations query executed successfully in 0.63 secs
+2023-05-12 09:24:09	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-12 09:24:10	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped procedures query executed successfully in 0.60 secs
+2023-05-12 09:24:10	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-12 09:24:11	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped devices query executed successfully in 0.66 secs
+2023-05-12 09:24:11	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-12 09:24:11	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped visits query executed successfully in 0.60 secs
+2023-05-12 09:24:11	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-12 09:24:17	[Main thread]	INFO	CdmInspection	executeQuery	>  Concept counts by vocabulary query executed successfully in 5.70 secs
+2023-05-12 09:24:17	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-12 09:25:02	[Main thread]	INFO	CdmInspection	executeQuery	>  Count on vocabulary tables query executed successfully in 44.59 secs
+2023-05-12 09:25:02	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-12 09:25:02	[Main thread]	INFO	CdmInspection	executeQuery	>  Source to concept map breakdown query executed successfully in 0.59 secs
+2023-05-12 09:25:02	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-12 09:25:03	[Main thread]	INFO	CdmInspection	executeQuery	>  Source to concept map query executed successfully in 0.71 secs
+2023-05-12 09:25:03	[Main thread]	INFO	CdmInspection	cdmInspection	Check installed R Packages
+2023-05-12 09:25:03	[Main thread]	INFO	CdmInspection	cdmInspection	Not all the HADES packages are installed, see https://ohdsi.github.io/Hades/installingHades.html for more information
+2023-05-12 09:25:03	[Main thread]	INFO	CdmInspection	cdmInspection	Missing:CohortMethod, SelfControlledCaseSeries, SelfControlledCohort, EvidenceSynthesis, PatientLevelPrediction, EnsemblePatientLevelPrediction, Capr, CirceR, CohortGenerator, PhenotypeLibrary, EmpiricalCalibration, MethodEvaluation, CohortDiagnostics, Andromeda, BigKnn, Cyclops, Eunomia, FeatureExtraction, Hydra, OhdsiSharing
+2023-05-12 09:25:06	[Main thread]	INFO	benchmarkme	get_byte_compiler	Lade nötiges Paket: benchmarkme 
+2023-05-12 09:25:06	[Main thread]	INFO	CdmInspection	cdmInspection	Running Performance Checks on 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz cpu with 8 cores, and 34.07 GB ram.
+2023-05-12 09:25:06	[Main thread]	INFO	CdmInspection	cdmInspection	Running Performance Checks SQL
+2023-05-12 09:25:06	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-12 09:25:07	[Main thread]	INFO	CdmInspection	executeQuery	>  Retrieving duration of Achilles queries in 0.64 secs
+2023-05-12 09:25:07	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-12 09:26:49	[Main thread]	INFO	CdmInspection	executeQuery	>  Executing vocabulary query benchmark in 101.88 secs
+2023-05-12 09:26:49	[Main thread]	INFO	CdmInspection	cdmInspection	Running WebAPIChecks
+2023-05-12 09:26:49	[Main thread]	ERROR	CdmInspection	3	Could not connect to the WebAPI: 
+2023-05-12 09:26:49	[Main thread]	INFO	CdmInspection	cdmInspection	Done.
+2023-05-12 09:26:49	[Main thread]	INFO	CdmInspection	cdmInspection	Complete CdmInspection took  3.07  minutes
+2023-05-12 09:26:49	[Main thread]	INFO	CdmInspection	cdmInspection	The cdm inspection results have been exported to: C:/Users/mfinster/OMOP_CDM/FDZFormat_to_OMOP/FDZFormat1/Quality_checks/CDMInspection/results
+2023-05-12 09:26:49	[Main thread]	INFO	CdmInspection	cdmInspection	All cdm inspection results are bundled for sharing at:  C:/Users/mfinster/OMOP_CDM/FDZFormat_to_OMOP/FDZFormat1/Quality_checks/CDMInspection/results/Results_Inspection_OMOP_format1.zip
+2023-05-12 09:26:49	[Main thread]	INFO	CdmInspection	cdmInspection	Next step: generate and complete the inspection report and share this together with the zip file.
+2023-05-12 09:26:49	[Main thread]	INFO	CdmInspection	cdmInspection	CdmInspection run took 184.50 secs
+2023-05-15 11:41:03	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-15 11:41:04	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-15 11:41:06	[Main thread]	INFO	CdmInspection	cdmInspection	CDM Inspection of database fdzformat started (cdm_version=5.4)
+2023-05-15 11:41:06	[Main thread]	INFO	CdmInspection	cdmInspection	Running Data Table Checks
+2023-05-15 11:41:06	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-15 11:41:29	[Main thread]	INFO	CdmInspection	executeQuery	>  Data tables count query executed successfully in 23.52 secs
+2023-05-15 11:41:29	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-15 11:41:30	[Main thread]	INFO	CdmInspection	executeQuery	>  Total number of records over time query executed successfully in 0.66 secs
+2023-05-15 11:41:30	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-15 11:41:31	[Main thread]	INFO	CdmInspection	executeQuery	>  Number of records per person query executed successfully in 0.71 secs
+2023-05-15 11:41:31	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-15 11:41:31	[Main thread]	INFO	CdmInspection	executeQuery	>  Number of records per person query executed successfully in 0.79 secs
+2023-05-15 11:41:31	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-15 11:41:32	[Main thread]	INFO	CdmInspection	.getCdmSource	> Vocabulary table successfully extracted
+2023-05-15 11:41:32	[Main thread]	INFO	CdmInspection	cdmInspection	Running Vocabulary Checks
+2023-05-15 11:41:32	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-15 11:41:49	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapping Completeness query executed successfully in 16.58 secs
+2023-05-15 11:41:49	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-15 11:41:49	[Main thread]	INFO	CdmInspection	executeQuery	>  Drug Level Mapping query executed successfully in 0.69 secs
+2023-05-15 11:41:49	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-15 11:41:50	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped drugs query executed successfully in 0.65 secs
+2023-05-15 11:41:50	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-15 11:42:39	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped conditions query executed successfully in 48.82 secs
+2023-05-15 11:42:39	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-15 11:42:40	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped measurements query executed successfully in 0.61 secs
+2023-05-15 11:42:40	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-15 11:42:40	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped observations query executed successfully in 0.54 secs
+2023-05-15 11:42:40	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-15 11:42:42	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped procedures query executed successfully in 2.18 secs
+2023-05-15 11:42:42	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-15 11:42:43	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped devices query executed successfully in 0.93 secs
+2023-05-15 11:42:43	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-15 11:42:47	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped visits query executed successfully in 3.61 secs
+2023-05-15 11:42:47	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-15 11:42:48	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped drugs query executed successfully in 0.72 secs
+2023-05-15 11:42:48	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-15 11:42:56	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped conditions query executed successfully in 8.35 secs
+2023-05-15 11:42:56	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-15 11:42:57	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped measurements query executed successfully in 0.64 secs
+2023-05-15 11:42:57	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-15 11:42:57	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped observations query executed successfully in 0.57 secs
+2023-05-15 11:42:57	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-15 11:43:10	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped procedures query executed successfully in 12.94 secs
+2023-05-15 11:43:10	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-15 11:43:11	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped devices query executed successfully in 0.50 secs
+2023-05-15 11:43:11	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-15 11:43:21	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped visits query executed successfully in 9.82 secs
+2023-05-15 11:43:21	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-15 11:43:26	[Main thread]	INFO	CdmInspection	executeQuery	>  Concept counts by vocabulary query executed successfully in 5.84 secs
+2023-05-15 11:43:27	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-15 11:43:46	[Main thread]	INFO	CdmInspection	executeQuery	>  Count on vocabulary tables query executed successfully in 19.33 secs
+2023-05-15 11:43:46	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-15 11:43:46	[Main thread]	INFO	CdmInspection	executeQuery	>  Source to concept map breakdown query executed successfully in 0.63 secs
+2023-05-15 11:43:47	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-15 11:43:47	[Main thread]	INFO	CdmInspection	executeQuery	>  Source to concept map query executed successfully in 0.63 secs
+2023-05-15 11:43:47	[Main thread]	INFO	CdmInspection	cdmInspection	Check installed R Packages
+2023-05-15 11:43:47	[Main thread]	INFO	CdmInspection	cdmInspection	Not all the HADES packages are installed, see https://ohdsi.github.io/Hades/installingHades.html for more information
+2023-05-15 11:43:47	[Main thread]	INFO	CdmInspection	cdmInspection	Missing:CohortMethod, SelfControlledCaseSeries, SelfControlledCohort, EvidenceSynthesis, PatientLevelPrediction, EnsemblePatientLevelPrediction, Capr, CirceR, CohortGenerator, PhenotypeLibrary, EmpiricalCalibration, MethodEvaluation, CohortDiagnostics, Andromeda, BigKnn, Cyclops, Eunomia, FeatureExtraction, Hydra, OhdsiSharing
+2023-05-15 11:43:52	[Main thread]	INFO	benchmarkme	get_byte_compiler	Lade nötiges Paket: benchmarkme 
+2023-05-15 11:43:52	[Main thread]	INFO	CdmInspection	cdmInspection	Running Performance Checks on 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz cpu with 8 cores, and 34.07 GB ram.
+2023-05-15 11:43:52	[Main thread]	INFO	CdmInspection	cdmInspection	Running Performance Checks SQL
+2023-05-15 11:43:52	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-15 11:43:53	[Main thread]	INFO	CdmInspection	executeQuery	>  Retrieving duration of Achilles queries in 1.04 secs
+2023-05-15 11:43:53	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-05-15 11:44:09	[Main thread]	INFO	CdmInspection	executeQuery	>  Executing vocabulary query benchmark in 16.60 secs
+2023-05-15 11:44:09	[Main thread]	INFO	CdmInspection	cdmInspection	Running WebAPIChecks
+2023-05-15 11:44:09	[Main thread]	ERROR	CdmInspection	3	Could not connect to the WebAPI: 
+2023-05-15 11:44:09	[Main thread]	INFO	CdmInspection	cdmInspection	Done.
+2023-05-15 11:44:09	[Main thread]	INFO	CdmInspection	cdmInspection	Complete CdmInspection took  3.10  minutes
+2023-05-15 11:44:09	[Main thread]	INFO	CdmInspection	cdmInspection	The cdm inspection results have been exported to: C:/Users/mfinster/OMOP_CDM/FDZFormat_to_OMOP/FDZFormat1/Quality_checks/CDMInspection/results
+2023-05-15 11:44:10	[Main thread]	INFO	CdmInspection	cdmInspection	All cdm inspection results are bundled for sharing at:  C:/Users/mfinster/OMOP_CDM/FDZFormat_to_OMOP/FDZFormat1/Quality_checks/CDMInspection/results/Results_Inspection_OMOP_format1.zip
+2023-05-15 11:44:10	[Main thread]	INFO	CdmInspection	cdmInspection	Next step: generate and complete the inspection report and share this together with the zip file.
+2023-05-15 11:44:10	[Main thread]	INFO	CdmInspection	cdmInspection	CdmInspection run took 186.25 secs
+2023-09-20 15:20:19	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-09-20 15:20:20	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-09-20 15:20:23	[Main thread]	INFO	CdmInspection	cdmInspection	CDM Inspection of database fdzformat started (cdm_version=5.4)
+2023-09-20 15:20:23	[Main thread]	INFO	CdmInspection	cdmInspection	Running Data Table Checks
+2023-09-20 15:20:23	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-09-20 15:21:43	[Main thread]	INFO	CdmInspection	executeQuery	>  Data tables count query executed successfully in 79.99 secs
+2023-09-20 15:21:43	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-09-20 15:21:44	[Main thread]	INFO	CdmInspection	executeQuery	>  Total number of records over time query executed successfully in 0.90 secs
+2023-09-20 15:21:44	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-09-20 15:21:44	[Main thread]	INFO	CdmInspection	executeQuery	>  Number of records per person query executed successfully in 0.74 secs
+2023-09-20 15:21:44	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-09-20 15:21:45	[Main thread]	INFO	CdmInspection	executeQuery	>  Number of records per person query executed successfully in 0.99 secs
+2023-09-20 15:21:45	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-09-20 15:21:46	[Main thread]	INFO	CdmInspection	.getCdmSource	> Vocabulary table successfully extracted
+2023-09-20 15:21:46	[Main thread]	INFO	CdmInspection	cdmInspection	Running Vocabulary Checks
+2023-09-20 15:21:46	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-09-20 15:22:15	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapping Completeness query executed successfully in 28.69 secs
+2023-09-20 15:22:15	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-09-20 15:22:18	[Main thread]	INFO	CdmInspection	executeQuery	>  Drug Level Mapping query executed successfully in 3.45 secs
+2023-09-20 15:22:18	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-09-20 15:22:40	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped drugs query executed successfully in 21.54 secs
+2023-09-20 15:22:40	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-09-20 15:22:42	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped conditions query executed successfully in 1.60 secs
+2023-09-20 15:22:42	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-09-20 15:22:42	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped measurements query executed successfully in 0.81 secs
+2023-09-20 15:22:43	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-09-20 15:22:43	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped observations query executed successfully in 0.98 secs
+2023-09-20 15:22:44	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-09-20 15:22:47	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped procedures query executed successfully in 3.32 secs
+2023-09-20 15:22:47	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-09-20 15:22:48	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped devices query executed successfully in 1.05 secs
+2023-09-20 15:22:48	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-09-20 15:22:56	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped visits query executed successfully in 8.26 secs
+2023-09-20 15:22:56	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-09-20 15:22:58	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped drugs query executed successfully in 1.52 secs
+2023-09-20 15:22:58	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-09-20 15:24:18	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped conditions query executed successfully in 80.10 secs
+2023-09-20 15:24:18	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-09-20 15:24:19	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped measurements query executed successfully in 0.83 secs
+2023-09-20 15:24:19	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-09-20 15:24:21	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped observations query executed successfully in 1.96 secs
+2023-09-20 15:24:21	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-09-20 15:24:54	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped procedures query executed successfully in 33.78 secs
+2023-09-20 15:24:55	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-09-20 15:24:55	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped devices query executed successfully in 0.90 secs
+2023-09-20 15:24:55	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-09-20 15:25:19	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped visits query executed successfully in 23.51 secs
+2023-09-20 15:25:19	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-09-20 15:25:34	[Main thread]	INFO	CdmInspection	executeQuery	>  Concept counts by vocabulary query executed successfully in 14.70 secs
+2023-09-20 15:25:34	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-09-20 15:26:25	[Main thread]	INFO	CdmInspection	executeQuery	>  Count on vocabulary tables query executed successfully in 51.09 secs
+2023-09-20 15:26:25	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-09-20 15:26:26	[Main thread]	INFO	CdmInspection	executeQuery	>  Source to concept map breakdown query executed successfully in 0.99 secs
+2023-09-20 15:26:26	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-09-20 15:26:27	[Main thread]	INFO	CdmInspection	executeQuery	>  Source to concept map query executed successfully in 0.91 secs
+2023-09-20 15:26:27	[Main thread]	INFO	CdmInspection	cdmInspection	Check installed R Packages
+2023-09-20 15:26:27	[Main thread]	INFO	CdmInspection	cdmInspection	Not all the HADES packages are installed, see https://ohdsi.github.io/Hades/installingHades.html for more information
+2023-09-20 15:26:27	[Main thread]	INFO	CdmInspection	cdmInspection	Missing:CohortMethod, SelfControlledCaseSeries, SelfControlledCohort, EvidenceSynthesis, PatientLevelPrediction, EnsemblePatientLevelPrediction, Capr, CirceR, CohortGenerator, PhenotypeLibrary, EmpiricalCalibration, MethodEvaluation, CohortDiagnostics, Andromeda, BigKnn, Cyclops, Eunomia, FeatureExtraction, Hydra, OhdsiSharing
+2023-09-20 15:26:31	[Main thread]	INFO	benchmarkme	get_byte_compiler	Lade nötiges Paket: benchmarkme 
+2023-09-20 15:26:31	[Main thread]	INFO	CdmInspection	cdmInspection	Running Performance Checks on 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz cpu with 8 cores, and 34.07 GB ram.
+2023-09-20 15:26:31	[Main thread]	INFO	CdmInspection	cdmInspection	Running Performance Checks SQL
+2023-09-20 15:26:31	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-09-20 15:26:32	[Main thread]	INFO	CdmInspection	executeQuery	>  Retrieving duration of Achilles queries in 1.06 secs
+2023-09-20 15:26:32	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-09-20 15:26:58	[Main thread]	INFO	CdmInspection	executeQuery	>  Executing vocabulary query benchmark in 26.60 secs
+2023-09-20 15:26:58	[Main thread]	INFO	CdmInspection	cdmInspection	Running WebAPIChecks
+2023-09-20 15:26:58	[Main thread]	ERROR	CdmInspection	3	Could not connect to the WebAPI: 
+2023-09-20 15:26:58	[Main thread]	INFO	CdmInspection	cdmInspection	Done.
+2023-09-20 15:26:58	[Main thread]	INFO	CdmInspection	cdmInspection	Complete CdmInspection took  6.66  minutes
+2023-09-20 15:26:58	[Main thread]	INFO	CdmInspection	cdmInspection	The cdm inspection results have been exported to: C:/Users/mfinster/OMOP_CDM/FDZFormat_to_OMOP/FDZFormat1/Quality_checks/CDMInspection/results
+2023-09-20 15:26:58	[Main thread]	INFO	CdmInspection	cdmInspection	All cdm inspection results are bundled for sharing at:  C:/Users/mfinster/OMOP_CDM/FDZFormat_to_OMOP/FDZFormat1/Quality_checks/CDMInspection/results/Results_Inspection_OMOP_format1.zip
+2023-09-20 15:26:58	[Main thread]	INFO	CdmInspection	cdmInspection	Next step: generate and complete the inspection report and share this together with the zip file.
+2023-09-20 15:26:58	[Main thread]	INFO	CdmInspection	cdmInspection	CdmInspection run took 399.61 secs
+2023-10-30 11:00:12	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-10-30 11:00:12	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-10-30 11:00:14	[Main thread]	INFO	CdmInspection	cdmInspection	CDM Inspection of database fdzformat started (cdm_version=5.4)
+2023-10-30 11:00:14	[Main thread]	INFO	CdmInspection	cdmInspection	Running Data Table Checks
+2023-10-30 11:00:14	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-10-30 11:01:14	[Main thread]	INFO	CdmInspection	executeQuery	>  Data tables count query executed successfully in 60.55 secs
+2023-10-30 11:01:14	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-10-30 11:01:14	[Main thread]	INFO	CdmInspection	executeQuery	>  Total number of records over time query executed successfully in 0.19 secs
+2023-10-30 11:01:14	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-10-30 11:01:15	[Main thread]	INFO	CdmInspection	executeQuery	>  Number of records per person query executed successfully in 0.24 secs
+2023-10-30 11:01:15	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-10-30 11:01:15	[Main thread]	INFO	CdmInspection	executeQuery	>  Number of records per person query executed successfully in 0.16 secs
+2023-10-30 11:01:15	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-10-30 11:01:15	[Main thread]	INFO	CdmInspection	.getCdmSource	> Vocabulary table successfully extracted
+2023-10-30 11:01:15	[Main thread]	INFO	CdmInspection	cdmInspection	Running Vocabulary Checks
+2023-10-30 11:01:15	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-10-30 11:01:16	[Main thread]	ERROR	CdmInspection	3	> Failed see C:/Users/mfinster/OMOP_CDM/FDZFormat_to_OMOP/FDZFormat1/Quality_checks/CDMInspection/results/mapping_completenessErr.txt for more details
+2023-10-30 11:01:16	[Main thread]	FATAL	CdmInspection	vocabularyChecks	Versuch die 'colnames' für ein Objekt mit weniger als zwei Dimensionen zu setzen
+2023-10-30 12:14:48	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-10-30 12:14:49	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 0.133 secs
+2023-10-30 12:14:49	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-10-30 12:14:49	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-10-30 12:14:49	[Main thread]	INFO	CdmInspection	cdmInspection	CDM Inspection of database fdzformat started (cdm_version=5.4)
+2023-10-30 12:14:49	[Main thread]	INFO	CdmInspection	cdmInspection	Running Data Table Checks
+2023-10-30 12:14:49	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-10-30 12:15:52	[Main thread]	INFO	CdmInspection	executeQuery	>  Data tables count query executed successfully in 62.98 secs
+2023-10-30 12:15:52	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-10-30 12:15:52	[Main thread]	INFO	CdmInspection	executeQuery	>  Total number of records over time query executed successfully in 0.16 secs
+2023-10-30 12:15:52	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-10-30 12:15:52	[Main thread]	INFO	CdmInspection	executeQuery	>  Number of records per person query executed successfully in 0.12 secs
+2023-10-30 12:15:52	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-10-30 12:15:52	[Main thread]	INFO	CdmInspection	executeQuery	>  Number of records per person query executed successfully in 0.10 secs
+2023-10-30 12:15:52	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-10-30 12:15:53	[Main thread]	INFO	CdmInspection	.getCdmSource	> Vocabulary table successfully extracted
+2023-10-30 12:15:53	[Main thread]	INFO	CdmInspection	cdmInspection	Running Vocabulary Checks
+2023-10-30 12:15:53	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-10-30 12:15:53	[Main thread]	ERROR	CdmInspection	3	> Failed see C:/Users/mfinster/OMOP_CDM/FDZFormat_to_OMOP/FDZFormat1/Quality_checks/CDMInspection/results/mapping_completenessErr.txt for more details
+2023-10-30 12:15:53	[Main thread]	FATAL	CdmInspection	vocabularyChecks	Versuch die 'colnames' für ein Objekt mit weniger als zwei Dimensionen zu setzen
+2023-10-30 16:05:25	[Main thread]	INFO	remotes	install_remote	Skipping install of 'ROhdsiWebApi' from a github remote, the SHA1 (455c8163) has not changed since last install.   Use `force = TRUE` to force installation 
+2023-10-30 16:05:25	[Main thread]	INFO	remotes	install_remote	Skipping install of 'CdmInspection' from a github remote, the SHA1 (dae1c512) has not changed since last install.   Use `force = TRUE` to force installation 
+2023-10-30 16:05:25	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2023-10-30 16:05:25	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 0.068 secs
+2024-01-17 16:31:36	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-01-17 16:31:36	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-01-17 16:31:37	[Main thread]	WARN	CdmInspection	.checkAchillesTablesExist	Achilles table 'OMOP1_results.achilles_analysis' has not been found
+2024-01-17 16:31:37	[Main thread]	WARN	CdmInspection	.checkAchillesTablesExist	Achilles table 'OMOP1_results.achilles_results' has not been found
+2024-01-17 16:31:37	[Main thread]	WARN	CdmInspection	.checkAchillesTablesExist	Achilles table 'OMOP1_results.achilles_results_dist' has not been found
+2024-01-17 16:31:37	[Main thread]	ERROR	CdmInspection	cdmInspection	The output from Achilles is required. Please run Achilles first and make sure the result tables are in the OMOP1_results schema
+2024-01-17 16:31:58	[Main thread]	INFO	remotes	install_remote	Skipping install of 'ROhdsiWebApi' from a github remote, the SHA1 (455c8163) has not changed since last install.   Use `force = TRUE` to force installation 
+2024-01-17 16:31:58	[Main thread]	INFO	remotes	install_remote	Skipping install of 'CdmInspection' from a github remote, the SHA1 (8a7edef2) has not changed since last install.   Use `force = TRUE` to force installation 
+2024-01-17 16:31:58	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-01-17 16:31:58	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 0.046 secs
+2024-01-17 16:31:58	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-01-17 16:31:59	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-01-17 16:32:00	[Main thread]	INFO	CdmInspection	cdmInspection	CDM Inspection of database fdzformat started (cdm_version=5.4)
+2024-01-17 16:32:00	[Main thread]	INFO	CdmInspection	cdmInspection	Running Data Table Checks
+2024-01-17 16:32:00	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-01-17 16:33:13	[Main thread]	INFO	CdmInspection	executeQuery	>  Data tables count query executed successfully in 72.82 secs
+2024-01-17 16:33:13	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-01-17 16:33:14	[Main thread]	INFO	CdmInspection	executeQuery	>  Total number of records over time query executed successfully in 1.05 secs
+2024-01-17 16:33:14	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-01-17 16:33:15	[Main thread]	INFO	CdmInspection	executeQuery	>  Number of records per person query executed successfully in 0.80 secs
+2024-01-17 16:33:15	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-01-17 16:33:16	[Main thread]	INFO	CdmInspection	executeQuery	>  Number of records per person query executed successfully in 0.94 secs
+2024-01-17 16:33:16	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-01-17 16:33:16	[Main thread]	INFO	CdmInspection	.getCdmSource	> Vocabulary table successfully extracted
+2024-01-17 16:33:16	[Main thread]	INFO	CdmInspection	cdmInspection	Running Vocabulary Checks
+2024-01-17 16:33:16	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-01-17 16:34:25	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapping Completeness query executed successfully in 68.25 secs
+2024-01-17 16:34:25	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-01-17 16:34:37	[Main thread]	INFO	CdmInspection	executeQuery	>  Drug Level Mapping query executed successfully in 11.96 secs
+2024-01-17 16:34:37	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-01-17 16:35:03	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped drugs query executed successfully in 26.28 secs
+2024-01-17 16:35:03	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-01-17 16:36:16	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped conditions query executed successfully in 73.32 secs
+2024-01-17 16:36:16	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-01-17 16:36:17	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped measurements query executed successfully in 0.68 secs
+2024-01-17 16:36:17	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-01-17 16:36:52	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped observations query executed successfully in 35.28 secs
+2024-01-17 16:36:52	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-01-17 16:36:54	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped procedures query executed successfully in 1.32 secs
+2024-01-17 16:36:54	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-01-17 16:36:55	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped devices query executed successfully in 0.82 secs
+2024-01-17 16:36:55	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-01-17 16:37:02	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped visits query executed successfully in 7.41 secs
+2024-01-17 16:37:02	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-01-17 16:37:03	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped drugs query executed successfully in 1.28 secs
+2024-01-17 16:37:03	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-01-17 16:37:21	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped conditions query executed successfully in 18.00 secs
+2024-01-17 16:37:21	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-01-17 16:37:22	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped measurements query executed successfully in 1.10 secs
+2024-01-17 16:37:22	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-01-17 16:37:34	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped observations query executed successfully in 11.39 secs
+2024-01-17 16:37:34	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-01-17 16:37:48	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped procedures query executed successfully in 14.60 secs
+2024-01-17 16:37:48	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-01-17 16:37:49	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped devices query executed successfully in 0.83 secs
+2024-01-17 16:37:49	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-01-17 16:38:20	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped visits query executed successfully in 30.59 secs
+2024-01-17 16:38:20	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-01-17 16:38:28	[Main thread]	INFO	CdmInspection	executeQuery	>  Concept counts by vocabulary query executed successfully in 7.70 secs
+2024-01-17 16:38:28	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-01-17 16:38:54	[Main thread]	INFO	CdmInspection	executeQuery	>  Count on vocabulary tables query executed successfully in 25.93 secs
+2024-01-17 16:38:54	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-01-17 16:38:54	[Main thread]	INFO	CdmInspection	executeQuery	>  Source to concept map breakdown query executed successfully in 0.82 secs
+2024-01-17 16:38:55	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-01-17 16:38:55	[Main thread]	INFO	CdmInspection	executeQuery	>  Source to concept map query executed successfully in 0.70 secs
+2024-01-17 16:38:55	[Main thread]	INFO	CdmInspection	cdmInspection	Check installed R Packages
+2024-01-17 16:38:55	[Main thread]	INFO	CdmInspection	cdmInspection	Not all the HADES packages are installed, see https://ohdsi.github.io/Hades/installingHades.html for more information
+2024-01-17 16:38:55	[Main thread]	INFO	CdmInspection	cdmInspection	Missing:CohortMethod, SelfControlledCaseSeries, SelfControlledCohort, EvidenceSynthesis, PatientLevelPrediction, EnsemblePatientLevelPrediction, Capr, CirceR, CohortGenerator, PhenotypeLibrary, EmpiricalCalibration, MethodEvaluation, CohortDiagnostics, Andromeda, BigKnn, Cyclops, Eunomia, FeatureExtraction, Hydra, OhdsiSharing
+2024-01-17 16:38:58	[Main thread]	INFO	CdmInspection	cdmInspection	Running Performance Checks on 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz cpu with 8 cores, and 34.07 GB ram.
+2024-01-17 16:38:58	[Main thread]	INFO	CdmInspection	cdmInspection	Running Performance Checks SQL
+2024-01-17 16:38:58	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-01-17 16:38:59	[Main thread]	INFO	CdmInspection	executeQuery	>  Retrieving duration of Achilles queries in 1.26 secs
+2024-01-17 16:38:59	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-01-17 16:40:17	[Main thread]	INFO	CdmInspection	executeQuery	>  Executing vocabulary query benchmark in 78.06 secs
+2024-01-17 16:40:17	[Main thread]	INFO	CdmInspection	cdmInspection	Running WebAPIChecks
+2024-01-17 16:40:17	[Main thread]	ERROR	CdmInspection	3	Could not connect to the WebAPI: 
+2024-01-17 16:40:17	[Main thread]	INFO	CdmInspection	cdmInspection	Done.
+2024-01-17 16:40:17	[Main thread]	INFO	CdmInspection	cdmInspection	Complete CdmInspection took  8.31  minutes
+2024-01-17 16:40:17	[Main thread]	INFO	CdmInspection	cdmInspection	The cdm inspection results have been exported to: C:/Users/mfinster/OMOP_CDM/FDZFormat_to_OMOP/FDZFormat1/Quality_checks/CDMInspection/results
+2024-01-17 16:40:17	[Main thread]	INFO	CdmInspection	cdmInspection	All cdm inspection results are bundled for sharing at:  C:/Users/mfinster/OMOP_CDM/FDZFormat_to_OMOP/FDZFormat1/Quality_checks/CDMInspection/results/Results_Inspection_OMOP_format1.zip
+2024-01-17 16:40:17	[Main thread]	INFO	CdmInspection	cdmInspection	Next step: generate and complete the inspection report and share this together with the zip file.
+2024-01-17 16:40:17	[Main thread]	INFO	CdmInspection	cdmInspection	CdmInspection run took 499.02 secs
+2024-05-03 21:10:19	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-03 21:10:20	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-03 21:10:20	[Main thread]	WARN	CdmInspection	.checkAchillesTablesExist	Achilles table 'OMOP1_results.achilles_analysis' has not been found
+2024-05-03 21:10:20	[Main thread]	WARN	CdmInspection	.checkAchillesTablesExist	Achilles table 'OMOP1_results.achilles_results' has not been found
+2024-05-03 21:10:20	[Main thread]	WARN	CdmInspection	.checkAchillesTablesExist	Achilles table 'OMOP1_results.achilles_results_dist' has not been found
+2024-05-03 21:10:20	[Main thread]	ERROR	CdmInspection	cdmInspection	The output from Achilles is required. Please run Achilles first and make sure the result tables are in the OMOP1_results schema
+2024-05-04 21:03:32	[Main thread]	INFO	remotes	install_remote	Skipping install of 'ROhdsiWebApi' from a github remote, the SHA1 (455c8163) has not changed since last install.   Use `force = TRUE` to force installation 
+2024-05-04 21:03:32	[Main thread]	INFO	remotes	install_remote	Skipping install of 'CdmInspection' from a github remote, the SHA1 (e80c5841) has not changed since last install.   Use `force = TRUE` to force installation 
+2024-05-04 21:03:32	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-04 21:03:42	[Main thread]	FATAL	rJava	.jcheck	org.postgresql.util.PSQLException: The connection attempt failed.
+2024-05-06 09:52:17	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-06 09:52:18	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-06 09:52:19	[Main thread]	WARN	CdmInspection	.checkAchillesTablesExist	Achilles table 'OMOP1_results.achilles_analysis' has not been found
+2024-05-06 09:52:19	[Main thread]	WARN	CdmInspection	.checkAchillesTablesExist	Achilles table 'OMOP1_results.achilles_results' has not been found
+2024-05-06 09:52:19	[Main thread]	WARN	CdmInspection	.checkAchillesTablesExist	Achilles table 'OMOP1_results.achilles_results_dist' has not been found
+2024-05-06 09:52:19	[Main thread]	ERROR	CdmInspection	cdmInspection	The output from Achilles is required. Please run Achilles first and make sure the result tables are in the OMOP1_results schema
+2024-05-06 09:53:27	[Main thread]	INFO	remotes	install_remote	Skipping install of 'ROhdsiWebApi' from a github remote, the SHA1 (455c8163) has not changed since last install.   Use `force = TRUE` to force installation 
+2024-05-06 09:53:27	[Main thread]	INFO	remotes	install_remote	Skipping install of 'CdmInspection' from a github remote, the SHA1 (e80c5841) has not changed since last install.   Use `force = TRUE` to force installation 
+2024-05-06 09:53:27	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-06 09:53:28	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 0.0621 secs
+2024-05-06 09:53:28	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-06 09:53:28	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-06 09:53:29	[Main thread]	INFO	CdmInspection	cdmInspection	CDM Inspection of database fdzformat started (cdm_version=5.4)
+2024-05-06 09:53:29	[Main thread]	INFO	CdmInspection	cdmInspection	Running Data Table Checks
+2024-05-06 09:53:29	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-06 09:54:30	[Main thread]	INFO	CdmInspection	executeQuery	>  Data tables count query executed successfully in 61.01 secs
+2024-05-06 09:54:30	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-06 09:54:31	[Main thread]	INFO	CdmInspection	executeQuery	>  Total number of records over time query executed successfully in 0.99 secs
+2024-05-06 09:54:32	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-06 09:54:32	[Main thread]	INFO	CdmInspection	executeQuery	>  Number of records per person query executed successfully in 0.85 secs
+2024-05-06 09:54:32	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-06 09:54:33	[Main thread]	INFO	CdmInspection	executeQuery	>  Number of records per person query executed successfully in 0.75 secs
+2024-05-06 09:54:33	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-06 09:54:34	[Main thread]	INFO	CdmInspection	.getCdmSource	> Vocabulary table successfully extracted
+2024-05-06 09:54:34	[Main thread]	INFO	CdmInspection	cdmInspection	Running Vocabulary Checks
+2024-05-06 09:54:34	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-06 09:55:11	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapping Completeness query executed successfully in 37.49 secs
+2024-05-06 09:55:11	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-06 09:55:14	[Main thread]	INFO	CdmInspection	executeQuery	>  Drug Level Mapping query executed successfully in 2.43 secs
+2024-05-06 09:55:14	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-06 09:55:35	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped drugs query executed successfully in 20.98 secs
+2024-05-06 09:55:35	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-06 09:56:23	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped conditions query executed successfully in 47.85 secs
+2024-05-06 09:56:23	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-06 09:56:23	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped measurements query executed successfully in 0.66 secs
+2024-05-06 09:56:23	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-06 09:56:50	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped observations query executed successfully in 26.95 secs
+2024-05-06 09:56:50	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-06 09:56:51	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped procedures query executed successfully in 0.78 secs
+2024-05-06 09:56:51	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-06 09:56:52	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped devices query executed successfully in 0.84 secs
+2024-05-06 09:56:52	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-06 09:56:58	[Main thread]	INFO	CdmInspection	executeQuery	>  Unmapped visits query executed successfully in 6.42 secs
+2024-05-06 09:56:58	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-06 09:57:00	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped drugs query executed successfully in 1.45 secs
+2024-05-06 09:57:00	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-06 09:57:22	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped conditions query executed successfully in 22.05 secs
+2024-05-06 09:57:22	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-06 09:57:23	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped measurements query executed successfully in 0.96 secs
+2024-05-06 09:57:23	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-06 09:57:29	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped observations query executed successfully in 5.87 secs
+2024-05-06 09:57:29	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-06 09:57:36	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped procedures query executed successfully in 7.19 secs
+2024-05-06 09:57:36	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-06 09:57:37	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped devices query executed successfully in 0.73 secs
+2024-05-06 09:57:37	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-06 09:57:57	[Main thread]	INFO	CdmInspection	executeQuery	>  Mapped visits query executed successfully in 20.14 secs
+2024-05-06 09:57:57	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-06 09:58:05	[Main thread]	INFO	CdmInspection	executeQuery	>  Concept counts by vocabulary query executed successfully in 7.90 secs
+2024-05-06 09:58:05	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-06 09:58:29	[Main thread]	INFO	CdmInspection	executeQuery	>  Count on vocabulary tables query executed successfully in 24.37 secs
+2024-05-06 09:58:29	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-06 09:58:30	[Main thread]	INFO	CdmInspection	executeQuery	>  Source to concept map breakdown query executed successfully in 0.84 secs
+2024-05-06 09:58:30	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-06 09:58:31	[Main thread]	INFO	CdmInspection	executeQuery	>  Source to concept map query executed successfully in 0.74 secs
+2024-05-06 09:58:31	[Main thread]	INFO	CdmInspection	cdmInspection	Check installed R Packages
+2024-05-06 09:58:31	[Main thread]	INFO	CdmInspection	cdmInspection	Not all the HADES packages are installed, see https://ohdsi.github.io/Hades/installingHades.html for more information
+2024-05-06 09:58:31	[Main thread]	INFO	CdmInspection	cdmInspection	Missing:CohortMethod, SelfControlledCaseSeries, SelfControlledCohort, EvidenceSynthesis, PatientLevelPrediction, EnsemblePatientLevelPrediction, Capr, CirceR, CohortGenerator, PhenotypeLibrary, EmpiricalCalibration, MethodEvaluation, CohortDiagnostics, Andromeda, BigKnn, Cyclops, Eunomia, FeatureExtraction, Hydra, OhdsiSharing
+2024-05-06 09:58:36	[Main thread]	INFO	benchmarkme	get_byte_compiler	Lade nötiges Paket: benchmarkme 
+2024-05-06 09:58:36	[Main thread]	INFO	CdmInspection	cdmInspection	Running Performance Checks on 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz cpu with 8 cores, and 34.07 GB ram.
+2024-05-06 09:58:36	[Main thread]	INFO	CdmInspection	cdmInspection	Running Performance Checks SQL
+2024-05-06 09:58:36	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-06 09:58:37	[Main thread]	INFO	CdmInspection	executeQuery	>  Retrieving duration of Achilles queries in 0.79 secs
+2024-05-06 09:58:37	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-06 09:58:56	[Main thread]	INFO	CdmInspection	executeQuery	>  Executing vocabulary query benchmark in 19.50 secs
+2024-05-06 09:58:56	[Main thread]	INFO	CdmInspection	cdmInspection	Running WebAPIChecks
+2024-05-06 09:58:56	[Main thread]	ERROR	CdmInspection	3	Could not connect to the WebAPI: 
+2024-05-06 09:58:56	[Main thread]	INFO	CdmInspection	cdmInspection	Done.
+2024-05-06 09:58:56	[Main thread]	INFO	CdmInspection	cdmInspection	Complete CdmInspection took  5.47  minutes
+2024-05-06 09:58:56	[Main thread]	INFO	CdmInspection	cdmInspection	The cdm inspection results have been exported to: C:/Users/mfinster/KI-FDZ-repos/SQL-data/QualityAssessment/format1/CDMInspection/results
+2024-05-06 09:58:56	[Main thread]	INFO	CdmInspection	cdmInspection	All cdm inspection results are bundled for sharing at:  C:/Users/mfinster/KI-FDZ-repos/SQL-data/QualityAssessment/format1/CDMInspection/results/Results_Inspection_FDZ_format1.zip
+2024-05-06 09:58:57	[Main thread]	INFO	CdmInspection	cdmInspection	Next step: generate and complete the inspection report and share this together with the zip file.
+2024-05-06 09:58:57	[Main thread]	INFO	CdmInspection	cdmInspection	CdmInspection run took 328.73 secs

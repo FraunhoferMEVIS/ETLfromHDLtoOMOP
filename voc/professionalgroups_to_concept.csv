@@ -1,0 +1,74 @@
+concept_id	concept_name	domain_id	vocabulary_id	concept_class_id	standard_concept	concept_code	valid_start_date	valid_end_date	invalid_reason
+2010000001	Neurology	Provider	KGV-SV Fachgruppen	Provider		51	20230503	20991231	
+2010000002	Ophthalmology	Provider	KGV-SV Fachgruppen	Provider		5	20230503	20991231	
+2010000003	Human genetics	Provider	KGV-SV Fachgruppen	Provider		22	20230503	20991231	
+2010000004	Trauma surgery	Provider	KGV-SV Fachgruppen	Provider		11	20230503	20991231	
+2010000005	Radiotherapy	Provider	KGV-SV Fachgruppen	Provider		65	20230503	20991231	
+2010000006	Psychiatry and Psychotherapy	Provider	KGV-SV Fachgruppen	Provider		58	20230503	20991231	
+2010000007	Pediatrician (specialist)	Provider	KGV-SV Fachgruppen	Provider		40	20230503	20991231	
+2010000008	Child and adolescent psychiatry/psychotherapy	Provider	KGV-SV Fachgruppen	Provider		47	20230503	20991231	
+2010000009	Neurosurgery	Provider	KGV-SV Fachgruppen	Provider		52	20230503	20991231	
+2010000010	Surgery	Provider	KGV-SV Fachgruppen	Provider		6	20230503	20991231	
+2010000011	Surgery/Rheumatology	Provider	KGV-SV Fachgruppen	Provider		12	20230503	20991231	
+2010000012	Transfusion Medicine	Provider	KGV-SV Fachgruppen	Provider		66	20230503	20991231	
+2010000013	Internist	Provider	KGV-SV Fachgruppen	Provider		23	20230503	20991231	
+2010000014	Neurology	Provider	KGV-SV Fachgruppen	Provider		53	20230503	20991231	
+2010000015	Laboratory medicine	Provider	KGV-SV Fachgruppen	Provider		48	20230503	20991231	
+2010000016	Pediatric hematology and oncology (specialist)	Provider	KGV-SV Fachgruppen	Provider		41	20230503	20991231	
+2010000017	Vascular surgery	Provider	KGV-SV Fachgruppen	Provider		7	20230503	20991231	
+2010000018	Forensic psychiatry	Provider	KGV-SV Fachgruppen	Provider		59	20230503	20991231	
+2010000019	Pediatric surgery	Provider	KGV-SV Fachgruppen	Provider		9	20230503	20991231	
+2010000020	Pediatric radiology	Provider	KGV-SV Fachgruppen	Provider		63	20230503	20991231	
+2010000021	Endocrinology and diabetology	Provider	KGV-SV Fachgruppen	Provider		25	20230503	20991231	
+2010000022	Microbiology	Provider	KGV-SV Fachgruppen	Provider		49	20230503	20991231	
+2010000023	Pediatric pneumology (specialist)	Provider	KGV-SV Fachgruppen	Provider		45	20230503	20991231	
+2010000024	Orthopedics	Provider	KGV-SV Fachgruppen	Provider		10	20230503	20991231	
+2010000025	Visceral surgery	Provider	KGV-SV Fachgruppen	Provider		8	20230503	20991231	
+2010000026	Neuroradiology	Provider	KGV-SV Fachgruppen	Provider		64	20230503	20991231	
+2010000027	Gastroenterology	Provider	KGV-SV Fachgruppen	Provider		26	20230503	20991231	
+2010000028	Psychotherapeutic physician	Provider	KGV-SV Fachgruppen	Provider		61	20230503	20991231	
+2010000029	Neonatology (specialist)	Provider	KGV-SV Fachgruppen	Provider		43	20230503	20991231	
+2010000030	Oral and maxillofacial surgery	Provider	KGV-SV Fachgruppen	Provider		50	20230503	20991231	
+2010000031	Gynecology	Provider	KGV-SV Fachgruppen	Provider		15	20230503	20991231	
+2010000032	Angiology	Provider	KGV-SV Fachgruppen	Provider		24	20230503	20991231	
+2010000033	Radiology	Provider	KGV-SV Fachgruppen	Provider		62	20230503	20991231	
+2010000034	Neuropediatrics (specialist)	Provider	KGV-SV Fachgruppen	Provider		44	20230503	20991231	
+2010000035	Internist (general practitioner)	Provider	KGV-SV Fachgruppen	Provider		3	20230503	20991231	
+2010000036	Pediatrics and adolescent medicine with focus on and participation in primary care and specialist care	Provider	KGV-SV Fachgruppen	Provider		46	20230503	20991231	
+2010000037	Pediatrics and adolescent medicine with focus on and participation in primary care and specialist care	Provider	KGV-SV Fachgruppen	Provider		46	20230503	20991231	
+2010000038	Child and adolescent psychotherapist	Provider	KGV-SV Fachgruppen	Provider		69	20230503	20991231	
+2010000039	Pathology	Provider	KGV-SV Fachgruppen	Provider		56	20230503	20991231	
+2010000040	Phoniatrics	Provider	KGV-SV Fachgruppen	Provider		20	20230503	20991231	
+2010000041	Gynecological endocrinology and reproductive medicine	Provider	KGV-SV Fachgruppen	Provider		16	20230503	20991231	
+2010000042	Venereal disease	Provider	KGV-SV Fachgruppen	Provider		21	20230503	20991231	
+2010000043	Nuclear Medicine	Provider	KGV-SV Fachgruppen	Provider		54	20230503	20991231	
+2010000044	Psychosomatic Medicine and Psychotherapy	Provider	KGV-SV Fachgruppen	Provider		60	20230503	20991231	
+2010000045	Pediatric cardiology (specialist)	Provider	KGV-SV Fachgruppen	Provider		42	20230503	20991231	
+2010000046	Anesthesiology	Provider	KGV-SV Fachgruppen	Provider		4	20230503	20991231	
+2010000047	Gynecological oncology	Provider	KGV-SV Fachgruppen	Provider		17	20230503	20991231	
+2010000048	Physical and Rehabilitation Medicine	Provider	KGV-SV Fachgruppen	Provider		57	20230503	20991231	
+2010000049	Neuropediatrics (family doctor)	Provider	KGV-SV Fachgruppen	Provider		38	20230503	20991231	
+2010000050	Special obstetrics and perinatal medicine	Provider	KGV-SV Fachgruppen	Provider		18	20230503	20991231	
+2010000051	Special obstetrics and perinatal medicine	Provider	KGV-SV Fachgruppen	Provider		18	20230503	20991231	
+2010000052	General practitioner (family doctor)	Provider	KGV-SV Fachgruppen	Provider		1	20230503	20991231	
+2010000053	Neuropathology	Provider	KGV-SV Fachgruppen	Provider		55	20230503	20991231	
+2010000054	Internal Medicine/Rheumatology	Provider	KGV-SV Fachgruppen	Provider		31	20230503	20991231	
+2010000055	Internal Medicine/Rheumatology	Provider	KGV-SV Fachgruppen	Provider		31	20230503	20991231	
+2010000056	Urology	Provider	KGV-SV Fachgruppen	Provider		67	20230503	20991231	
+2010000057	Plastic surgery	Provider	KGV-SV Fachgruppen	Provider		13	20230503	20991231	
+2010000058	Otolaryngology	Provider	KGV-SV Fachgruppen	Provider		19	20230503	20991231	
+2010000059	Nephrology	Provider	KGV-SV Fachgruppen	Provider		29	20230503	20991231	
+2010000060	Other specialties	Provider	KGV-SV Fachgruppen	Provider		99	20230503	20991231	
+2010000061	General practitioner (family doctor)	Provider	KGV-SV Fachgruppen	Provider		2	20230503	20991231	
+2010000062	Pediatric pneumology (family physician)	Provider	KGV-SV Fachgruppen	Provider		39	20230503	20991231	
+2010000063	Geriatrics	Provider	KGV-SV Fachgruppen	Provider		32	20230503	20991231	
+2010000064	Pneumology	Provider	KGV-SV Fachgruppen	Provider		30	20230503	20991231	
+2010000065	Thoracic Surgery	Provider	KGV-SV Fachgruppen	Provider		14	20230503	20991231	
+2010000066	Psychological psychotherapist	Provider	KGV-SV Fachgruppen	Provider		68	20230503	20991231	
+2010000067	Hematology and oncology	Provider	KGV-SV Fachgruppen	Provider		27	20230503	20991231	
+2010000068	Infectiology	Provider	KGV-SV Fachgruppen	Provider		33	20230503	20991231	
+2010000069	Pediatric cardiology (family physician)	Provider	KGV-SV Fachgruppen	Provider		36	20230503	20991231	
+2010000070	Pediatrician (general practitioner)	Provider	KGV-SV Fachgruppen	Provider		34	20230503	20991231	
+2010000071	Cardiology	Provider	KGV-SV Fachgruppen	Provider		28	20230503	20991231	
+2010000072	Neonatology (family physician)	Provider	KGV-SV Fachgruppen	Provider		37	20230503	20991231	
+2010000073	Pediatric hematology and oncology (family physician)	Provider	KGV-SV Fachgruppen	Provider		35	20230503	20991231	
