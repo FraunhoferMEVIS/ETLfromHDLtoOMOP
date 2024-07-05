@@ -1,0 +1,277 @@
+2024-05-14 09:28:54	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-14 09:28:55	[Main thread]	INFO	Achilles	achilles	Beginning single-threaded execution
+2024-05-14 09:28:55	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-05-14 09:28:55	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 0.177 secs
+2024-05-14 09:28:55	[Main thread]	INFO	DatabaseConnector	insertTable.default	Inserting data took 0.0776 secs
+2024-05-14 09:29:00	[Main thread]	INFO	Achilles	achilles	Executing multiple queries. This could take a while
+2024-05-14 09:29:00	[Main thread]	INFO	Achilles	achilles	Analysis 0 (Source name) -- START
+2024-05-14 09:29:08	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 7.74 secs
+2024-05-14 09:29:08	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 0 (7.739302 secs)
+2024-05-14 09:29:08	[Main thread]	INFO	Achilles	achilles	Analysis 1 (Number of persons) -- START
+2024-05-14 09:29:10	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 2.46 secs
+2024-05-14 09:29:10	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 1 (2.464284 secs)
+2024-05-14 09:29:10	[Main thread]	INFO	Achilles	achilles	Analysis 2 (Number of persons by gender) -- START
+2024-05-14 09:29:14	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 3.72 secs
+2024-05-14 09:29:14	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 2 (3.730344 secs)
+2024-05-14 09:29:14	[Main thread]	INFO	Achilles	achilles	Analysis 3 (Number of persons by year of birth) -- START
+2024-05-14 09:29:21	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 7.09 secs
+2024-05-14 09:29:21	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 3 (7.097512 secs)
+2024-05-14 09:29:21	[Main thread]	INFO	Achilles	achilles	Analysis 4 (Number of persons by race) -- START
+2024-05-14 09:29:28	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 6.58 secs
+2024-05-14 09:29:28	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 4 (6.594171 secs)
+2024-05-14 09:29:28	[Main thread]	INFO	Achilles	achilles	Analysis 5 (Number of persons by ethnicity) -- START
+2024-05-14 09:29:34	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 6.68 secs
+2024-05-14 09:29:34	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 5 (6.686408 secs)
+2024-05-14 09:29:34	[Main thread]	INFO	Achilles	achilles	Analysis 7 (Number of persons with invalid provider_id) -- START
+2024-05-14 09:29:35	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 1.18 secs
+2024-05-14 09:29:35	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 7 (1.186587 secs)
+2024-05-14 09:29:35	[Main thread]	INFO	Achilles	achilles	Analysis 8 (Number of persons with invalid location_id) -- START
+2024-05-14 09:29:36	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 0.917 secs
+2024-05-14 09:29:36	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 8 (0.922898 secs)
+2024-05-14 09:29:36	[Main thread]	INFO	Achilles	achilles	Analysis 9 (Number of persons with invalid care_site_id) -- START
+2024-05-14 09:29:37	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 0.564 secs
+2024-05-14 09:29:37	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 9 (0.572569 secs)
+2024-05-14 09:29:37	[Main thread]	INFO	Achilles	achilles	Analysis 10 (Number of all persons by year of birth by gender) -- START
+2024-05-14 09:29:44	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 6.63 secs
+2024-05-14 09:29:44	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 10 (6.639019 secs)
+2024-05-14 09:29:44	[Main thread]	INFO	Achilles	achilles	Analysis 11 (Number of non-deceased persons by year of birth by gender) -- START
+2024-05-14 09:29:51	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 7.11 secs
+2024-05-14 09:29:51	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 11 (7.116836 secs)
+2024-05-14 09:29:51	[Main thread]	INFO	Achilles	achilles	Analysis 12 (Number of persons by race and ethnicity) -- START
+2024-05-14 09:29:58	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 7.17 secs
+2024-05-14 09:29:58	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 12 (7.176179 secs)
+2024-05-14 09:29:58	[Main thread]	INFO	Achilles	achilles	Analysis 101 (Number of persons by age, with age at first observation period) -- START
+2024-05-14 09:30:31	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 33.4 secs
+2024-05-14 09:30:31	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 101 (33.443851 secs)
+2024-05-14 09:30:31	[Main thread]	INFO	Achilles	achilles	Analysis 102 (Number of persons by gender by age, with age at first observation period) -- START
+2024-05-14 09:31:04	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 32.8 secs
+2024-05-14 09:31:04	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 102 (32.838990 secs)
+2024-05-14 09:31:04	[Main thread]	INFO	Achilles	achilles	Analysis 103 (Distribution of age at first observation period) -- START
+2024-05-14 09:31:22	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 17.9 secs
+2024-05-14 09:31:22	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 103 (17.884808 secs)
+2024-05-14 09:31:22	[Main thread]	INFO	Achilles	achilles	Analysis 104 (Distribution of age at first observation period by gender) -- START
+2024-05-14 09:31:42	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 19.7 secs
+2024-05-14 09:31:42	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 104 (19.731607 secs)
+2024-05-14 09:31:42	[Main thread]	INFO	Achilles	achilles	Analysis 105 (Length of observation (days) of first observation period) -- START
+2024-05-14 09:32:21	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 38.9 secs
+2024-05-14 09:32:21	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 105 (38.941735 secs)
+2024-05-14 09:32:21	[Main thread]	INFO	Achilles	achilles	Analysis 106 (Length of observation (days) of first observation period by gender) -- START
+2024-05-14 09:33:08	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 47.3 secs
+2024-05-14 09:33:08	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 106 (47.315505 secs)
+2024-05-14 09:33:08	[Main thread]	INFO	Achilles	achilles	Analysis 107 (Length of observation (days) of first observation period by age decile) -- START
+2024-05-14 09:33:46	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 38.2 secs
+2024-05-14 09:33:46	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 107 (38.246603 secs)
+2024-05-14 09:33:46	[Main thread]	INFO	Achilles	achilles	Analysis 108 (Number of persons by length of observation period, in 30d increments) -- START
+2024-05-14 09:34:16	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 29.6 secs
+2024-05-14 09:34:16	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 108 (29.629610 secs)
+2024-05-14 09:34:16	[Main thread]	INFO	Achilles	achilles	Analysis 109 (Number of persons with continuous observation in each year) -- START
+2024-05-14 09:35:00	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 43.9 secs
+2024-05-14 09:35:00	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 109 (43.856212 secs)
+2024-05-14 09:35:00	[Main thread]	INFO	Achilles	achilles	Analysis 110 (Number of persons with continuous observation in each month) -- START
+2024-05-14 09:35:19	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 19.7 secs
+2024-05-14 09:35:19	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 110 (19.661136 secs)
+2024-05-14 09:35:19	[Main thread]	INFO	Achilles	achilles	Analysis 111 (Number of persons by observation period start month) -- START
+2024-05-14 09:35:32	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 13 secs
+2024-05-14 09:35:32	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 111 (12.982992 secs)
+2024-05-14 09:35:32	[Main thread]	INFO	Achilles	achilles	Analysis 112 (Number of persons by observation period end month) -- START
+2024-05-14 09:35:45	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 13.1 secs
+2024-05-14 09:35:45	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 112 (13.062152 secs)
+2024-05-14 09:35:45	[Main thread]	INFO	Achilles	achilles	Analysis 113 (Number of persons by number of observation periods) -- START
+2024-05-14 09:36:00	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 14.2 secs
+2024-05-14 09:36:00	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 113 (14.165106 secs)
+2024-05-14 09:36:00	[Main thread]	INFO	Achilles	achilles	Analysis 114 (Number of persons with observation period before year-of-birth) -- START
+2024-05-14 09:36:24	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 24 secs
+2024-05-14 09:36:24	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 114 (24.008104 secs)
+2024-05-14 09:36:24	[Main thread]	INFO	Achilles	achilles	Analysis 115 (Number of persons with observation period end < observation period start) -- START
+2024-05-14 09:36:24	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 0.496 secs
+2024-05-14 09:36:24	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 115 (0.500967 secs)
+2024-05-14 09:36:24	[Main thread]	INFO	Achilles	achilles	Analysis 116 (Number of persons with at least one day of observation in each year by gender and age decile) -- START
+2024-05-14 09:37:04	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 40.3 secs
+2024-05-14 09:37:04	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 116 (40.298630 secs)
+2024-05-14 09:37:04	[Main thread]	INFO	Achilles	achilles	Analysis 117 (Number of persons with at least one day of observation in each month) -- START
+2024-05-14 14:32:08	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 4.92 hours
+2024-05-14 14:32:08	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 117 (4.917521 hours)
+2024-05-14 14:32:08	[Main thread]	INFO	Achilles	achilles	Analysis 118 (Number of observation periods with invalid person_id) -- START
+2024-05-14 14:32:18	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 10.4 secs
+2024-05-14 14:32:18	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 118 (10.394395 secs)
+2024-05-14 14:32:18	[Main thread]	INFO	Achilles	achilles	Analysis 119 (Number of observation period records by period_type_concept_id) -- START
+2024-05-14 14:32:19	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 0.78 secs
+2024-05-14 14:32:19	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 119 (0.788401 secs)
+2024-05-14 14:32:19	[Main thread]	INFO	Achilles	achilles	Analysis 200 (Number of persons with at least one visit occurrence, by visit_concept_id) -- START
+2024-05-14 14:33:05	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 46.3 secs
+2024-05-14 14:33:05	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 200 (46.268190 secs)
+2024-05-14 14:33:05	[Main thread]	INFO	Achilles	achilles	Analysis 201 (Number of visit occurrence records, by visit_concept_id) -- START
+2024-05-14 14:33:18	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 13.3 secs
+2024-05-14 14:33:18	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 201 (13.344406 secs)
+2024-05-14 14:33:18	[Main thread]	INFO	Achilles	achilles	Analysis 202 (Number of persons by visit occurrence start month, by visit_concept_id) -- START
+2024-05-14 14:34:16	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 57.2 secs
+2024-05-14 14:34:16	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 202 (57.255548 secs)
+2024-05-14 14:34:16	[Main thread]	INFO	Achilles	achilles	Analysis 203 (Number of distinct visit occurrence concepts per person) -- START
+2024-05-14 14:34:43	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 27.5 secs
+2024-05-14 14:34:43	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 203 (27.514283 secs)
+2024-05-14 14:34:43	[Main thread]	INFO	Achilles	achilles	Analysis 204 (Number of persons with at least one visit occurrence, by visit_concept_id by calendar year by gender by age decile) -- START
+2024-05-14 14:35:32	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 49 secs
+2024-05-14 14:35:32	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 204 (49.044174 secs)
+2024-05-14 14:35:32	[Main thread]	INFO	Achilles	achilles	Analysis 206 (Distribution of age by visit_concept_id) -- START
+2024-05-14 14:36:50	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 1.29 mins
+2024-05-14 14:36:50	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 206 (1.295088 mins)
+2024-05-14 14:36:50	[Main thread]	INFO	Achilles	achilles	Analysis 207 (Number of visit records with invalid person_id) -- START
+2024-05-14 14:37:01	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 10.9 secs
+2024-05-14 14:37:01	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 207 (10.941078 secs)
+2024-05-14 14:37:01	[Main thread]	INFO	Achilles	achilles	Analysis 209 (Number of visit records with invalid care_site_id) -- START
+2024-05-14 14:37:02	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 0.792 secs
+2024-05-14 14:37:02	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 209 (0.804463 secs)
+2024-05-14 14:37:02	[Main thread]	INFO	Achilles	achilles	Analysis 210 (Number of visit_occurrence records outside a valid observation period) -- START
+2024-05-14 14:37:14	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 12.2 secs
+2024-05-14 14:37:14	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 210 (12.159771 secs)
+2024-05-14 14:37:14	[Main thread]	INFO	Achilles	achilles	Analysis 211 (Number of visit records with end date < start date) -- START
+2024-05-14 14:37:15	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 0.704 secs
+2024-05-14 14:37:15	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 211 (0.711441 secs)
+2024-05-14 14:37:15	[Main thread]	INFO	Achilles	achilles	Analysis 212 (Number of persons with at least one visit occurrence, by calendar year by gender by age decile) -- START
+2024-05-14 14:37:54	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 39 secs
+2024-05-14 14:37:54	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 212 (38.988040 secs)
+2024-05-14 14:37:54	[Main thread]	INFO	Achilles	achilles	Analysis 213 (Distribution of length of stay by visit_concept_id) -- START
+2024-05-14 14:38:16	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 22.9 secs
+2024-05-14 14:38:16	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 213 (22.892386 secs)
+2024-05-14 14:38:16	[Main thread]	INFO	Achilles	achilles	Analysis 220 (Number of visit occurrence records by visit occurrence start month) -- START
+2024-05-14 14:38:33	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 16.4 secs
+2024-05-14 14:38:33	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 220 (16.363489 secs)
+2024-05-14 14:38:33	[Main thread]	INFO	Achilles	achilles	Analysis 221 (Number of persons by visit start year) -- START
+2024-05-14 14:39:14	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 40.7 secs
+2024-05-14 14:39:14	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 221 (40.742796 secs)
+2024-05-14 14:39:14	[Main thread]	INFO	Achilles	achilles	Analysis 225 (Number of visit_occurrence records by visit_source_concept_id) -- START
+2024-05-14 14:39:26	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 12.8 secs
+2024-05-14 14:39:26	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 225 (12.804811 secs)
+2024-05-14 14:39:26	[Main thread]	INFO	Achilles	achilles	Analysis 230 (Number of visit_occurrence records inside valid observation period) -- START
+2024-05-14 14:39:39	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 12.5 secs
+2024-05-14 14:39:39	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 230 (12.520393 secs)
+2024-05-14 14:39:39	[Main thread]	INFO	Achilles	achilles	Analysis 231 (Proportion of people with at least one visit_occurrence record outside a valid observation period) -- START
+2024-05-14 14:39:57	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 18.3 secs
+2024-05-14 14:39:57	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 231 (18.266683 secs)
+2024-05-14 14:39:57	[Main thread]	INFO	Achilles	achilles	Analysis 232 (Proportion of visit_occurrence records outside a valid observation period) -- START
+2024-05-14 14:40:09	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 12.2 secs
+2024-05-14 14:40:09	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 232 (12.206202 secs)
+2024-05-14 14:40:09	[Main thread]	INFO	Achilles	achilles	Analysis 300 (Number of providers) -- START
+2024-05-14 14:40:09	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 0.0509 secs
+2024-05-14 14:40:09	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 300 (0.061993 secs)
+2024-05-14 14:40:09	[Main thread]	INFO	Achilles	achilles	Analysis 301 (Number of providers by specialty concept_id) -- START
+2024-05-14 14:40:09	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 0.0413 secs
+2024-05-14 14:40:09	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 301 (0.047605 secs)
+2024-05-14 14:40:09	[Main thread]	INFO	Achilles	achilles	Analysis 303 (Number of providers records by specialty_concept_id and visit_concept_id) -- START
+2024-05-14 14:40:10	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 0.162 secs
+2024-05-14 14:40:10	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 303 (0.169299 secs)
+2024-05-14 14:40:10	[Main thread]	INFO	Achilles	achilles	Analysis 325 (Number of provider records by specialty_source_concept_id) -- START
+2024-05-14 14:40:10	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 0.039 secs
+2024-05-14 14:40:10	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 325 (0.049366 secs)
+2024-05-14 14:40:10	[Main thread]	INFO	Achilles	achilles	Analysis 400 (Number of persons with at least one condition occurrence, by condition_concept_id) -- START
+2024-05-14 14:40:44	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 34.4 secs
+2024-05-14 14:40:44	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 400 (34.443033 secs)
+2024-05-14 14:40:44	[Main thread]	INFO	Achilles	achilles	Analysis 401 (Number of condition occurrence records, by condition_concept_id) -- START
+2024-05-14 14:40:57	[Main thread]	ERROR	Achilles	3	Analysis 401 -- ERROR [1m[33mError[39m in `.createErrorReport()`:[22m [33m![39m Error executing SQL: org.postgresql.util.PSQLException: FEHLER: konnte temporäre Datei »base/pgsql_tmp/pgsql_tmp1162.13.sharedfileset/o127of128.p1.0« nicht öffnen: Ungültiger Dateideskriptor   Where: paralleler Arbeitsprozess An error report has been created at  C:/Users/mfinster/KI-FDZ-repos/SQL-data/QualityAssessment/format1/Achilles/achillesError_401.txt 
+2024-05-14 14:40:57	[Main thread]	INFO	Achilles	achilles	Analysis 402 (Number of persons by condition occurrence start month, by condition_concept_id) -- START
+2024-05-14 14:41:58	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 1.01 mins
+2024-05-14 14:41:58	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 402 (1.007727 mins)
+2024-05-14 14:41:58	[Main thread]	INFO	Achilles	achilles	Analysis 403 (Number of distinct condition occurrence concepts per person) -- START
+2024-05-14 14:42:23	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 25.5 secs
+2024-05-14 14:42:23	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 403 (25.478109 secs)
+2024-05-14 14:42:23	[Main thread]	INFO	Achilles	achilles	Analysis 404 (Number of persons with at least one condition occurrence, by condition_concept_id by calendar year by gender by age decile) -- START
+2024-05-14 14:43:13	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 49.4 secs
+2024-05-14 14:43:13	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 404 (49.393457 secs)
+2024-05-14 14:43:13	[Main thread]	INFO	Achilles	achilles	Analysis 405 (Number of condition occurrence records, by condition_concept_id by condition_type_concept_id) -- START
+2024-05-14 14:43:26	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 13.3 secs
+2024-05-14 14:43:26	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 405 (13.346260 secs)
+2024-05-14 14:43:26	[Main thread]	INFO	Achilles	achilles	Analysis 406 (Distribution of age by condition_concept_id) -- START
+2024-05-14 14:44:37	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 1.19 mins
+2024-05-14 14:44:37	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 406 (1.188654 mins)
+2024-05-14 14:44:37	[Main thread]	INFO	Achilles	achilles	Analysis 409 (Number of condition occurrence records with invalid person_id) -- START
+2024-05-14 14:44:49	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 11.2 secs
+2024-05-14 14:44:49	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 409 (11.180688 secs)
+2024-05-14 14:44:49	[Main thread]	INFO	Achilles	achilles	Analysis 410 (Number of condition occurrence records outside valid observation period) -- START
+2024-05-14 14:45:00	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 11.6 secs
+2024-05-14 14:45:00	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 410 (11.646146 secs)
+2024-05-14 14:45:00	[Main thread]	INFO	Achilles	achilles	Analysis 411 (Number of condition occurrence records with end date < start date) -- START
+2024-05-14 14:45:01	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 0.667 secs
+2024-05-14 14:45:01	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 411 (0.672068 secs)
+2024-05-14 14:45:01	[Main thread]	INFO	Achilles	achilles	Analysis 412 (Number of condition occurrence records with invalid provider_id) -- START
+2024-05-14 14:45:02	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 0.761 secs
+2024-05-14 14:45:02	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 412 (0.765998 secs)
+2024-05-14 14:45:02	[Main thread]	INFO	Achilles	achilles	Analysis 413 (Number of condition occurrence records with invalid visit_id) -- START
+2024-05-14 14:45:22	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 20.1 secs
+2024-05-14 14:45:22	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 413 (20.111624 secs)
+2024-05-14 14:45:22	[Main thread]	INFO	Achilles	achilles	Analysis 414 (Number of condition occurrence records, by condition_status_concept_id) -- START
+2024-05-14 14:45:34	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 12.3 secs
+2024-05-14 14:45:34	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 414 (12.312062 secs)
+2024-05-14 14:45:34	[Main thread]	INFO	Achilles	achilles	Analysis 415 (Number of condition occurrence records, by condition_type_concept_id) -- START
+2024-05-14 14:45:47	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 12.9 secs
+2024-05-14 14:45:47	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 415 (12.915309 secs)
+2024-05-14 14:45:47	[Main thread]	INFO	Achilles	achilles	Analysis 416 (Number of condition occurrence records, by condition_status_concept_id, condition_type_concept_id) -- START
+2024-05-14 14:46:00	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 12.7 secs
+2024-05-14 14:46:00	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 416 (12.687972 secs)
+2024-05-14 14:46:00	[Main thread]	INFO	Achilles	achilles	Analysis 420 (Number of condition occurrence records by condition occurrence start month) -- START
+2024-05-14 14:46:15	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 14.9 secs
+2024-05-14 14:46:15	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 420 (14.880288 secs)
+2024-05-14 14:46:15	[Main thread]	INFO	Achilles	achilles	Analysis 425 (Number of condition_occurrence records by condition_source_concept_id) -- START
+2024-05-14 14:46:27	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 12.5 secs
+2024-05-14 14:46:27	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 425 (12.469368 secs)
+2024-05-14 14:46:27	[Main thread]	INFO	Achilles	achilles	Analysis 424 (Number of distinct people with co-occurring condition_occurrence condition_concept_id pairs) -- START
+2024-05-14 14:46:43	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 15.6 secs
+2024-05-14 14:46:43	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 424 (15.626598 secs)
+2024-05-14 14:46:43	[Main thread]	INFO	Achilles	achilles	Analysis 430 (Number of condition_occurrence records inside a valid observation period) -- START
+2024-05-14 14:46:55	[Main thread]	ERROR	Achilles	3	Analysis 430 -- ERROR [1m[33mError[39m in `.createErrorReport()`:[22m [33m![39m Error executing SQL: org.postgresql.util.PSQLException: FEHLER: konnte temporäre Datei »base/pgsql_tmp/pgsql_tmp1162.27.sharedfileset/o127of128.p2.0« nicht öffnen: Ungültiger Dateideskriptor An error report has been created at  C:/Users/mfinster/KI-FDZ-repos/SQL-data/QualityAssessment/format1/Achilles/achillesError_430.txt 
+2024-05-14 14:46:55	[Main thread]	INFO	Achilles	achilles	Analysis 431 (Proportion of people with at least one condition_occurrence record outside a valid observation period) -- START
+2024-05-14 14:47:12	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 17 secs
+2024-05-14 14:47:12	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 431 (17.016671 secs)
+2024-05-14 14:47:12	[Main thread]	INFO	Achilles	achilles	Analysis 432 (Proportion of condition_occurrence records outside a valid observation period) -- START
+2024-05-14 14:47:24	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 12 secs
+2024-05-14 14:47:24	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 432 (12.048186 secs)
+2024-05-14 14:47:24	[Main thread]	INFO	Achilles	achilles	Analysis 500 (Number of persons with death, by cause_concept_id) -- START
+2024-05-14 14:47:33	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 8.68 secs
+2024-05-14 14:47:33	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 500 (8.685187 secs)
+2024-05-14 14:47:33	[Main thread]	INFO	Achilles	achilles	Analysis 501 (Number of records of death, by cause_concept_id) -- START
+2024-05-14 14:47:39	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 6.19 secs
+2024-05-14 14:47:39	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 501 (6.193905 secs)
+2024-05-14 14:47:39	[Main thread]	INFO	Achilles	achilles	Analysis 502 (Number of persons by death month) -- START
+2024-05-14 14:47:51	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 12.6 secs
+2024-05-14 14:47:51	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 502 (12.618620 secs)
+2024-05-14 14:47:51	[Main thread]	INFO	Achilles	achilles	Analysis 504 (Number of persons with a death, by calendar year by gender by age decile) -- START
+2024-05-14 14:48:13	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 21.6 secs
+2024-05-14 14:48:13	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 504 (21.592339 secs)
+2024-05-14 14:48:13	[Main thread]	INFO	Achilles	achilles	Analysis 505 (Number of death records, by death_type_concept_id) -- START
+2024-05-14 14:48:19	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 6.18 secs
+2024-05-14 14:48:19	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 505 (6.181669 secs)
+2024-05-14 14:48:19	[Main thread]	INFO	Achilles	achilles	Analysis 506 (Distribution of age at death by gender) -- START
+2024-05-14 14:48:42	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 22.5 secs
+2024-05-14 14:48:42	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 506 (22.465802 secs)
+2024-05-14 14:48:42	[Main thread]	INFO	Achilles	achilles	Analysis 509 (Number of death records with invalid person_id) -- START
+2024-05-14 14:48:51	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 8.85 secs
+2024-05-14 14:48:51	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 509 (8.856816 secs)
+2024-05-14 14:48:51	[Main thread]	INFO	Achilles	achilles	Analysis 510 (Number of death records outside valid observation period) -- START
+2024-05-14 14:49:00	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 9.14 secs
+2024-05-14 14:49:00	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 510 (9.146854 secs)
+2024-05-14 14:49:00	[Main thread]	INFO	Achilles	achilles	Analysis 511 (Distribution of time from death to last condition) -- START
+2024-05-14 14:49:40	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 40.2 secs
+2024-05-14 14:49:40	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 511 (40.231058 secs)
+2024-05-14 14:49:40	[Main thread]	INFO	Achilles	achilles	Analysis 512 (Distribution of time from death to last drug) -- START
+2024-05-14 14:49:58	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 18 secs
+2024-05-14 14:49:58	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 512 (17.982155 secs)
+2024-05-14 14:49:58	[Main thread]	INFO	Achilles	achilles	Analysis 513 (Distribution of time from death to last visit) -- START
+2024-05-14 14:50:28	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 30.4 secs
+2024-05-14 14:50:28	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 513 (30.376778 secs)
+2024-05-14 14:50:28	[Main thread]	INFO	Achilles	achilles	Analysis 514 (Distribution of time from death to last procedure) -- START
+2024-05-14 14:50:47	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 18.6 secs
+2024-05-14 14:50:47	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 514 (18.637235 secs)
+2024-05-14 14:50:47	[Main thread]	INFO	Achilles	achilles	Analysis 515 (Distribution of time from death to last observation) -- START
+2024-05-14 14:51:29	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 42.2 secs
+2024-05-14 14:51:29	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 515 (42.201121 secs)
+2024-05-14 14:51:29	[Main thread]	INFO	Achilles	achilles	Analysis 525 (Number of death records by cause_source_concept_id) -- START
+2024-05-14 14:51:30	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 0.445 secs
+2024-05-14 14:51:30	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 525 (0.453276 secs)
+2024-05-14 14:51:30	[Main thread]	INFO	Achilles	achilles	Analysis 530 (Number of death records inside a valid observation period) -- START
+2024-05-14 14:51:35	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 5.88 secs
+2024-05-14 14:51:35	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 530 (5.882997 secs)
+2024-05-14 14:51:35	[Main thread]	INFO	Achilles	achilles	Analysis 531 (Proportion of people with at least one death record outside a valid observation period) -- START
+2024-05-14 14:51:44	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 8.82 secs
+2024-05-14 14:51:44	[Main thread]	INFO	Achilles	achilles	[Main Analysis] [COMPLETE] 531 (8.821013 secs)
+2024-05-14 14:51:44	[Main thread]	INFO	Achilles	achilles	Analysis 532 (Proportion of death records that occur outside a valid observation period) -- START
+2024-05-14 14:51:54	[Main thread]	ERROR	Achilles	3	Analysis 532 -- ERROR [1m[33mError[39m in `.createErrorReport()`:[22m [33m![39m Error executing SQL: org.postgresql.util.PSQLException: FEHLER: konnte temporäre Datei »base/pgsql_tmp/pgsql_tmp1162.42.sharedfileset/o127of128.p2.0« nicht öffnen: Ungültiger Dateideskriptor   Where: paralleler Arbeitsprozess An error report has been created at  C:/Users/mfinster/KI-FDZ-repos/SQL-data/QualityAssessment/format1/Achilles/achillesError_532.txt 
+2024-05-14 14:51:54	[Main thread]	INFO	Achilles	achilles	Analysis 600 (Number of persons with at least one procedure occurrence, by procedure_concept_id) -- START
