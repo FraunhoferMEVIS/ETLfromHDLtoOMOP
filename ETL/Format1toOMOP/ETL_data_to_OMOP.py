@@ -95,8 +95,8 @@ for table_ in tables :
 
 
 logger.info('Run constraints')
-files_constraints=['OMOPCDM_postgresql_54_indices.sql','OMOPCDM_postgresql_54_constraints.sql']
+files_constraints=['OMOPCDM_postgresql_5.4_indices.sql','OMOPCDM_postgresql_5.4_constraints.sql']
 for file in files_constraints:
-    queries=read_sql_file(file,folder_constraint)
+    queries=read_ddl_sql_file(file,folder_constraint,target_schema)
     for query in split_query(queries):
         execute_query(query.format(target_schema=target_schema),dbname, user, host, port, password, logger)          

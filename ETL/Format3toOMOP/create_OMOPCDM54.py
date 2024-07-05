@@ -17,6 +17,28 @@ voc_folder = get_environment_values("VOC_FOLDER")
 logname = get_environment_values("logname")
 folder_ddl = os.path.join(dataOMOP3, "OMOPCDM54")
 
+replacements_format3={
+"care_site_id integer"  : "care_site_id bigint",
+"condition_occurrence_id integer"  : "condition_occurrence_id bigint" ,
+"cost_event_id integer"  : "cost_event_id bigint" ,
+"cost_id integer"  : "cost_id bigint" ,
+"drug_exposure_id integer"  : "drug_exposure_id bigint" ,
+"episode_id integer"  : "episode_id bigint" ,
+"episode_parent_id integer"  : "episode_parent_id bigint" ,
+"event_id integer" : "event_id bigint" ,
+"note_event_id integer"  : "note_event_id bigint" ,
+"observation_event_id integer"  : "observation_event_id bigint" ,
+"observation_id integer"  : "observation_id bigint" ,
+"observation_period_id integer" : "observation_period_id bigint",
+"payer_plan_period_id integer"  : "payer_plan_period_id bigint" ,
+"person_id integer"  : "person_id bigint" ,
+"procedure_occurrence_id integer"  : "procedure_occurrence_id bigint" ,
+"provider_id integer"  : "provider_id bigint" ,
+"visit_occurrence_id integer"  : "visit_occurrence_id bigint" ,
+"concept_name varchar(255)":" concept_name varchar(2000)"
+}
+
+
 ##Settings logging
 logging.basicConfig(
     level=logging.INFO,
@@ -35,27 +57,27 @@ execute_query(create_schema.format(target_schema=target_schema), dbname, user,
               host, port, password, logger)
 
 ##Create tables and set keys
-query = read_sql_file('OMOPCDM_postgresql_54_ddl.sql', folder_ddl)
+query = read_ddl_sql_file('OMOPCDM_postgresql_5.4_ddl.sql', folder_ddl, target_schema, replacement=replacements_format3)
 execute_query(
     query.format(source_schema=source_schema, target_schema=target_schema),
     dbname, user, host, port, password, logger)
 
-create_load_tables = [
-    'create_sequels.sql', 'OMOPCDM_postgresql_54_primary_keys.sql',
-    'custom_concept_EBM.sql', 'custom_concept_versichertentage.sql',
-    'custom_concept_professionalgroups.sql'
-]
+create_load_tables = ['create_sequels.sql','OMOPCDM_postgresql_5.4_primary_keys.sql']
 for sql in create_load_tables:
-    query = read_sql_file(sql, folder_ddl)
-    if query:
-        execute_query(
-            query.format(source_schema=source_schema,
-                         target_schema=target_schema), dbname, user, host,
-            port, password, logger)
+    query = read_ddl_sql_file(sql, folder_ddl, target_schema)
+    execute_query(
+        query.format(source_schema=source_schema, target_schema=target_schema),
+        dbname, user, host, port, password, logger)
 
 ##Load concepts
 logger.info('Load concepts')
 concepts = {
+    'versichertentage_VOCABULARY': 'VOCABULARY',
+    'versichertentage_CONCEPT': 'CONCEPT',
+    'EBM_concept_relationship': 'CONCEPT_RELATIONSHIP',
+    'EBM_concept': 'CONCEPT',
+    'EBM_vocabulary': 'VOCABULARY',
+    'EBM_concept_class': 'CONCEPT_CLASS',
     'DRUG_STRENGTH': 'DRUG_STRENGTH',
     'CONCEPT': 'CONCEPT',
     'CONCEPT_RELATIONSHIP': 'CONCEPT_RELATIONSHIP',
@@ -65,20 +87,17 @@ concepts = {
     'RELATIONSHIP': 'RELATIONSHIP',
     'CONCEPT_CLASS': 'CONCEPT_CLASS',
     'DOMAIN': 'DOMAIN',
-    'professionalgroups_to_concept': 'CONCEPT',
-    'professionalgroups_to_relationship_concept': 'CONCEPT_RELATIONSHIP',
-    'EBM_concept': 'CONCEPT',
-    'EBM_concept_relationship': 'CONCEPT_RELATIONSHIP'
+    'professionalgroups_CONCEPT': 'CONCEPT',
+    'professionalgroups_CONCEPT_RELATIONSHIP': 'CONCEPT_RELATIONSHIP',
+    'professionalgroups_VOCABULARY': 'VOCABULARY'
 }
-copy_sql = """ COPY {target_schema}.{concept} FROM stdin WITH CSV  DELIMITER as E'\t' HEADER QUOTE E'\b' """
+
 
 for table, concept in concepts.items():
     table_ = os.path.join(voc_folder, table + '.csv')
-    write_from_csv(
-        dbname, user, host, port, password, table_,
-        copy_sql.format(target_schema=target_schema, concept=concept), logger)
+    write_from_csv(dbname, user, host, port, password, table_, target_schema, concept, logger,)
 
-#Create materialized view
+# Create materialized view
 query = read_sql_file('materialized_views.sql', folder_ddl)
 if query:
     execute_query(
