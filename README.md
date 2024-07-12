@@ -3,13 +3,18 @@
 ## Database set up HDL Data Format Database
 
 Step 1. Create HDL Database and Schema:
+
 Step 1.1. Go to folder \create_db_HDLformats
+
 Step 1.2. Adapt environment variables in create_db_HDLformats\postgres_conn.env 
+
 Step 1.3. If desired, change HDL schema names in create_db_HDLformats\docker-compose.yml
+
 Step 1.4.  Build Docker 
 ```bash
 docker-compose build
 ```
+
 Step 1.5.  Run Docker 
 ```bash
 docker-compose up 
