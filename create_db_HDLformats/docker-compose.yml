@@ -1,0 +1,37 @@
+version: '3'
+services: 
+
+  create_format1:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    env_file:
+      - postgres_conn.env    
+    environment:
+      - schema=datravexample
+      - years=2009
+      - file=schema_format1.sql
+      - logname=/schema_HDL_format1.log
+    command: sh -c "python /create_source_schema.py"
+    volumes:
+     - ./create_source_schema.py:/create_source_schema.py
+     - ./schema_format1.sql:/schema_format1.sql
+
+
+  create_format3:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    env_file:
+      - postgres_conn.env    
+    environment:
+      - file=schema_format3.sql
+      - schema_versicherte=schema_versicherte
+      - schema_statonaer=schema_statonaer
+      - schema_ambulant=schema_ambulant
+      - schema_arzneimittel=schema_arzneimittel
+      - logname=/schema_HDL_format3.log
+    command: sh -c "python /create_source_schema.py"
+    volumes:
+     - ./create_source_schema.py:/create_source_schema.py
+     - ./schema_format3.sql:/schema_format3.sql
