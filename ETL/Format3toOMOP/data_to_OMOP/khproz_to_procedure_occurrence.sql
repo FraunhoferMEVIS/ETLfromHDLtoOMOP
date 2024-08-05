@@ -205,6 +205,7 @@ SELECT
     NULL AS quantity,
     NULL AS drug_exposure_start_datetime,
     TO_DATE(tmp_khproz.prozdat :: VARCHAR, 'YYYYMMDD') AS drug_exposure_end_date,
+    -- drug_exposure_start_datetime=drug_exposure_end_date if no end date is available (OMOP recommendation)
     NULL AS drug_exposure_end_datetime,
     NULL AS verbatim_end_date,
     --  If 1=> dental claim o.w. claim  

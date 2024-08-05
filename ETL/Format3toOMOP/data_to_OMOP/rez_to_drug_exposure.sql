@@ -44,9 +44,10 @@ SELECT
    NULL AS drug_exposure_start_datetime,
    case
       RIGHT(rez.abgabedat :: VARCHAR, 2)
-      when '00' then TO_DATE((rez.abgabedat + 1) :: VARCHAR, 'YYYYMMDD')
-      else TO_DATE(rez.abgabedat :: VARCHAR, 'YYYYMMDD')
+      when '00' then TO_DATE((rez.abgabedat + 1) :: VARCHAR, 'YYYYMMDD') +  INTERVAL '29' day 
+      else TO_DATE(rez.abgabedat :: VARCHAR, 'YYYYMMDD') +  INTERVAL '29' day 
    END AS drug_exposure_end_date,
+   -- Assumption: drug_exposure_end_date + 29 days (OMOP recommendation)
    NULL AS drug_exposure_end_datetime,
    NULL AS verbatim_end_date,
    -- If 1=> dental claim o.w. claim  

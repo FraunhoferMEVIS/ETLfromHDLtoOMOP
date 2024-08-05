@@ -244,6 +244,7 @@ SELECT
       01
     )
     ELSE TO_DATE(tmp_ambops.opsdat :: VARCHAR, 'YYYYMMDD')
+  -- drug_exposure_start_datetime=drug_exposure_end_date if no end date is available (OMOP recommendation)
   END AS drug_exposure_end_date,
   NULL AS drug_exposure_end_datetime,
   NULL AS verbatim_end_date,

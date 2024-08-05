@@ -40,8 +40,8 @@ SELECT
     NULL AS visit_detail_id,
     per.person_id AS person_id,
     to_date(sa451.sa451_verordnungsdatum :: VARCHAR, 'YYYYMMDD') AS drug_exposure_start_date,
-    -- Assumption: drug_exposure_end_date + 7 days 
-    to_date(sa451.sa451_verordnungsdatum :: VARCHAR, 'YYYYMMDD') + INTERVAL '7' day AS drug_exposure_end_date,
+    -- Assumption: drug_exposure_end_date + 29 days (OMOP recommendation)
+    to_date(sa451.sa451_verordnungsdatum :: VARCHAR, 'YYYYMMDD') + INTERVAL '29' day AS drug_exposure_end_date,
     0 AS drug_concept_id,
     -- mapping not available
     0 AS drug_source_concept_id,
