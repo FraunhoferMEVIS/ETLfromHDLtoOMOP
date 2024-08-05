@@ -19,7 +19,7 @@ SET
         when 1 then '1: Female'
         when 2 then '2: Male'
         when 3 then '3: Missing'
-        when 3 then '4: Divers'
+        when 4 then '4: Divers'
         else tmp.latest_gender :: varchar
     end
 FROM
@@ -69,7 +69,7 @@ SELECT
         when 1 then '1: Female'
         when 2 then '2: Male'
         when 3 then '3: Missing'
-        when 3 then '4: Divers'
+        when 4 then '4: Divers'
         else tmp.latest_gender :: varchar
     end AS gender_source_value,
     tmp.latest_gender AS gender_source_concept_id,

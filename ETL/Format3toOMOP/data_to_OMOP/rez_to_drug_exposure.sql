@@ -4,7 +4,6 @@ SET
 INSERT INTO
    {target_schema}.drug_exposure (
       drug_exposure_id,
-      -- one common entry for ezd and rez. join by reznr (FULL JOIN!)
       provider_id,
       person_id,
       drug_exposure_start_date,
@@ -13,7 +12,6 @@ INSERT INTO
       quantity,
       drug_exposure_start_datetime,
       drug_exposure_end_date,
-      --  Ask at GKV-S if this is known o.w. make assumptions 
       drug_exposure_end_datetime,
       verbatim_end_date,
       drug_type_concept_id,
