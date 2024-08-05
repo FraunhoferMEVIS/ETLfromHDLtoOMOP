@@ -29,7 +29,7 @@ INSERT INTO
       dose_unit_source_value
    )
 SELECT
-   DISTINCT ON (rez.reznr) rez.reznr AS drug_exposure_id,
+   nextval('{target_schema}.drug_exposure_id'),
    rez.lenrvopseudo AS provider_id,
    rez.arbnr AS person_id,
    case
@@ -39,7 +39,7 @@ SELECT
    END AS drug_exposure_start_date,
    --Map from PZN to RxNorm (no mapping available yet)
    0 as drug_concept_id,
-   COALESCE(ezd.pznezd, rez.pznrez) AS drug_source_value,
+   COALESCE(ezd.pznezd, rez.pznrez) AS drug_source_value, --pznezd: actual drug, pznrez: described drug 
    rez.menge AS quantity,
    NULL AS drug_exposure_start_datetime,
    case
@@ -59,7 +59,7 @@ SELECT
    NULL AS stop_reason,
    NULL AS refills,
    NULL AS days_supply,
-   NULL AS sig,
+   rez.reznr AS sig, -- to not lose the source identifiert. However reznr is not unique, and therefore can not be used as drug_exposure_id
    NULL AS route_concept_id,
    NULL AS lot_number,
    NULL AS visit_occurrence_id,
