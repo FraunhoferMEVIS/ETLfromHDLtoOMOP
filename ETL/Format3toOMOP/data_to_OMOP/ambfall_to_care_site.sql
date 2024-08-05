@@ -8,7 +8,7 @@ INSERT INTO
         place_of_service_source_value
     )
 SELECT
-    DISTINCT ON (ambfall.bsnrpseudo) -- [VALUE   COMMENT] pseudonym of hospital  
+    DISTINCT ON (ambfall.bsnrpseudo) -- pseudonym of hospital  
     ambfall.bsnrpseudo AS care_site_id,
     NULL AS care_site_name,
     38004207 AS place_of_service_concept_id,
