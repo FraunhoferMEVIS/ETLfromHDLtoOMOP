@@ -1,39 +1,9 @@
- with tmp as(
- SELECT
-        versq.arbnr,
-        LAST_VALUE(versq.geschlecht) OVER(PARTITION BY versq.arbnr ORDER BY versq.versq DESC) as latest_gender
-        FROM  versicherte.versq )
-UPDATE
-    {target_schema}.person
-SET
-    year_of_birth = COALESCE (vers.gebjahr, year_of_birth),
-    gender_concept_id = case
-        tmp.latest_gender
-        when 1 then 8532 --female
-        when 2 then 8507 --male
-        else 0
-    end,
-    location_id = COALESCE (vers.plz :: int, location_id),
-    gender_source_value = case
-        tmp.latest_gender
-        when 1 then '1: Female'
-        when 2 then '2: Male'
-        when 3 then '3: Missing'
-        when 4 then '4: Divers'
-        else tmp.latest_gender :: varchar
-    end
-FROM
-    versicherte.vers vers
-    LEFT JOIN tmp ON vers.arbnr = tmp.arbnr
-WHERE
-    person_id = vers.arbnr
-;
-
-
 with tmp as(
  SELECT
         versq.arbnr,
-        LAST_VALUE(versq.geschlecht) OVER(PARTITION BY versq.arbnr ORDER BY versq.versq DESC) as latest_gender
+        LAST_VALUE(versq.geschlecht) OVER(PARTITION BY versq.arbnr ORDER BY versq.versq DESC) as latest_gender,
+        vers.gebjahr AS year_of_birth,
+        vers.plz :: int as plz
         FROM  versicherte.versq )
 INSERT INTO
     {target_schema}.person (
@@ -73,8 +43,8 @@ SELECT
         else tmp.latest_gender :: varchar
     end AS gender_source_value,
     tmp.latest_gender AS gender_source_concept_id,
-    vers.gebjahr AS year_of_birth,
-    vers.plz :: int AS location_id,
+    tmp.year_of_birth AS year_of_birth,
+    tmp.plz AS location_id,
     NULL AS month_of_birth,
     NULL AS day_of_birth,
     NULL AS birth_datetime,
@@ -88,14 +58,31 @@ SELECT
     NULL AS ethnicity_source_value,
     NULL AS ethnicity_source_concept_id
 FROM
-    versicherte.vers vers
-    LEFT JOIN tmp  ON vers.arbnr = tmp.arbnr
-WHERE
-    NOT EXISTS (
-        SELECT
-            1
-        FROM
-            {target_schema}.person
-        WHERE
-            person_id = vers.arbnr
-    );
+    tmp
+ON CONFLICT (person_id)
+DO UPDATE SET 
+with tmp as(
+ SELECT
+        versq.arbnr,
+        LAST_VALUE(versq.geschlecht) OVER(PARTITION BY versq.arbnr ORDER BY versq.versq DESC) as latest_gender,
+        vers.gebjahr as year_of_birth,
+        vers.plz :: int as plz
+        FROM  versicherte.versq )
+    year_of_birth = tmp.year_of_birth,
+    gender_concept_id = case
+        tmp.latest_gender
+        when 1 then 8532 --female
+        when 2 then 8507 --male
+        else 0
+    end,
+    location_id = plz
+    gender_source_value = case
+        tmp.latest_gender
+        when 1 then '1: Female'
+        when 2 then '2: Male'
+        when 3 then '3: Missing'
+        when 4 then '4: Divers'
+        else tmp.latest_gender :: varchar
+    end
+FROM
+    tmp ;
