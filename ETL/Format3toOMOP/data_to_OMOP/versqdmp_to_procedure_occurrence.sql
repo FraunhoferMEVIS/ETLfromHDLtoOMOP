@@ -9,7 +9,7 @@ INSERT INTO
         procedure_date,
         procedure_datetime,
         procedure_end_date,
-        -- We assume  a program duration of one quarter, since we do not know when the program started exactly. 
+        -- We assume  a program duration of one quarter, since we do not know when the program started. 
         procedure_source_value,
         procedure_source_concept_id,
         procedure_concept_id,
@@ -60,10 +60,9 @@ SELECT
         when '5' then 37396658 -- Asthma action care planning
         when '6' then 44809305 -- Management of chronic obstructive pulmonary disease
         when '8' then 44810259 -- Agreeing on mental health care plan 
-        else 4123847 -- Agreement of care plan, we could not find a target concept for all care plans 
+        else 4123847 -- Agreement of care plan; we could not find a target concept for all care plans 
     end AS procedure_concept_id,
-    -- [MAPPING COMMENT] The exact number of days  
-    versqdmp.dmptage AS quantity,
+    versqdmp.dmptage AS quantity, -- The exact number of days  
     NULL AS procedure_end_datetime,
     32810 AS procedure_type_concept_id,
     --Claim

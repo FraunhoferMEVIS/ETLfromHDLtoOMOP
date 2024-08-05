@@ -18,13 +18,11 @@ INSERT INTO
         procedure_occurrence_id,
         visit_occurrence_id,
         person_id,
-        -- link by fallidkh of visit_occurence
         procedure_concept_id,
         procedure_source_concept_id,
         procedure_source_value,
         procedure_date,
         provider_id,
-        -- can be linked through visit_occurence 
         procedure_type_concept_id,
         -- 32810 Claim
         procedure_datetime,
@@ -66,7 +64,6 @@ INSERT INTO
         observation_date,
         observation_source_value,
         person_id,
-        -- link 
         observation_concept_id,
         value_as_string,
         value_as_concept_id,
@@ -74,7 +71,6 @@ INSERT INTO
         provider_id,
         observation_datetime,
         observation_type_concept_id,
-        -- 32810 Claim 
         value_as_number,
         qualifier_concept_id,
         unit_concept_id,
@@ -185,7 +181,6 @@ INSERT INTO
         drug_exposure_end_datetime,
         verbatim_end_date,
         drug_type_concept_id,
-        -- 32810 Claim
         stop_reason,
         refills,
         days_supply,
@@ -202,9 +197,9 @@ SELECT
     nextval('{target_schema}.drug_exposure_id'),
     khfall.einweispseudo AS provider_id,
     khfall.arbnr AS person_id,
-    -- [MAPPING COMMENT] JJJJMMTT ; ist es auf Verordnungsblatt nicht angegeben, nicht maschinell verarbeitbar oder ergibt keinen plausiblen Wert, ist Abrechnungsmonat im Format ”JJJJMM00” anzugeben 
+    -- JJJJMMTT ; ist es auf Verordnungsblatt nicht angegeben, nicht maschinell verarbeitbar oder ergibt keinen plausiblen Wert, ist Abrechnungsmonat im Format ”JJJJMM00” anzugeben 
     TO_DATE(tmp_khproz.prozdat :: VARCHAR, 'YYYYMMDD') AS drug_exposure_start_date,
-    -- [MAPPING COMMENT] Map from PZN to RxNorm (no mapping available yet)
+    --  Map from PZN to RxNorm (no mapping available yet)
     COALESCE(tmp_khproz.procedure_target_concept_id, 0) as drug_concept_id,
     CONCAT(tmp_khproz.proz, ',', tmp_khproz.prozlokal) AS drug_source_value,
     NULL AS quantity,
@@ -212,7 +207,7 @@ SELECT
     TO_DATE(tmp_khproz.prozdat :: VARCHAR, 'YYYYMMDD') AS drug_exposure_end_date,
     NULL AS drug_exposure_end_datetime,
     NULL AS verbatim_end_date,
-    -- [MAPPING COMMENT] If 1=> dental claim o.w. claim  
+    --  If 1=> dental claim o.w. claim  
     32810 drug_type_concept_id,
     NULL AS stop_reason,
     NULL AS refills,

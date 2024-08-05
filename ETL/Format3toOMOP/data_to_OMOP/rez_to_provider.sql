@@ -34,20 +34,19 @@ INSERT INTO
       gender_source_concept_id
    )
 SELECT
-   DISTINCT ON (rez.lenrvopseudo) -- [MAPPING COMMENT] Pseudonym des verordnenden Leistungserbringers  "pesudonym of the prescriping physican" 
+   DISTINCT ON (rez.lenrvopseudo) --   "pesudonym of the prescriping physican" 
    rez.lenrvopseudo AS provider_id,
    NULL AS provider_name,
    NULL AS npi,
-   -- [VALUE   COMMENT] pseudonym of care site of prescirping physican  
+   --  pseudonym of care site of prescirping physican  
    rez.bsnrvopseudo AS care_site_id,
    NULL AS dea,
-   --  "Fachgruppe des verordnenden Leistungserbringers "  Specality of the prescribing physician 
+   --   Specality of the prescribing physician ("Fachgruppe des verordnenden Leistungserbringers " )
    COALESCE(pg.concept_id_2, 0) AS specialty_concept_id,
    NULL AS year_of_birth,
    NULL AS gender_concept_id,
    rez.lenrvopseudo AS provider_source_value,
    rez.lenrvofg AS specialty_source_value,
-   -- [VALUE   COMMENT] "Fachgruppe des verordnenden Leistungserbringers "  Specality of the prescribing physician 
    COALESCE(pg.concept_id_1, 0) AS specialty_source_concept_id,
    NULL AS gender_source_value,
    NULL AS gender_source_concept_id

@@ -28,7 +28,6 @@ INSERT INTO
     )
 SELECT
     nextval('{target_schema}.cost_id'),
-    -- [MAPPING COMMENT] link to visit_occurence since visit_occurence_id = fallidkh 
     khentg.fallidkh AS cost_event_id,
     'Visit' AS cost_domain_id,
     32810 AS cost_type_concept_id,

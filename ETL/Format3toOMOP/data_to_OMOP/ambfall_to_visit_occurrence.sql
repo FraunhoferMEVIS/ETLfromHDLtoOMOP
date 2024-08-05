@@ -2,7 +2,6 @@ INSERT INTO
   {target_schema}.visit_occurrence (
     visit_occurrence_id,
     person_id,
-    -- link through ambfall.fallidamb 
     visit_start_date,
     visit_start_datetime,
     visit_end_date,
@@ -12,7 +11,6 @@ INSERT INTO
     visit_source_value,
     visit_end_datetime,
     visit_type_concept_id,
-    --  For table Zahnfall 32816  Dental Claim  o.w. 32810 Claim
     care_site_id,
     admitted_from_concept_id,
     admitted_from_source_value,

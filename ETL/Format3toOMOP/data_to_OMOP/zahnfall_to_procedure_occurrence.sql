@@ -3,7 +3,6 @@ INSERT INTO
     visit_occurrence_id,
     procedure_date,
     procedure_concept_id,
-    -- OPS to standard
     procedure_source_concept_id,
     procedure_source_value,
     procedure_occurrence_id,

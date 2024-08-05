@@ -43,7 +43,7 @@ SELECT
     ambfall.kassenik AS payer_source_value,
     NULL AS payer_source_concept_id,
     NULL AS plan_concept_id,
-    -- [MAPPING COMMENT] only for selective contracts (more information is needed!) alphanumeric to numeric 
+    -- only for selective contracts (more information is needed!) alphanumeric to numeric 
     LAST_VALUE(ambfall.svnr) OVER(
         PARTITION BY ambfall.arbnr
         ORDER BY
@@ -56,9 +56,6 @@ SELECT
         ORDER BY
             ambfall.abrq
     ) as sponsor_source_value,
-    --1 = Hausarztzentrierte Versorgung (§ 73b SGB V); wird auch gewählt, falls der Vertragstyp nicht eindeutig bestimmt werden kann
-    --2 = Integrierte Versorgung (§ 140a SGB V bzw. § 73c SGB V (a. F.))
-    -- Consider creating customized concept  
     NULL AS sponsor_source_concept_id,
     NULL AS family_source_value,
     NULL AS stop_reason_concept_id,

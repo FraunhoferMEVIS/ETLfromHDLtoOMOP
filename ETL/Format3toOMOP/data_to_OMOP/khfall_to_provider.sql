@@ -36,15 +36,13 @@ INSERT INTO
       gender_source_concept_id
    )
 SELECT
-   DISTINCT ON (khfall.einweispseudo) -- [VALUE   COMMENT] pseudonym of admisison physican  
+   DISTINCT ON (khfall.einweispseudo) -- pseudonym of admisison physican  
    khfall.einweispseudo AS provider_id,
    NULL AS provider_name,
-   -- [VALUE   COMMENT] pseudonym of hospital  
+   --pseudonym of hospital  
    khfall.khpseudo AS care_site_id,
    NULL AS npi,
    NULL AS dea,
-   -- [VALUE   COMMENT] https://applications.kbv.de/S_SLE2_FACHABTEILUNGHSA_V1.01.xhtml 
-   -- [MAPPING COMMENT] create customized concept
    COALESCE(pg.concept_id_2, 0) AS specialty_concept_id,
    NULL AS year_of_birth,
    NULL AS gender_concept_id,

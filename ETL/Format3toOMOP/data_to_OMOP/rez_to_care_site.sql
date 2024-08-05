@@ -11,13 +11,13 @@ INSERT INTO
       place_of_service_source_value
    )
 SELECT
-   DISTINCT ON (rez.bsnrvopseudo) -- [VALUE   COMMENT] pseudonym of care site of prescirping physican  
+   DISTINCT ON (rez.bsnrvopseudo) --  pseudonym of care site of prescirping physican  
    rez.bsnrvopseudo AS care_site_id,
-   -- [VALUE   COMMENT] pseudonym of care site of prescirping physican  
+   -- pseudonym of care site of prescirping physican  
    rez.bsnrvopseudo AS care_site_source_value,
    NULL AS care_site_name,
    NULL AS place_of_service_concept_id,
-   -- [VALUE   COMMENT] Regionalkennzeichen der verordnenden Betriebsstätte "regional indicator of care site" 
+   --   "regional indicator of care site"  (Regionalkennzeichen der verordnenden Betriebsstätte)
    rez.bsnrvoregknz AS location_id,
    NULL AS place_of_service_source_value
 FROM

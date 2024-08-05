@@ -30,7 +30,7 @@ INSERT INTO
         gender_source_concept_id
     )
 SELECT
-    DISTINCT ON (ambleist.lanrpseudo) -- [MAPPING COMMENT] link to care_site with fallidamb 
+    DISTINCT ON (ambleist.lanrpseudo) --link to care_site with fallidamb 
     ambleist.lanrpseudo AS provider_id,
     NULL AS provider_name,
     NULL AS npi,

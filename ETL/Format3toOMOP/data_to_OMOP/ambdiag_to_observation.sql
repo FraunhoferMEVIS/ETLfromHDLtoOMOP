@@ -7,7 +7,6 @@ INSERT INTO
         observation_date,
         observation_source_value,
         person_id,
-        -- link 
         observation_concept_id,
         value_as_string,
         value_as_concept_id,

@@ -6,7 +6,6 @@ INSERT INTO
         observation_id,
         person_id,
         observation_date,
-        -- 1st of quarter ((quarter-1)*3)+1 Format JJJJQ
         observation_datetime,
         observation_concept_id,
         observation_source_concept_id,
@@ -30,7 +29,7 @@ INSERT INTO
 SELECT
     nextval('{target_schema}.observation_id'),
     versq_.arbnr AS person_id,
-    -- [MAPPING COMMENT] set to 1st of quarter  
+    -- 1st of quarter ((quarter-1)*3)+1 Format JJJJQ
     make_date(
         LEFT(versq_.versq :: VARCHAR, 4) :: int,
         1 + ((RIGHT(versq_.versq :: VARCHAR, 1) :: int) -1) * 3,

@@ -3,7 +3,6 @@ INSERT INTO
         visit_occurrence_id,
         observation_source_value,
         person_id,
-        -- link 
         observation_concept_id,
         value_as_string,
         value_as_concept_id,
@@ -12,7 +11,6 @@ INSERT INTO
         provider_id,
         observation_datetime,
         observation_type_concept_id,
-        -- 32810 Claim 
         value_as_number,
         qualifier_concept_id,
         unit_concept_id,

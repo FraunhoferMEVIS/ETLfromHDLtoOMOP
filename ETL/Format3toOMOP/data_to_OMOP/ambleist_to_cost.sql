@@ -5,9 +5,7 @@ INSERT INTO
         cost_domain_id,
         -- Visit
         cost_type_concept_id,
-        -- Based on maped table  32810 Claim 32816  Dental Claim 
         currency_concept_id,
-        -- 44818568 Euro
         total_charge,
         total_cost,
         total_paid,
@@ -20,7 +18,6 @@ INSERT INTO
         paid_ingredient_cost,
         paid_dispensing_fee,
         payer_plan_period_id,
-        -- link through fallidamb
         amount_allowed,
         revenue_code_concept_id,
         revenue_code_source_value,
@@ -29,7 +26,6 @@ INSERT INTO
     )
 SELECT
     nextval('{target_schema}.cost_id'),
-    -- [MAPPING COMMENT] fallidamb is used as either procedure or visit_occurence_id  
     ambleist.fallidamb AS cost_event_id,
     'Visit' AS cost_domain_id,
     32810 AS cost_type_concept_id,

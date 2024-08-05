@@ -40,10 +40,9 @@ SELECT
    ambleist.fallidamb AS visit_occurrence_id,
    TO_DATE(ambleist.gonrdat :: VARCHAR, 'YYYYMMDD') AS procedure_date,
    -- tarif number (it defines the "service" (like consultation, examination) and  justifies the costs) 
-   -- Mapping is needed.  Ask for existing mapping from MII 
    COALESCE(tmp.procedure_target_concept_id, 0) AS procedure_concept_id,
    COALESCE(tmp.procedure_source_concept_id, 0) AS procedure_source_concept_id,
-   -- [VALUE   COMMENT] tarif number (it defines the "service" (like consultation, examination) and  justifies the costs) 
+   -- tarif number (it defines the "service" (like consultation, examination) and  justifies the costs) 
    ambleist.gonr AS procedure_source_value,
    nextval('{target_schema}.procedure_occurrence_id'),
    ambfall.arbnr AS person_id,

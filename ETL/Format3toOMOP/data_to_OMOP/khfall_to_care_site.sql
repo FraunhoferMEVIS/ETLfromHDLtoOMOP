@@ -16,7 +16,7 @@ INSERT INTO
         place_of_service_source_value
     )
 SELECT
-    DISTINCT ON (khfall.khpseudo) -- [VALUE   COMMENT] pseudonym of hospital  
+    DISTINCT ON (khfall.khpseudo) --  pseudonym of hospital  
     khfall.khpseudo AS care_site_id,
     NULL AS care_site_name,
     38004515 AS place_of_service_concept_id,
@@ -43,10 +43,9 @@ SELECT
     DISTINCT ON (khfall.veranlasskhpseudo) 
     khfall.veranlasskhpseudo AS care_site_id,
     NULL AS care_site_name,
-    -- [VALUE   COMMENT] It is always set to 26 (=Hospital) 
-    -- [MAPPING COMMENT] 38004515  Hospital 
+    --In source data it is always set to 26 (=Hospital) 
+    --38004515  Hospital 
     38004515 AS place_of_service_concept_id,
-    --Hospital
     khfall.veranlasskhregknz AS location_id,
     khfall.veranlasskhpseudo AS care_site_source_value,
    NULL AS place_of_service_source_value

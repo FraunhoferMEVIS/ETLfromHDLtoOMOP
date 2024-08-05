@@ -4,11 +4,8 @@ INSERT INTO
         cost_id,
         cost_event_id,
         cost_domain_id,
-        -- Visit
         cost_type_concept_id,
-        --  32810 Claim 
         currency_concept_id,
-        -- 44818568 Euro
         total_charge,
         total_cost,
         total_paid,
@@ -21,7 +18,6 @@ INSERT INTO
         paid_ingredient_cost,
         paid_dispensing_fee,
         payer_plan_period_id,
-        -- link through fallidamb
         amount_allowed,
         revenue_code_concept_id,
         revenue_code_source_value,
@@ -30,15 +26,10 @@ INSERT INTO
     )
 SELECT
     nextval('{target_schema}.cost_id'),
-    -- [MAPPING COMMENT] fallidamb is used as either procedure or visit_occurence_id  
     ambfall.fallidamb AS cost_event_id,
-    -- [MAPPING COMMENT] Procedure 
     'Visit' AS cost_domain_id,
-    --for dialysesachkosten
     32810 AS cost_type_concept_id,
-    --   Claim 
     44818568 AS currency_concept_id,
-    --Euro
     ambfall.dialysesachko AS total_charge,
     NULL AS total_cost,
     NULL AS total_paid,
@@ -91,7 +82,6 @@ INSERT INTO
         paid_ingredient_cost,
         paid_dispensing_fee,
         payer_plan_period_id,
-        -- link through fallidamb
         amount_allowed,
         revenue_code_concept_id,
         revenue_code_source_value,
@@ -100,14 +90,13 @@ INSERT INTO
     )
 SELECT
     nextval('{target_schema}.cost_id'),
-    -- [MAPPING COMMENT] fallidamb is used as either procedure or visit_occurence_id  
     ambfall.fallidamb AS cost_event_id,
     'Visit' AS cost_domain_id,
     32810 AS cost_type_concept_id,
     --Claim
     44818568 AS currency_concept_id,
     --Euro 
-    -- [MAPPING COMMENT] punktzahl * 5,82873 Cent 
+    -- punktzahl * 5,82873 Cent 
     (0.0582873 * COALESCE(ambfall.punktzahl, 0)) + COALESCE(ambfall.fallkoamb, 0) AS total_charge,
     NULL AS total_cost,
     NULL AS total_paid,

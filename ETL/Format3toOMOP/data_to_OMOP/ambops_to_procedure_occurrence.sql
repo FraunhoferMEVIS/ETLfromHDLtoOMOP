@@ -195,7 +195,7 @@ WHERE
 INSERT INTO
   {target_schema}.drug_exposure (
     drug_exposure_id,
-    -- one common entry for ezd and rez. join by reznr (FULL JOIN!)
+    -- one common entry for ezd and rez; join by reznr (FULL JOIN!)
     provider_id,
     person_id,
     drug_exposure_start_date,
@@ -204,7 +204,6 @@ INSERT INTO
     quantity,
     drug_exposure_start_datetime,
     drug_exposure_end_date,
-    --  Ask at GKV-S if this is known o.w. make assumptions 
     drug_exposure_end_datetime,
     verbatim_end_date,
     drug_type_concept_id,
@@ -225,7 +224,6 @@ SELECT
   nextval('{target_schema}.drug_exposure_id') AS drug_exposure_id,
   NULL AS provider_id,
   ambfall.arbnr AS person_id,
-  -- [MAPPING COMMENT] JJJJMMTT ; ist es auf Verordnungsblatt nicht angegeben, nicht maschinell verarbeitbar oder ergibt keinen plausiblen Wert, ist Abrechnungsmonat im Format ”JJJJMM00” anzugeben 
   CASE
     WHEN tmp_ambops.opsdat is NULL THEN make_date(
       LEFT(ambfall.abrq :: VARCHAR, 4) :: integer,
@@ -234,7 +232,7 @@ SELECT
     )
     ELSE TO_DATE(tmp_ambops.opsdat :: VARCHAR, 'YYYYMMDD')
   END AS drug_exposure_start_date,
-  -- [MAPPING COMMENT] Map from PZN to RxNorm (no mapping available yet)
+  --  Map from PZN to RxNorm (no mapping available yet)
   COALESCE(tmp_ambops.procedure_target_concept_id, 0) as drug_concept_id,
   CONCAT(tmp_ambops.ops, ',', tmp_ambops.opslokal) AS drug_source_value,
   NULL AS quantity,

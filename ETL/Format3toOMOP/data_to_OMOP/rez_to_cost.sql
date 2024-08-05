@@ -1,7 +1,6 @@
 INSERT INTO
     {target_schema}.cost (
         payer_plan_period_id,
-        -- link by arbnr and quarter of abgabedat 
         cost_id,
         cost_event_id,
         cost_domain_id,
@@ -27,7 +26,6 @@ INSERT INTO
         drg_source_value
     )
 SELECT
-    --Note: First, we must run ETL for schema "ambulante_faelle"
     pp.payer_plan_period_id AS payer_plan_period_id,
     nextval('{target_schema}.cost_id'),
     -- reznr is key of Drug table

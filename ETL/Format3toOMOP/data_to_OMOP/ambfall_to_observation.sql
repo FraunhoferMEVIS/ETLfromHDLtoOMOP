@@ -6,9 +6,7 @@ INSERT INTO
         observation_id,
         visit_occurrence_id,
         observation_date,
-        -- link to zahnfall for zahnbef 
         person_id,
-        -- link  to zahnfall for zahnbef 
         observation_concept_id,
         value_as_string,
         observation_source_value,
@@ -43,11 +41,11 @@ SELECT
         )
     END AS observation_date,
     ambfall.arbnr AS person_id,
-    -- [VALUE   COMMENT] 0 = default 2 = Unfall/-folgen 3 = Versorgungsleiden (-> confirmed by an official service, Causes might be disease/diability caused by military service, vaccination, victim  of act of violence, .. ) 
+    -- 0 = default 2 = Unfall/-folgen 3 = Versorgungsleiden (-> confirmed by an official service, Causes might be disease/diability caused by military service, vaccination, victim  of act of violence, .. ) 
     432532 AS observation_concept_id,
     --ambfall.unfall=2
     NULL AS value_as_string,
-    -- [VALUE   COMMENT] 0 = default 2 = Unfall/-folgen 3 = Versorgungsleiden (-> confirmed by an official service, Causes might be disease/diability caused by military service, vaccination, victim  of act of violence, .. ) 
+    -- 0 = default 2 = Unfall/-folgen 3 = Versorgungsleiden (-> confirmed by an official service, Causes might be disease/diability caused by military service, vaccination, victim  of act of violence, .. ) 
     CONCAT(ambfall.unfall, ': Accident') AS observation_source_value,
     NULL AS value_as_concept_id,
     NULL AS provider_id,
@@ -104,7 +102,7 @@ SELECT
     36308290 AS observation_concept_id,
     --childbirth
     NULL AS value_as_string,
-    -- [VALUE   COMMENT] 0 = default 2 = Unfall/-folgen 3 = Versorgungsleiden (-> confirmed by an official service, Causes might be disease/diability caused by military service, vaccination, victim  of act of violence, .. ) 
+    -- 0 = default 2 = Unfall/-folgen 3 = Versorgungsleiden (-> confirmed by an official service, Causes might be disease/diability caused by military service, vaccination, victim  of act of violence, .. ) 
     'childbirth' AS observation_source_value,
     NULL AS value_as_concept_id,
     NULL AS provider_id,

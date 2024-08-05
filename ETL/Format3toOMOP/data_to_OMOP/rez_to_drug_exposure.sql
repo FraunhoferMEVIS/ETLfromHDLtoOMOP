@@ -32,13 +32,12 @@ SELECT
    DISTINCT ON (rez.reznr) rez.reznr AS drug_exposure_id,
    rez.lenrvopseudo AS provider_id,
    rez.arbnr AS person_id,
-   -- [MAPPING COMMENT] JJJJMMTT ; ist es auf Verordnungsblatt nicht angegeben, nicht maschinell verarbeitbar oder ergibt keinen plausiblen Wert, ist Abrechnungsmonat im Format ”JJJJMM00” anzugeben 
    case
       RIGHT(rez.abgabedat :: VARCHAR, 2)
       when '00' then TO_DATE((rez.abgabedat + 1) :: VARCHAR, 'YYYYMMDD')
       else TO_DATE(rez.abgabedat :: VARCHAR, 'YYYYMMDD')
    END AS drug_exposure_start_date,
-   -- [MAPPING COMMENT] Map from PZN to RxNorm (no mapping available yet)
+   --Map from PZN to RxNorm (no mapping available yet)
    0 as drug_concept_id,
    COALESCE(ezd.pznezd, rez.pznrez) AS drug_source_value,
    rez.menge AS quantity,
@@ -50,7 +49,7 @@ SELECT
    END AS drug_exposure_end_date,
    NULL AS drug_exposure_end_datetime,
    NULL AS verbatim_end_date,
-   -- [MAPPING COMMENT] If 1=> dental claim o.w. claim  
+   -- If 1=> dental claim o.w. claim  
    case
       rez.begruendung
       when 1 then 32816 --dental claim 

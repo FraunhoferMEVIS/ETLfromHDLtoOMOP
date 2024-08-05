@@ -23,12 +23,10 @@ INSERT INTO
       procedure_source_value,
       procedure_occurrence_id,
       person_id,
-      -- link by ambfall.fallidamb
       procedure_datetime,
       procedure_end_date,
       procedure_end_datetime,
       procedure_type_concept_id,
-      -- 32810 Claim
       modifier_concept_id,
       quantity,
       provider_id,
