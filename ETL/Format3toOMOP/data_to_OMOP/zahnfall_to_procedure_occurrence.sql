@@ -7,7 +7,6 @@ INSERT INTO
     procedure_source_value,
     procedure_occurrence_id,
     person_id,
-    -- link by ambfall.fallidamb
     procedure_datetime,
     procedure_end_date,
     procedure_end_datetime,
@@ -19,7 +18,7 @@ INSERT INTO
     modifier_source_value
   )
 SELECT
-  zahnfall.fallidzahn AS visit_occurrence_id,
+  vo.visit_occurrence_id AS visit_occurrence_id,
   CASE
     WHEN COALESCE(zahnfall.beginndatzahn, zahnfall.endedatzahn) is NULL THEN CASE
       WHEN zahnfall.leistq IS NULL THEN make_date(zahnfall.berjahr :: integer, 01, 01)
@@ -71,5 +70,6 @@ SELECT
   NULL AS modifier_source_value
 FROM
   ambulante_faelle.zahnfall
+  LEFT JOIN {target_schema}.visit_occurrence vo zahnfall.fallidzahn = vo.fallid_temp
 WHERE
   zahnfall.behandartzahn IS NOT NULL;

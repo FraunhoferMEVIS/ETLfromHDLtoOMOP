@@ -89,7 +89,7 @@ INSERT INTO
         visit_detail_id
     )
 SELECT
-    tmp_khdia_diagnosis.fallidkh AS visit_occurrence_id,
+    vo.visit_occurrence_id AS visit_occurrence_id,
     nextval('{target_schema}.condition_occurrence_id'),
     khfall.arbnr AS person_id,
     COALESCE(
@@ -119,6 +119,7 @@ SELECT
 FROM
     tmp_khdia_diagnosis
     LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh
+    LEFT JOIN {target_schema}.visit_occurrence vo tmp_khdia_diagnosis.fallidkh = vo.fallid_temp 
 WHERE
     tmp_khdia_diagnosis.domain_id = 'Condition'
     OR tmp_khdia_diagnosis.domain_id IS NULL;
@@ -129,7 +130,6 @@ INSERT INTO
         procedure_occurrence_id,
         visit_occurrence_id,
         person_id,
-        -- link by fallidkh of visit_occurence
         procedure_concept_id,
         procedure_source_concept_id,
         procedure_source_value,
@@ -148,7 +148,7 @@ INSERT INTO
     )
 SELECT
     nextval('{target_schema}.procedure_occurrence_id'),
-    tmp_khdia_diagnosis.fallidkh AS visit_occurrence_id,
+    vo.visit_occurrence_id AS visit_occurrence_id,
     khfall.arbnr AS person_id,
     COALESCE(
         tmp_khdia_diagnosis.condition_target_concept_id,
@@ -177,6 +177,7 @@ SELECT
 FROM
     tmp_khdia_diagnosis
     LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh
+    LEFT JOIN {target_schema}.visit_occurrence vo tmp_khdia_diagnosis.fallidkh = vo.fallid_temp 
 WHERE
     tmp_khdia_diagnosis.domain_id = 'Procedure';
 
@@ -222,7 +223,7 @@ SELECT
     NULL AS qualifier_concept_id,
     NULL AS unit_concept_id,
     khfall.einweispseudo AS provider_id,
-    tmp_khdia_diagnosis.fallidkh AS visit_occurrence_id,
+    vo.visit_occurrence_id AS visit_occurrence_id,
     NULL AS visit_detail_id,
     CONCAT(
         tmp_khdia_diagnosis.source_icd,
@@ -241,6 +242,7 @@ SELECT
 FROM
     tmp_khdia_diagnosis
     LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh
+    LEFT JOIN {target_schema}.visit_occurrence vo tmp_khdia_diagnosis.fallidkh = vo.fallid_temp 
 WHERE
     tmp_khdia_diagnosis.domain_id = 'Observation';
 
@@ -288,7 +290,7 @@ SELECT
     NULL AS range_low,
     NULL AS range_high,
     khfall.einweispseudo AS provider_id,
-    tmp_khdia_diagnosis.fallidkh AS visit_occurrence_id,
+    vo.visit_occurrence_id AS visit_occurrence_id,
     NULL AS visit_detail_id,
     CONCAT(
         tmp_khdia_diagnosis.source_icd,
@@ -307,6 +309,7 @@ SELECT
 FROM
     tmp_khdia_diagnosis
     LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh
+    LEFT JOIN {target_schema}.visit_occurrence vo tmp_khdia_diagnosis.fallidkh = vo.fallid_temp 
 WHERE
     tmp_khdia_diagnosis.domain_id = 'Measurement';
 

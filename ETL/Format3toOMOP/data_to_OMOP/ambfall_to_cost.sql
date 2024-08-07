@@ -26,7 +26,7 @@ INSERT INTO
     )
 SELECT
     nextval('{target_schema}.cost_id'),
-    ambfall.fallidamb AS cost_event_id,
+    vo.visit_occurrence_id AS cost_event_id,
     'Visit' AS cost_domain_id,
     32810 AS cost_type_concept_id,
     44818568 AS currency_concept_id,
@@ -54,8 +54,8 @@ FROM
         LEFT(ambfall.abrq :: VARCHAR, 4) :: integer,
         (RIGHT(ambfall.abrq :: VARCHAR, 1) :: integer -1) * 3 + 1,
         01
-    ) BETWEEN ppp.payer_plan_period_start_date
-    AND ppp.payer_plan_period_end_date
+    ) BETWEEN ppp.payer_plan_period_start_date AND ppp.payer_plan_period_end_date
+    LEFT JOIN {target_schema}.visit_occurrence vo ambfall.fallidamb = vo.fallid_temp -- and ambfall.vsid = vo.vsid_temp
 WHERE
     ambfall.dialysesachko IS NOT NULL;
 
@@ -90,7 +90,7 @@ INSERT INTO
     )
 SELECT
     nextval('{target_schema}.cost_id'),
-    ambfall.fallidamb AS cost_event_id,
+    vo.visit_occurrence_id AS cost_event_id,
     'Visit' AS cost_domain_id,
     32810 AS cost_type_concept_id,
     --Claim
@@ -123,6 +123,7 @@ FROM
         01
     ) BETWEEN ppp.payer_plan_period_start_date
     AND ppp.payer_plan_period_end_date
+    LEFT JOIN {target_schema}.visit_occurrence vo ambfall.fallidamb = vo.fallid_temp -- and ambfall.vsid = vo.vsid_temp
 WHERE
     ambfall.punktzahl IS NOT NULL
     OR ambfall.fallkoamb IS NOT NULL;

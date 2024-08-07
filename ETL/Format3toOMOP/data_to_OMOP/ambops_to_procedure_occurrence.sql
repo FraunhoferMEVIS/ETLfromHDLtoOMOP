@@ -22,7 +22,6 @@ INSERT INTO
     procedure_source_value,
     procedure_occurrence_id,
     person_id,
-    -- link by ambfall.fallidamb
     procedure_datetime,
     procedure_end_date,
     procedure_end_datetime,
@@ -35,7 +34,7 @@ INSERT INTO
     modifier_source_value
   )
 SELECT
-  tmp_ambops.fallidamb AS visit_occurrence_id,
+  vo.visit_occurrence_id AS visit_occurrence_id,
   CASE
     WHEN tmp_ambops.opsdat is NULL THEN make_date(
       LEFT(ambfall.abrq :: VARCHAR, 4) :: integer,
@@ -62,6 +61,7 @@ SELECT
 FROM
   tmp_ambops
   LEFT JOIN ambulante_faelle.ambfall ambfall ON tmp_ambops.fallidamb = ambfall.fallidamb
+  LEFT JOIN {target_schema}.visit_occurrence vo tmp_ambops.fallidamb = vo.fallid_temp -- and ambfall.vsid = vo.vsid_temp
 WHERE
   tmp_ambops.domain_id = 'Procedure'
   OR tmp_ambops.domain_id IS NULL;
@@ -93,7 +93,7 @@ INSERT INTO
     obs_event_field_concept_id
   )
 SELECT
-  tmp_ambops.fallidamb AS visit_occurrence_id,
+  vo.visit_occurrence_id AS visit_occurrence_id,
   CASE
     WHEN tmp_ambops.opsdat is NULL THEN make_date(
       LEFT(ambfall.abrq :: VARCHAR, 4) :: integer,
@@ -126,6 +126,7 @@ SELECT
 FROM
   tmp_ambops
   LEFT JOIN ambulante_faelle.ambfall ambfall ON tmp_ambops.fallidamb = ambfall.fallidamb
+  LEFT JOIN {target_schema}.visit_occurrence vo tmp_ambops.fallidamb = vo.fallid_temp -- and ambfall.vsid = vo.vsid_temp
 WHERE
   tmp_ambops.domain_id = 'Observation';
 
@@ -177,7 +178,7 @@ SELECT
   NULL AS range_low,
   NULL AS range_high,
   NULL AS provider_id,
-  tmp_ambops.fallidamb AS visit_occurrence_id,
+  vo.visit_occurrence_id AS visit_occurrence_id,
   NULL AS visit_detail_id,
   CONCAT(tmp_ambops.ops, ',', tmp_ambops.opslokal) AS measurement_source_value,
   COALESCE(tmp_ambops.procedure_source_concept_id, 0) AS measurement_source_concept_id,
@@ -189,6 +190,7 @@ SELECT
 FROM
   tmp_ambops
   LEFT JOIN ambulante_faelle.ambfall ambfall ON tmp_ambops.fallidamb = ambfall.fallidamb
+  LEFT JOIN {target_schema}.visit_occurrence vo tmp_ambops.fallidamb = vo.fallid_temp -- and ambfall.vsid = vo.vsid_temp
 WHERE
   tmp_ambops.domain_id = 'Measurement';
 
@@ -255,7 +257,7 @@ SELECT
   NULL AS sig,
   NULL AS route_concept_id,
   NULL AS lot_number,
-  tmp_ambops.fallidamb AS visit_occurrence_id,
+  vo.visit_occurrence_id AS visit_occurrence_id,
   NULL AS visit_detail_id,
   COALESCE(tmp_ambops.procedure_source_concept_id, 0) AS drug_source_concept_id,
   NULL AS route_source_value,
@@ -263,6 +265,7 @@ SELECT
 FROM
   tmp_ambops
   LEFT JOIN ambulante_faelle.ambfall ambfall ON tmp_ambops.fallidamb = ambfall.fallidamb
+  LEFT JOIN {target_schema}.visit_occurrence vo tmp_ambops.fallidamb = vo.fallid_temp -- and ambfall.vsid = vo.vsid_temp
 WHERE
   tmp_ambops.domain_id = 'Drug';
 

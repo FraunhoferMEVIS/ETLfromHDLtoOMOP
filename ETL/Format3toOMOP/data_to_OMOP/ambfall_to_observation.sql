@@ -28,7 +28,7 @@ INSERT INTO
     )
 SELECT
     nextval('{target_schema}.observation_id'),
-    ambfall.fallidamb AS visit_occurrence_id,
+    vo.visit_occurrence_id AS visit_occurrence_id,
     CASE
         WHEN COALESCE(ambfall.beginndatamb, ambfall.endedatamb) is NULL THEN make_date(
             LEFT(ambfall.abrq :: VARCHAR, 4) :: integer,
@@ -64,6 +64,7 @@ SELECT
     NULL AS obs_event_field_concept_id
 FROM
     ambulante_faelle.ambfall
+    LEFT JOIN {target_schema}.visit_occurrence vo ambfall.fallidamb = vo.fallid_temp -- and ambfall.vsid = vo.vsid_temp
 WHERE
     ambfall.unfall = 2;
 
@@ -96,7 +97,7 @@ INSERT INTO
     )
 SELECT
     nextval('{target_schema}.observation_id'),
-    ambfall.fallidamb AS visit_occurrence_id,
+    vo.visit_occurrence_id AS visit_occurrence_id,
     TO_DATE(ambfall.entbindungsdat :: VARCHAR, 'YYYYMMDD') AS observation_date,
     ambfall.arbnr AS person_id,
     36308290 AS observation_concept_id,
@@ -121,5 +122,6 @@ SELECT
     NULL AS obs_event_field_concept_id
 FROM
     ambulante_faelle.ambfall
+    LEFT JOIN {target_schema}.visit_occurrence vo ambfall.fallidamb = vo.fallid_temp -- and ambfall.vsid = vo.vsid_temp
 WHERE
     ambfall.entbindungsdat IS NOT NULL;

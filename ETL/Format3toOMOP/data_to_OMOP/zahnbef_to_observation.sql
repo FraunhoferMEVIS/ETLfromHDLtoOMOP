@@ -23,7 +23,7 @@ INSERT INTO
         obs_event_field_concept_id
     )
 SELECT
-    zahnbef.fallidzahn AS visit_occurrence_id,
+    vo.visit_occurrence_id AS visit_occurrence_id,
     zahnbef.befnr AS observation_source_value,
     zahnfall.arbnr AS person_id,
     0 AS observation_concept_id,
@@ -60,4 +60,5 @@ SELECT
     NULL AS obs_event_field_concept_id
 FROM
     ambulante_faelle.zahnbef zahnbef
-    INNER JOIN ambulante_faelle.zahnfall zahnfall ON zahnbef.fallidzahn = zahnfall.fallidzahn;
+    INNER JOIN ambulante_faelle.zahnfall zahnfall ON zahnbef.fallidzahn = zahnfall.fallidzahn
+    LEFT JOIN {target_schema}.visit_occurrence vo zahnbef.fallidzahn = vo.fallid_temp;

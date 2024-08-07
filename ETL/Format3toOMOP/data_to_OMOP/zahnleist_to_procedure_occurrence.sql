@@ -34,7 +34,7 @@ INSERT INTO
       modifier_source_value
    )
 SELECT
-   zahnleist.fallidzahn AS visit_occurrence_id,
+   vo.visit_occurrence_id AS visit_occurrence_id,
    CASE
       WHEN zahnleist.leistdat is NULL THEN CASE
          WHEN zahnfall.leistq IS NULL THEN make_date(zahnfall.berjahr :: integer, 01, 01)
@@ -63,5 +63,7 @@ SELECT
    zahnleist.gebpos AS modifier_source_value
 FROM
    ambulante_faelle.zahnleist zahnleist
-   LEFT JOIN ambulante_faelle.zahnfall zahnfall ON zahnfall.fallidzahn = zahnleist.fallidzahn
-   LEFT JOIN tmp ON zahnleist.gebnr = tmp.gebnr;
+   LEFT JOIN ambulante_faelle.zahnfall zahnfall ON zahnleist.fallidzahn = zahnfall.fallidzahn 
+   LEFT JOIN tmp ON zahnleist.gebnr = tmp.gebnr
+   LEFT JOIN {target_schema}.visit_occurrence vo zahnleist.fallidzahn = vo.fallid_temp
+;

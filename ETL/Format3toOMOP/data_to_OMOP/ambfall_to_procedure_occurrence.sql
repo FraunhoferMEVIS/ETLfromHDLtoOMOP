@@ -8,7 +8,6 @@ INSERT INTO
         procedure_source_value,
         procedure_occurrence_id,
         person_id,
-        -- link by ambfall.fallidamb
         procedure_datetime,
         procedure_end_date,
         procedure_end_datetime,
@@ -21,7 +20,7 @@ INSERT INTO
         modifier_source_value
     )
 SELECT
-    ambfall.fallidamb AS visit_occurrence_id,
+    vo.visit_occurrence_id AS visit_occurrence_id,
     CASE
         WHEN COALESCE(ambfall.beginndatamb, ambfall.endedatamb) is NULL THEN make_date(
             LEFT(ambfall.abrq :: VARCHAR, 4) :: integer,
@@ -52,5 +51,6 @@ SELECT
     NULL AS modifier_source_value
 FROM
     ambulante_faelle.ambfall
+    LEFT JOIN {target_schema}.visit_occurrence vo ambfall.fallidamb = vo.fallid_temp -- and ambfall.vsid = vo.vsid_temp
 WHERE
     ambfall.dialysesachko IS NOT NULL;

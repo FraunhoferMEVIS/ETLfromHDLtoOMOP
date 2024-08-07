@@ -35,7 +35,7 @@ INSERT INTO
     )
 SELECT
     nextval('{target_schema}.procedure_occurrence_id'),
-    tmp_khproz.fallidkh AS visit_occurrence_id,
+    vo.visit_occurrence_id AS visit_occurrence_id,
     khfall.arbnr AS person_id,
     COALESCE(tmp_khproz.procedure_target_concept_id, 0) AS procedure_concept_id,
     COALESCE(tmp_khproz.procedure_source_concept_id, 0) AS procedure_source_concept_id,
@@ -54,6 +54,7 @@ SELECT
 FROM
     tmp_khproz
     LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khproz.fallidkh = khfall.fallidkh
+    LEFT JOIN {target_schema}.visit_occurrence vo tmp_khproz.fallidkh = vo.fallid_temp 
 WHERE
     tmp_khproz.domain_id = 'Procedure'
     OR tmp_khproz.domain_id IS NULL;
@@ -83,7 +84,7 @@ INSERT INTO
         obs_event_field_concept_id
     )
 SELECT
-    tmp_khproz.fallidkh AS visit_occurrence_id,
+    vo.visit_occurrence_id AS visit_occurrence_id,
     TO_DATE(tmp_khproz.prozdat :: VARCHAR, 'YYYYMMDD') AS observation_date,
     CONCAT(tmp_khproz.proz, ',', tmp_khproz.prozlokal) AS observation_source_value,
     khfall.arbnr AS person_id,
@@ -108,6 +109,7 @@ SELECT
 FROM
     tmp_khproz
     LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khproz.fallidkh = khfall.fallidkh
+    LEFT JOIN {target_schema}.visit_occurrence vo tmp_khproz.fallidkh = vo.fallid_temp 
 WHERE
     tmp_khproz.domain_id = 'Observation';
 
@@ -152,7 +154,7 @@ SELECT
     NULL AS range_low,
     NULL AS range_high,
     khfall.einweispseudo AS provider_id,
-    tmp_khproz.fallidkh AS visit_occurrence_id,
+    vo.visit_occurrence_id  AS visit_occurrence_id,
     NULL AS visit_detail_id,
     CONCAT(tmp_khproz.proz, ',', tmp_khproz.prozlokal) AS measurement_source_value,
     COALESCE(tmp_khproz.procedure_source_concept_id, 0) AS measurement_source_concept_id,
@@ -164,6 +166,7 @@ SELECT
 FROM
     tmp_khproz
     LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khproz.fallidkh = khfall.fallidkh
+    LEFT JOIN {target_schema}.visit_occurrence vo tmp_khproz.fallidkh = vo.fallid_temp 
 WHERE
     tmp_khproz.domain_id = 'Measurement';
 
@@ -216,7 +219,7 @@ SELECT
     NULL AS sig,
     NULL AS route_concept_id,
     NULL AS lot_number,
-    tmp_khproz.fallidkh AS visit_occurrence_id,
+    vo.visit_occurrence_id  AS visit_occurrence_id,
     NULL AS visit_detail_id,
     COALESCE(tmp_khproz.procedure_source_concept_id, 0) AS drug_source_concept_id,
     NULL AS route_source_value,
@@ -224,6 +227,7 @@ SELECT
 FROM
     tmp_khproz
     LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khproz.fallidkh = khfall.fallidkh
+    LEFT JOIN {target_schema}.visit_occurrence vo tmp_khproz.fallidkh = vo.fallid_temp 
 WHERE
     tmp_khproz.domain_id = 'Drug';
 

@@ -43,6 +43,14 @@ is_inserted = cursor.fetchall()
 logger.info('is inserted: ' + str(is_inserted))
 conn.close()
 
+# create temporary columns in visit_occurrence such that several joints can be avoided, since we need to create new identfier visit_occurrence_id
+execute_query("""
+ALTER TABLE {target_schema}.visit_occurrence 
+ADD COLUMN fallid_temp INTEGER,
+ADD COLUMN vsid_temp INTEGER;""".format(target_schema=target_schema), dbname, user,
+                      host, port, password, logger)
+
+
 #run ETL
 if not is_inserted:
     logger.info("Tables not inserted. Starting ETL")
@@ -50,6 +58,8 @@ if not is_inserted:
     files = [
         'vers_to_location.sql', 'vers_versq_to_person.sql',
         'vers_to_death.sql', 'versq_to_observation_period.sql',
+        'khfall_to_visit_occurrence.sql','ambfall_to_visit_occurrence.sql',
+        'zahnfall_to_visit_occurrence.sql',
         'ambfall_to_payer_plan_period.sql', 'ambfall_to_care_site.sql',
         'versqdmp_to_procedure_occurrence.sql', 'rez_to_provider.sql',
         'rez_to_drug_exposure.sql', 'rez_to_cost.sql',
@@ -57,15 +67,14 @@ if not is_inserted:
         'khfall_to_care_site.sql', 'khdia_to_condition_occurrence.sql',
         'khentg_to_cost.sql', 'khfall_to_observation.sql',
         'khfall_to_provider.sql', 'khproz_to_procedure_occurrence.sql',
-        'khfall_to_visit_occurrence.sql',
         'ambdiag_to_condition_occurrence.sql', 'ambdiag_to_observation.sql',
         'ambfall_to_cost.sql', 'ambfall_to_observation.sql',
         'ambfall_to_procedure_occurrence.sql',
-        'ambfall_to_visit_occurrence.sql', 'ambleist_to_cost.sql',
+        'ambleist_to_cost.sql',
         'ambleist_to_procedure_occurrence.sql', 'ambleist_to_provider.sql',
         'ambops_to_procedure_occurrence.sql', 'zahnbef_to_observation.sql',
         'zahnfall_to_cost.sql', 'zahnfall_to_procedure_occurrence.sql',
-        'zahnfall_to_provider.sql', 'zahnfall_to_visit_occurrence.sql',
+        'zahnfall_to_provider.sql',
         'zahnleist_to_procedure_occurrence.sql',
         'rez_to_location.sql','khfall_to_location.sql','ambfall_to_location .sql'
     ]
@@ -98,6 +107,12 @@ if not is_inserted:
                      table=table), dbname, user, host, port, password, logger)
     logger.info(
         'Meta information inserted into <sourceschema>.inserted_tables')
+
+execute_query("""
+ALTER TABLE {target_schema}.visit_occurrence 
+DROP  COLUMN fallid_temp,
+DROP  COLUMN vsid_temp;""".format(target_schema=target_schema), dbname, user,
+                      host, port, password, logger)
 
 logger.info('Run constraints')
 files_constraints = [

@@ -19,7 +19,7 @@ INSERT INTO
         modifier_source_value
     )
 SELECT
-    khfall.fallidkh AS visit_occurrence_id,
+    vo.visit_occurrence_id AS visit_occurrence_id,
     TO_DATE(khfall.aufndat :: VARCHAR, 'YYYYMMDD') AS procedure_date,
     4230167 AS procedure_concept_id,
     --Artificial respiration 
@@ -39,6 +39,7 @@ SELECT
     NULL AS modifier_source_value
 FROM
     stationaere_faelle.khfall khfall
+    LEFT JOIN {target_schema}.visit_occurrence vo khfall.fallidkh = vo.fallid_temp 
 WHERE
     khfall.beatstd IS NOT NULL
     AND khfall.beatstd :: NUMERIC > 0;

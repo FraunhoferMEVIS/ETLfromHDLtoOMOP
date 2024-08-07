@@ -19,10 +19,12 @@ INSERT INTO
       admitted_from_source_value,
       discharged_to_concept_id,
       discharged_to_source_value,
-      preceding_visit_occurrence_id
+      preceding_visit_occurrence_id,
+      fallid_temp,
+      vsid_temp
    )
 SELECT
-   zahnfall.fallidzahn AS visit_occurrence_id,
+   nextval('{target_schema}.visit_occurrence_id'),
    zahnfall.arbnr AS person_id,
    CASE
       WHEN COALESCE(zahnfall.beginndatzahn, zahnfall.endedatzahn) is NULL THEN CASE
@@ -76,7 +78,9 @@ SELECT
    NULL AS admitted_from_source_value,
    NULL AS discharged_to_concept_id,
    NULL AS discharged_to_source_value,
-   NULL AS preceding_visit_occurrence_id
+   NULL AS preceding_visit_occurrence_id,
+   zahnfall.fallidzahn as fallid_temp,
+   NULL as vsid_temp
 FROM
-   ambulante_faelle.zahnfall ON CONFLICT (visit_occurrence_id) DO NOTHING -- it is an unique identifier; Falsly it is not unique in example data set 
-;
+   ambulante_faelle.zahnfall
+ ;

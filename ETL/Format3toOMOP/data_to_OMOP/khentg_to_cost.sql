@@ -28,7 +28,7 @@ INSERT INTO
     )
 SELECT
     nextval('{target_schema}.cost_id'),
-    khentg.fallidkh AS cost_event_id,
+    vo.visit_occurrence_id AS cost_event_id,
     'Visit' AS cost_domain_id,
     32810 AS cost_type_concept_id,
     --Claim
@@ -52,7 +52,8 @@ SELECT
     NULL AS drg_concept_id,
     NULL AS drg_source_value
 FROM
-    stationaere_faelle.khentg
+    stationaere_faelle.khentg khentg
+    LEFT JOIN {target_schema}.visit_occurrence vo khentg.fallidkh = vo.fallid_temp 
 WHERE
     khentg.entgbetrag is not NULL
     AND khentg.entgzahl is not NULL;

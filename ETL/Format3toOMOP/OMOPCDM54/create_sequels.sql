@@ -13,3 +13,5 @@ CREATE SEQUENCE {target_schema}.cost_id START 3000000 OWNED BY {target_schema}.C
 CREATE SEQUENCE {target_schema}.measurement_id START 3000000 OWNED BY {target_schema}.measurement.measurement_id;
 
 CREATE SEQUENCE {target_schema}.drug_exposure_id START 3000000 OWNED BY {target_schema}.drug_exposure.drug_exposure_id;
+
+CREATE SEQUENCE {target_schema}.visit_occurrence_id START 1 OWNED BY {target_schema}.visit_occurrence.visit_occurrence_id;

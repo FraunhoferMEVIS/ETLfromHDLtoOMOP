@@ -20,7 +20,6 @@ INSERT INTO
         paid_ingredient_cost,
         paid_dispensing_fee,
         payer_plan_period_id,
-        -- link through fallidamb
         amount_allowed,
         revenue_code_concept_id,
         revenue_code_source_value,
@@ -29,7 +28,7 @@ INSERT INTO
     )
 SELECT
     nextval('{target_schema}.cost_id'),
-    zahnfall.fallidzahn AS cost_event_id,
+    vo.visit_occurrence_id AS cost_event_id,
     'Visit' AS cost_domain_id,
     32816 AS cost_type_concept_id,
     --Dental claim 
@@ -53,7 +52,8 @@ SELECT
     NULL AS drg_concept_id,
     NULL AS drg_source_value
 FROM
-    ambulante_faelle.zahnfall
+    ambulante_faelle.zahnfall zahnfall
+    LEFT JOIN {target_schema}.visit_occurrence vo zahnfall.fallidzahn = vo.fallid_temp
 WHERE
     zahnfall.fallkozahn IS NOT NULL
     OR zahnfall.eigenlabor IS NOT NULL

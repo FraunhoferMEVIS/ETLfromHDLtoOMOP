@@ -27,7 +27,7 @@ INSERT INTO
         obs_event_field_concept_id
     )
 SELECT
-    ambdiag.fallidamb AS visit_occurrence_id,
+    vo.visit_occurrence_id AS visit_occurrence_id,
     CASE
         WHEN COALESCE(
             ambdiag.diagdat,
@@ -75,6 +75,8 @@ SELECT
     NULL AS obs_event_field_concept_id
 FROM
     ambulante_faelle.ambdiag ambdiag
-    INNER JOIN ambulante_faelle.ambfall ambfall ON ambfall.fallidamb = ambdiag.fallidamb
+    INNER JOIN ambulante_faelle.ambfall ambfall ON ambfall.fallidamb = ambdiag.fallidamb 
+    LEFT JOIN {target_schema}.visit_occurrence vo ambfall.fallidamb = vo.fallid_temp -- and ambfall.vsid = vo.vsid_temp
+
 WHERE
     ambdiag.diagsich = 'A';

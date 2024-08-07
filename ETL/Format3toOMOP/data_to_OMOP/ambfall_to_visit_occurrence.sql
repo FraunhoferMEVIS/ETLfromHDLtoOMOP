@@ -16,10 +16,12 @@ INSERT INTO
     admitted_from_source_value,
     discharged_to_concept_id,
     discharged_to_source_value,
-    preceding_visit_occurrence_id
+    preceding_visit_occurrence_id,
+    fallid_temp,
+    vsid_temp
   )
 SELECT
-  ambfall.fallidamb AS visit_occurrence_id,
+  nextval('{target_schema}.visit_occurrence_id'),
   ambfall.arbnr AS person_id,
   CASE
     WHEN COALESCE(ambfall.beginndatamb, ambfall.endedatamb) is NULL THEN make_date(
@@ -61,8 +63,10 @@ SELECT
   NULL AS admitted_from_source_value,
   NULL AS discharged_to_concept_id,
   NULL AS discharged_to_source_value,
-  NULL AS preceding_visit_occurrence_id
+  NULL AS preceding_visit_occurrence_id,
+  ambfall.fallidamb as fallid_temp,
+  NULL as vsid_temp
 FROM
   ambulante_faelle.ambfall ambfall
-  LEFT JOIN ambulante_faelle.ambleist ambleist ON ambfall.fallidamb = ambleist.fallidamb ON CONFLICT (visit_occurrence_id) DO NOTHING -- it is by definition an unique identifier; (But in example data set it falsly not unique)
+  LEFT JOIN ambulante_faelle.ambleist ambleist ON ambfall.fallidamb = ambleist.fallidamb -- and ambfall.vsid = ambleist.vsid
 ;

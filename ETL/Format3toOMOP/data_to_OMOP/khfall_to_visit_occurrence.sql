@@ -21,12 +21,14 @@ INSERT INTO
         admitted_from_source_value,
         discharged_to_concept_id,
         discharged_to_source_value,
-        preceding_visit_occurrence_id
+        preceding_visit_occurrence_id,
+        fallid_temp,
+        vsid_temp
     )
 SELECT
     32810 AS visit_type_concept_id,
     --claim
-    khfall.fallidkh AS visit_occurrence_id,
+    nextval('{target_schema}.visit_occurrence_id'),
     khfall.arbnr AS person_id,
     -- pseudonym of admisison physican  
     khfall.einweispseudo AS provider_id,
@@ -74,9 +76,10 @@ SELECT
         else 0 -- discharged,death, transferred but not clear to which facility
     end as discharged_to_concept_id,
     khfall.entlassgrund AS discharged_to_source_value,
-    NULL AS preceding_visit_occurrence_id
+    NULL AS preceding_visit_occurrence_id,
+    khfall.fallidkh as fallid_temp,
+    NULL as vsid_temp
 FROM
     stationaere_faelle.khfall khfall
     LEFT JOIN stationaere_faelle.khfa khfa ON khfall.fallidkh = khfa.fallidkh 
-    ON CONFLICT (visit_occurrence_id) DO NOTHING -- it is an unique identifier, falsly it appears twice in example data set
 ;

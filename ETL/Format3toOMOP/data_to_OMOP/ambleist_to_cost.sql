@@ -26,7 +26,7 @@ INSERT INTO
     )
 SELECT
     nextval('{target_schema}.cost_id'),
-    ambleist.fallidamb AS cost_event_id,
+    vo.visit_occurrence_id AS cost_event_id,
     'Visit' AS cost_domain_id,
     32810 AS cost_type_concept_id,
     --Claim
@@ -53,6 +53,7 @@ SELECT
     NULL AS drg_source_value
 FROM
     ambulante_faelle.ambleist
+    LEFT JOIN {target_schema}.visit_occurrence vo ambleist.fallidamb = vo.fallid_temp -- and ambfall.vsid = vo.vsid_temp
 WHERE
     ambleist.gonrbewert IS NOT NULL
     AND ambleist.multiplikator IS NOT NULL;
