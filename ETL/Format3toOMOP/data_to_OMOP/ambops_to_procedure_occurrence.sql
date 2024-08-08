@@ -265,7 +265,7 @@ SELECT
 FROM
   tmp_ambops
   LEFT JOIN ambulante_faelle.ambfall ambfall ON tmp_ambops.fallidamb = ambfall.fallidamb
-  LEFT JOIN {target_schema}.visit_occurrence vo ON s tmp_ambops.fallidamb = vo.fallid_temp  
+  LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_ambops.fallidamb = vo.fallid_temp  
 WHERE
   tmp_ambops.domain_id = 'Drug';
 
