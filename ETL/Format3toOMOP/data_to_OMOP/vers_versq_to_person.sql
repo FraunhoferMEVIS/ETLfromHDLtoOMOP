@@ -1,10 +1,13 @@
-with tmp as(
- SELECT
+WITH tmp AS (
+    SELECT
         versq.arbnr,
-        LAST_VALUE(versq.geschlecht) OVER(PARTITION BY versq.arbnr ORDER BY versq.versq DESC) as latest_gender,
+        LAST_VALUE(versq.geschlecht) OVER(PARTITION BY versq.arbnr ORDER BY versq.versq DESC) AS latest_gender,
         vers.gebjahr AS year_of_birth,
-        vers.plz :: int as plz
-        FROM  versicherte.versq )
+        vers.plz::int AS plz
+    FROM 
+    versicherte.vers vers
+    LEFT JOIN  versicherte.versq versq ON vers.arbnr = versq.arbnr
+)
 INSERT INTO
     {target_schema}.person (
         person_id,
@@ -27,21 +30,19 @@ INSERT INTO
         ethnicity_source_concept_id
     )
 SELECT
-    DISTINCT ON (vers.arbnr) vers.arbnr AS person_id,
-    case
-        tmp.latest_gender
-        when 1 then 8532 --female
-        when 2 then 8507 --male
-        else 0
-    end AS gender_concept_id,
-    case
-        tmp.latest_gender
-        when 1 then '1: Female'
-        when 2 then '2: Male'
-        when 3 then '3: Missing'
-        when 4 then '4: Divers'
-        else tmp.latest_gender :: varchar
-    end AS gender_source_value,
+    DISTINCT ON (tmp.arbnr) tmp.arbnr AS person_id,
+    CASE
+        WHEN tmp.latest_gender = 1 THEN 8532 --female
+        WHEN tmp.latest_gender = 2 THEN 8507 --male
+        ELSE 0
+    END AS gender_concept_id,
+    CASE
+        WHEN tmp.latest_gender = 1 THEN '1: Female'
+        WHEN tmp.latest_gender = 2 THEN '2: Male'
+        WHEN tmp.latest_gender = 3 THEN '3: Missing'
+        WHEN tmp.latest_gender = 4 THEN '4: Divers'
+        ELSE tmp.latest_gender::varchar
+    END AS gender_source_value,
     tmp.latest_gender AS gender_source_concept_id,
     tmp.year_of_birth AS year_of_birth,
     tmp.plz AS location_id,
@@ -61,28 +62,18 @@ FROM
     tmp
 ON CONFLICT (person_id)
 DO UPDATE SET 
-with tmp as(
- SELECT
-        versq.arbnr,
-        LAST_VALUE(versq.geschlecht) OVER(PARTITION BY versq.arbnr ORDER BY versq.versq DESC) as latest_gender,
-        vers.gebjahr as year_of_birth,
-        vers.plz :: int as plz
-        FROM  versicherte.versq )
-    year_of_birth = tmp.year_of_birth,
-    gender_concept_id = case
-        tmp.latest_gender
-        when 1 then 8532 --female
-        when 2 then 8507 --male
-        else 0
-    end,
-    location_id = plz
-    gender_source_value = case
-        tmp.latest_gender
-        when 1 then '1: Female'
-        when 2 then '2: Male'
-        when 3 then '3: Missing'
-        when 4 then '4: Divers'
-        else tmp.latest_gender :: varchar
-    end
-FROM
-    tmp ;
+    year_of_birth = EXCLUDED.year_of_birth,
+    gender_concept_id = CASE
+        WHEN EXCLUDED.latest_gender = 1 THEN 8532 --female
+        WHEN EXCLUDED.latest_gender = 2 THEN 8507 --male
+        ELSE 0
+    END,
+    location_id = EXCLUDED.plz,
+    gender_source_value = CASE
+        WHEN EXCLUDED.latest_gender = 1 THEN '1: Female'
+        WHEN EXCLUDED.latest_gender = 2 THEN '2: Male'
+        WHEN EXCLUDED.latest_gender = 3 THEN '3: Missing'
+        WHEN EXCLUDED.latest_gender = 4 THEN '4: Divers'
+        ELSE EXCLUDED.latest_gender::varchar
+    END
+;

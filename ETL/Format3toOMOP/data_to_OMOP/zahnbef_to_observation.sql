@@ -61,4 +61,4 @@ SELECT
 FROM
     ambulante_faelle.zahnbef zahnbef
     INNER JOIN ambulante_faelle.zahnfall zahnfall ON zahnbef.fallidzahn = zahnfall.fallidzahn
-    LEFT JOIN {target_schema}.visit_occurrence vo zahnbef.fallidzahn = vo.fallid_temp;
+    LEFT JOIN {target_schema}.visit_occurrence vo ON zahnbef.fallidzahn = vo.fallid_temp;

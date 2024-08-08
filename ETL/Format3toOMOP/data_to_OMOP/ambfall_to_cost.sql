@@ -55,7 +55,7 @@ FROM
         (RIGHT(ambfall.abrq :: VARCHAR, 1) :: integer -1) * 3 + 1,
         01
     ) BETWEEN ppp.payer_plan_period_start_date AND ppp.payer_plan_period_end_date
-    LEFT JOIN {target_schema}.visit_occurrence vo ambfall.fallidamb = vo.fallid_temp -- and ambfall.vsid = vo.vsid_temp
+    LEFT JOIN {target_schema}.visit_occurrence vo  ON ambfall.fallidamb = vo.fallid_temp -- and ambfall.vsid = vo.vsid_temp
 WHERE
     ambfall.dialysesachko IS NOT NULL;
 
@@ -123,7 +123,7 @@ FROM
         01
     ) BETWEEN ppp.payer_plan_period_start_date
     AND ppp.payer_plan_period_end_date
-    LEFT JOIN {target_schema}.visit_occurrence vo ambfall.fallidamb = vo.fallid_temp -- and ambfall.vsid = vo.vsid_temp
+    LEFT JOIN {target_schema}.visit_occurrence vo  ON ambfall.fallidamb = vo.fallid_temp -- and ambfall.vsid = vo.vsid_temp
 WHERE
     ambfall.punktzahl IS NOT NULL
     OR ambfall.fallkoamb IS NOT NULL;

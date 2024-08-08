@@ -65,5 +65,5 @@ FROM
    ambulante_faelle.zahnleist zahnleist
    LEFT JOIN ambulante_faelle.zahnfall zahnfall ON zahnleist.fallidzahn = zahnfall.fallidzahn 
    LEFT JOIN tmp ON zahnleist.gebnr = tmp.gebnr
-   LEFT JOIN {target_schema}.visit_occurrence vo zahnleist.fallidzahn = vo.fallid_temp
+   LEFT JOIN {target_schema}.visit_occurrence vo ON zahnleist.fallidzahn = vo.fallid_temp
 ;

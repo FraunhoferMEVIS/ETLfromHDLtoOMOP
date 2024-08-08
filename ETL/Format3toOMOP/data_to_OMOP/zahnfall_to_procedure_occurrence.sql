@@ -70,6 +70,6 @@ SELECT
   NULL AS modifier_source_value
 FROM
   ambulante_faelle.zahnfall
-  LEFT JOIN {target_schema}.visit_occurrence vo zahnfall.fallidzahn = vo.fallid_temp
+  LEFT JOIN {target_schema}.visit_occurrence vo ON zahnfall.fallidzahn = vo.fallid_temp
 WHERE
   zahnfall.behandartzahn IS NOT NULL;

@@ -53,7 +53,7 @@ SELECT
     NULL AS drg_source_value
 FROM
     stationaere_faelle.khentg khentg
-    LEFT JOIN {target_schema}.visit_occurrence vo khentg.fallidkh = vo.fallid_temp 
+    LEFT JOIN {target_schema}.visit_occurrence vo ON khentg.fallidkh = vo.fallid_temp 
 WHERE
     khentg.entgbetrag is not NULL
     AND khentg.entgzahl is not NULL;

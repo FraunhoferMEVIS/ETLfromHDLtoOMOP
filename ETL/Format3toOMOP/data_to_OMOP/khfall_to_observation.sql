@@ -58,6 +58,6 @@ SELECT
     NULL AS obs_event_field_concept_id
 FROM
     stationaere_faelle.khfall
-    LEFT JOIN {target_schema}.visit_occurrence vo khfall.fallidkh = vo.fallid_temp 
+    LEFT JOIN {target_schema}.visit_occurrence vo ON khfall.fallidkh = vo.fallid_temp 
 WHERE
     RIGHT(khfall.aufngrund :: VARCHAR, 2) IN ('02', '03', '04', '06', '07');

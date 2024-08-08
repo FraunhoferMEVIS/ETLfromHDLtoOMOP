@@ -46,8 +46,8 @@ conn.close()
 # create temporary columns in visit_occurrence such that several joints can be avoided, since we need to create new identfier visit_occurrence_id
 execute_query("""
 ALTER TABLE {target_schema}.visit_occurrence 
-ADD COLUMN fallid_temp INTEGER,
-ADD COLUMN vsid_temp INTEGER;""".format(target_schema=target_schema), dbname, user,
+ADD COLUMN fallid_temp BIGINT,
+ADD COLUMN vsid_temp BIGINT;""".format(target_schema=target_schema), dbname, user,
                       host, port, password, logger)
 
 

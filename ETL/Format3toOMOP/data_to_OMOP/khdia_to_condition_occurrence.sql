@@ -119,7 +119,7 @@ SELECT
 FROM
     tmp_khdia_diagnosis
     LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh
-    LEFT JOIN {target_schema}.visit_occurrence vo tmp_khdia_diagnosis.fallidkh = vo.fallid_temp 
+    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khdia_diagnosis.fallidkh = vo.fallid_temp 
 WHERE
     tmp_khdia_diagnosis.domain_id = 'Condition'
     OR tmp_khdia_diagnosis.domain_id IS NULL;
@@ -177,7 +177,7 @@ SELECT
 FROM
     tmp_khdia_diagnosis
     LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh
-    LEFT JOIN {target_schema}.visit_occurrence vo tmp_khdia_diagnosis.fallidkh = vo.fallid_temp 
+    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khdia_diagnosis.fallidkh = vo.fallid_temp 
 WHERE
     tmp_khdia_diagnosis.domain_id = 'Procedure';
 
@@ -242,7 +242,7 @@ SELECT
 FROM
     tmp_khdia_diagnosis
     LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh
-    LEFT JOIN {target_schema}.visit_occurrence vo tmp_khdia_diagnosis.fallidkh = vo.fallid_temp 
+    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khdia_diagnosis.fallidkh = vo.fallid_temp 
 WHERE
     tmp_khdia_diagnosis.domain_id = 'Observation';
 
@@ -309,7 +309,7 @@ SELECT
 FROM
     tmp_khdia_diagnosis
     LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh
-    LEFT JOIN {target_schema}.visit_occurrence vo tmp_khdia_diagnosis.fallidkh = vo.fallid_temp 
+    LEFT JOIN {target_schema}.visit_occurrence vo ON  tmp_khdia_diagnosis.fallidkh = vo.fallid_temp 
 WHERE
     tmp_khdia_diagnosis.domain_id = 'Measurement';
 
