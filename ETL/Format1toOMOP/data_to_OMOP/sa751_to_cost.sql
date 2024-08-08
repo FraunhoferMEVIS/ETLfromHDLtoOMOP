@@ -6,7 +6,7 @@
  */
 with tmp as (
     SELECT
-        sa751_psid2,
+        sa751_vsid,
         sa751_aerzte,
         sa751_zahnaerzte,
         sa751_apotheken,
@@ -51,7 +51,7 @@ INSERT INTO
 SELECT
     -- cost_id generated,
     -- cost_event_id generated,
-    tmp.sa751_psid2 AS payer_plan_period_id,
+    tmp.sa751_vsid AS payer_plan_period_id,
     case
         tmp.{column}_dummy
         when 32869 then 'Drug'

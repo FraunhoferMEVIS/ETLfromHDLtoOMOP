@@ -1,6 +1,6 @@
 /*
  Versichertenstammdaten 151 (Masta data) to payer_plan_period:
- - defining payer_plan_period with psid2 and insured days
+ - defining payer_plan_period with vsid and insured days
  */
 INSERT INTO
     {target_schema}.payer_plan_period (
@@ -23,7 +23,7 @@ INSERT INTO
         stop_reason_source_concept_id
     )
 SELECT
-    DISTINCT ON (sa151.sa151_psid, sa151.sa151_psid2) sa151.sa151_psid2 AS payer_plan_period_id,
+    DISTINCT ON (sa151.sa151_psid, sa151.sa151_vsid) sa151.sa151_vsid AS payer_plan_period_id,
     per.person_id AS person_id,
     make_date(sa151.sa151_berichtsjahr :: int, 01, 01) AS payer_plan_period_start_date,
     make_date(sa151.sa151_berichtsjahr :: int, 12, 31) AS payer_plan_period_end_date,
@@ -43,4 +43,4 @@ SELECT
 FROM
     {source_schema}.{table}sa151 sa151
     INNER JOIN {target_schema}.person per ON sa151.sa151_psid = per.person_source_value
-    INNER JOIN {source_schema}.{table}sa951 sa951 ON sa951.sa951_psid2 = sa151.sa151_psid2;
+    INNER JOIN {source_schema}.{table}sa951 sa951 ON sa951.sa951_vsid = sa151.sa151_vsid;
