@@ -178,7 +178,7 @@ CREATE TABLE {ambulante_faelle}.ZAHNLEIST (
     "zahn" VARCHAR(5),
     "gebnr" VARCHAR(25) NOT NULL,
     "gebpos" VARCHAR(5),
-    "gebnrzzahl" NUMERIC(14) NOT NULL
+    "gebnrzahl" NUMERIC(14) NOT NULL
 );
 
 CREATE TABLE {stationaere_faelle}.KHDIAG (

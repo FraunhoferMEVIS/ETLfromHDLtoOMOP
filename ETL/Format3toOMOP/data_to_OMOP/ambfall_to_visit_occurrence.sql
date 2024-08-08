@@ -65,7 +65,7 @@ SELECT
   NULL AS discharged_to_source_value,
   NULL AS preceding_visit_occurrence_id,
   ambfall.fallidamb as fallid_temp,
-  NULL as vsid_temp
+  ambfall.vsid as vsid_temp
 FROM
   ambulante_faelle.ambfall ambfall
   LEFT JOIN ambulante_faelle.ambleist ambleist ON ambfall.fallidamb = ambleist.fallidamb -- and ambfall.vsid = ambleist.vsid

@@ -78,7 +78,7 @@ SELECT
     khfall.entlassgrund AS discharged_to_source_value,
     NULL AS preceding_visit_occurrence_id,
     khfall.fallidkh as fallid_temp,
-    NULL as vsid_temp
+    khfall.vsid as vsid_temp
 FROM
     stationaere_faelle.khfall khfall
     LEFT JOIN stationaere_faelle.khfa khfa ON khfall.fallidkh = khfa.fallidkh 

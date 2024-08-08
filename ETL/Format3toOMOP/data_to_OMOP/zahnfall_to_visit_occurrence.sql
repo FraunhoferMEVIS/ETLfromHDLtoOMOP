@@ -80,7 +80,7 @@ SELECT
    NULL AS discharged_to_source_value,
    NULL AS preceding_visit_occurrence_id,
    zahnfall.fallidzahn as fallid_temp,
-   NULL as vsid_temp
+   zahnfall.vsid as vsid_temp
 FROM
    ambulante_faelle.zahnfall
  ;
