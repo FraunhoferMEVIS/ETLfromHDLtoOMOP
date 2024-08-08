@@ -31,7 +31,7 @@ INSERT INTO
 SELECT
    nextval('{target_schema}.drug_exposure_id'),
    rez.lenrvopseudo AS provider_id,
-   rez.arbnr AS person_id,
+   rez.psid AS person_id,
    case
       RIGHT(rez.abgabedat :: VARCHAR, 2)
       when '00' then TO_DATE((rez.abgabedat + 1) :: VARCHAR, 'YYYYMMDD')

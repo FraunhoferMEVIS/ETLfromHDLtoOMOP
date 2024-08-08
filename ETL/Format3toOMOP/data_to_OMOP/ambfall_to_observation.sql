@@ -40,7 +40,7 @@ SELECT
             'YYYYMMDD'
         )
     END AS observation_date,
-    ambfall.arbnr AS person_id,
+    ambfall.psid AS person_id,
     -- 0 = default 2 = Unfall/-folgen 3 = Versorgungsleiden (-> confirmed by an official service, Causes might be disease/diability caused by military service, vaccination, victim  of act of violence, .. ) 
     432532 AS observation_concept_id,
     --ambfall.unfall=2
@@ -99,7 +99,7 @@ SELECT
     nextval('{target_schema}.observation_id'),
     vo.visit_occurrence_id AS visit_occurrence_id,
     TO_DATE(ambfall.entbindungsdat :: VARCHAR, 'YYYYMMDD') AS observation_date,
-    ambfall.arbnr AS person_id,
+    ambfall.psid AS person_id,
     36308290 AS observation_concept_id,
     --childbirth
     NULL AS value_as_string,

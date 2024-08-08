@@ -9,7 +9,7 @@ INSERT INTO
         cause_source_concept_id
     )
 SELECT
-    vers.arbnr AS person_id,
+    vers.psid AS person_id,
     -- original format: JJJJMMTT only if vitalstatus = 1  
     TO_DATE(vers.sterbedat :: text, 'YYYYMMDD') AS death_date,
     NULL AS death_datetime,

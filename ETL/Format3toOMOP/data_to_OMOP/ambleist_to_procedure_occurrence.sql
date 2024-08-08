@@ -44,7 +44,7 @@ SELECT
    -- tarif number (it defines the "service" (like consultation, examination) and  justifies the costs) 
    ambleist.gonr AS procedure_source_value,
    nextval('{target_schema}.procedure_occurrence_id'),
-   ambfall.arbnr AS person_id,
+   ambfall.psid AS person_id,
    Case
       when ambleist.ambleistzeit != '' then to_timestamp(
          CONCAT(

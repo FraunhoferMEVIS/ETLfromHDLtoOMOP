@@ -25,7 +25,7 @@ INSERT INTO
    )
 SELECT
    nextval('{target_schema}.visit_occurrence_id'),
-   zahnfall.arbnr AS person_id,
+   zahnfall.psid AS person_id,
    CASE
       WHEN COALESCE(zahnfall.beginndatzahn, zahnfall.endedatzahn) is NULL THEN CASE
          WHEN zahnfall.leistq IS NULL THEN make_date(zahnfall.berjahr :: integer, 01, 01)

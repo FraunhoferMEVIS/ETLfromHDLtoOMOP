@@ -38,7 +38,7 @@ SELECT
     --dialyses
     NULL AS procedure_source_value,
     nextval('{target_schema}.procedure_occurrence_id'),
-    ambfall.arbnr AS person_id,
+    ambfall.psid AS person_id,
     NULL AS procedure_datetime,
     NULL AS procedure_end_date,
     NULL AS procedure_end_datetime,

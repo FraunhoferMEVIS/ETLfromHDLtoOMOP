@@ -36,7 +36,7 @@ INSERT INTO
 SELECT
     nextval('{target_schema}.procedure_occurrence_id'),
     vo.visit_occurrence_id AS visit_occurrence_id,
-    khfall.arbnr AS person_id,
+    khfall.psid AS person_id,
     COALESCE(tmp_khproz.procedure_target_concept_id, 0) AS procedure_concept_id,
     COALESCE(tmp_khproz.procedure_source_concept_id, 0) AS procedure_source_concept_id,
     CONCAT(tmp_khproz.proz, ',', tmp_khproz.prozlokal) AS procedure_source_value,
@@ -87,7 +87,7 @@ SELECT
     vo.visit_occurrence_id AS visit_occurrence_id,
     TO_DATE(tmp_khproz.prozdat :: VARCHAR, 'YYYYMMDD') AS observation_date,
     CONCAT(tmp_khproz.proz, ',', tmp_khproz.prozlokal) AS observation_source_value,
-    khfall.arbnr AS person_id,
+    khfall.psid AS person_id,
     COALESCE(tmp_khproz.procedure_target_concept_id, 0) AS observation_concept_id,
     NULL AS value_as_string,
     NULL AS value_as_concept_id,
@@ -141,7 +141,7 @@ INSERT INTO
     )
 SELECT
     nextval('{target_schema}.measurement_id'),
-    khfall.arbnr AS person_id,
+    khfall.psid AS person_id,
     COALESCE(tmp_khproz.procedure_target_concept_id, 0) AS measurement_concept_id,
     TO_DATE(tmp_khproz.prozdat :: VARCHAR, 'YYYYMMDD') AS measurement_date,
     NULL AS measurement_datetime,
@@ -199,7 +199,7 @@ INSERT INTO
 SELECT
     nextval('{target_schema}.drug_exposure_id'),
     khfall.einweispseudo AS provider_id,
-    khfall.arbnr AS person_id,
+    khfall.psid AS person_id,
     -- JJJJMMTT ; ist es auf Verordnungsblatt nicht angegeben, nicht maschinell verarbeitbar oder ergibt keinen plausiblen Wert, ist Abrechnungsmonat im Format ”JJJJMM00” anzugeben 
     TO_DATE(tmp_khproz.prozdat :: VARCHAR, 'YYYYMMDD') AS drug_exposure_start_date,
     --  Map from PZN to RxNorm (no mapping available yet)

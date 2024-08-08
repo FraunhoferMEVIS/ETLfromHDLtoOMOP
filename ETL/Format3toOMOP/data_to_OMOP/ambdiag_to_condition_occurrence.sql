@@ -78,7 +78,7 @@ SELECT
       WHEN 'G' then 32893 --  Confirmed diagnosis 
       ELSE 0 -- A = ausgeschlossene Diagnose (excluded diagnosis) => excluded here!
    END AS condition_status_concept_id,
-   ambfall.arbnr AS person_id,
+   ambfall.psid AS person_id,
    NULL AS condition_start_datetime,
    NULL AS condition_end_date,
    NULL AS condition_end_datetime,
@@ -147,7 +147,7 @@ SELECT
       ',',
       tmp_ambdiag_diagnosis.diaglokal
    ) AS observation_source_value,
-   ambfall.arbnr AS person_id,
+   ambfall.psid AS person_id,
    -- Disorder excluded
    COALESCE(
       tmp_ambdiag_diagnosis.condition_target_concept_id,
@@ -243,7 +243,7 @@ SELECT
       tmp_ambdiag_diagnosis.diaglokal
    ) AS procedure_source_value,
    nextval('{target_schema}.procedure_occurrence_id'),
-   ambfall.arbnr AS person_id,
+   ambfall.psid AS person_id,
    NULL AS procedure_datetime,
    NULL AS procedure_end_date,
    NULL AS procedure_end_datetime,
@@ -289,7 +289,7 @@ INSERT INTO
    )
 SELECT
    nextval('{target_schema}.measurement_id'),
-   ambfall.arbnr AS person_id,
+   ambfall.psid AS person_id,
    COALESCE(
       tmp_ambdiag_diagnosis.condition_target_concept_id,
       0

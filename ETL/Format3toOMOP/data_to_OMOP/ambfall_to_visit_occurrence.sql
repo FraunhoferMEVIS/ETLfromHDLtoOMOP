@@ -22,7 +22,7 @@ INSERT INTO
   )
 SELECT
   nextval('{target_schema}.visit_occurrence_id'),
-  ambfall.arbnr AS person_id,
+  ambfall.psid AS person_id,
   CASE
     WHEN COALESCE(ambfall.beginndatamb, ambfall.endedatamb) is NULL THEN make_date(
       LEFT(ambfall.abrq :: VARCHAR, 4) :: integer,

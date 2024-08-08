@@ -27,7 +27,7 @@ SELECT
     32810 AS observation_type_concept_id,
     --Claim
     nextval('{target_schema}.observation_id'),
-    khfall.arbnr AS person_id,
+    khfall.psid AS person_id,
     -- Reason of admission  Digits 1 and 2:  01 Krankenhausbehandlung, vollstationär 02 Krankenhausbehandlung vollstationär mit vorausgegangener vorstationärer Behandlung 03 Krankenhausbehandlung, teilstationär 04 Vorstationäre Behandlung ohne anschließende vollstationäre Behandlung 05 Stationäre Entbindung 06 Geburt 07 Wiederaufnahme wegen Komplikationen (Fallpauschale) nach KFPV 2003 08 Stationäre Aufnahme zur Organentnahme 09 - frei - 10 Stationsäquivalente Behandlung 11 Übergangspflege  Digits 3 and 4  01 Normalfall 02 Arbeitsunfall / Berufskrankheit (§ 11 Abs. 5 SGB V) 03 Verkehrsunfall / Sportunfall / Sonstiger Unfall (z. B. § 116 SGB X) 04 Hinweis auf Einwirkung von äußerer Gewalt 05 - frei - 06 Kriegsbeschädigten-Leiden / BVG-Leiden 07 Notfall 
     -- Only last two digits:  XX01 Normalfall -> 0 XX02 Arbeitsunfall / Berufskrankheit (§ 11 Abs. 5 SGB V) -> 437748 Industrial accident XX03 Verkehrsunfall / Sportunfall / Sonstiger Unfall (z. B. § 116 SGB X) 440279 Accident XX04 Hinweis auf Einwirkung von äußerer Gewalt 35811215 Victim of physically violent crime XX06 Kriegsbeschädigten-Leiden / BVG-Leiden ??? -> 4302228 Operations of war XX07 Notfall -> 4093606 Emergency 
     CASE

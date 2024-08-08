@@ -57,7 +57,7 @@ SELECT
     ELSE zahnfall.behandartzahn
   END AS procedure_source_value,
   nextval('{target_schema}.procedure_occurrence_id'),
-  zahnfall.arbnr AS person_id,
+  zahnfall.psid AS person_id,
   NULL AS procedure_datetime,
   NULL AS procedure_end_date,
   NULL AS procedure_end_datetime,

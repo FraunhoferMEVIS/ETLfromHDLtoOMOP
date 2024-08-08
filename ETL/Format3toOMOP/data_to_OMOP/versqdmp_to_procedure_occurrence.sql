@@ -25,7 +25,7 @@ INSERT INTO
     )
 SELECT
     nextval('{target_schema}.procedure_occurrence_id'),
-    versqdmp.arbnr AS person_id,
+    versqdmp.psid AS person_id,
     make_date(
         LEFT(versqdmp.versq :: VARCHAR, 4) :: int,
         1 + ((RIGHT(versqdmp.versq :: VARCHAR, 1) :: int) -1) * 3,

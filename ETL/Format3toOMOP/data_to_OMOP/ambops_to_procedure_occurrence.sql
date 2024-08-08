@@ -47,7 +47,7 @@ SELECT
   COALESCE(tmp_ambops.procedure_source_concept_id, 0) AS procedure_source_concept_id,
   CONCAT(tmp_ambops.ops, ',', tmp_ambops.opslokal) AS procedure_source_value,
   nextval('{target_schema}.procedure_occurrence_id'),
-  ambfall.arbnr AS person_id,
+  ambfall.psid AS person_id,
   NULL AS procedure_datetime,
   NULL AS procedure_end_date,
   NULL AS procedure_end_datetime,
@@ -103,7 +103,7 @@ SELECT
     ELSE TO_DATE(tmp_ambops.opsdat :: VARCHAR, 'YYYYMMDD')
   END AS observation_date,
   CONCAT(tmp_ambops.ops, ',', tmp_ambops.opslokal) AS observation_source_value,
-  ambfall.arbnr AS person_id,
+  ambfall.psid AS person_id,
   -- Disorder excluded
   COALESCE(tmp_ambops.procedure_target_concept_id, 0) AS observation_concept_id,
   NULL AS value_as_string,
@@ -158,7 +158,7 @@ INSERT INTO
   )
 SELECT
   nextval('{target_schema}.measurement_id'),
-  ambfall.arbnr AS person_id,
+  ambfall.psid AS person_id,
   COALESCE(tmp_ambops.procedure_target_concept_id, 0) AS measurement_concept_id,
   CASE
     WHEN tmp_ambops.opsdat is NULL THEN make_date(
@@ -225,7 +225,7 @@ INSERT INTO
 SELECT
   nextval('{target_schema}.drug_exposure_id') AS drug_exposure_id,
   NULL AS provider_id,
-  ambfall.arbnr AS person_id,
+  ambfall.psid AS person_id,
   CASE
     WHEN tmp_ambops.opsdat is NULL THEN make_date(
       LEFT(ambfall.abrq :: VARCHAR, 4) :: integer,

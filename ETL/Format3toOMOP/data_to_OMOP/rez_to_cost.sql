@@ -53,7 +53,7 @@ SELECT
     NULL AS drg_source_value
 FROM
     arzneimittel.rez rez
-    LEFT JOIN {target_schema}.payer_plan_period pp ON rez.arbnr = pp.person_id
+    LEFT JOIN {target_schema}.payer_plan_period pp ON rez.psid = pp.person_id
     and TO_DATE(rez.abgabedat :: VARCHAR, 'YYYYMMDD') BETWEEN pp.payer_plan_period_start_date
     AND pp.payer_plan_period_end_date
 WHERE

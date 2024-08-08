@@ -53,7 +53,7 @@ SELECT
         ambdiag.diagsich,
         ': Excluded Diagnosis'
     ) AS observation_source_value,
-    ambfall.arbnr AS person_id,
+    ambfall.psid AS person_id,
     -- Disorder excluded
     4199812 AS observation_concept_id,
     NULL AS value_as_string,

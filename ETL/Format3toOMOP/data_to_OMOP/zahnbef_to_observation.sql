@@ -25,7 +25,7 @@ INSERT INTO
 SELECT
     vo.visit_occurrence_id AS visit_occurrence_id,
     zahnbef.befnr AS observation_source_value,
-    zahnfall.arbnr AS person_id,
+    zahnfall.psid AS person_id,
     0 AS observation_concept_id,
     NULL AS value_as_string,
     NULL AS value_as_concept_id,

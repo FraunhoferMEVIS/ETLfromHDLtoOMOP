@@ -91,7 +91,7 @@ INSERT INTO
 SELECT
     vo.visit_occurrence_id AS visit_occurrence_id,
     nextval('{target_schema}.condition_occurrence_id'),
-    khfall.arbnr AS person_id,
+    khfall.psid AS person_id,
     COALESCE(
         tmp_khdia_diagnosis.condition_target_concept_id,
         0
@@ -149,7 +149,7 @@ INSERT INTO
 SELECT
     nextval('{target_schema}.procedure_occurrence_id'),
     vo.visit_occurrence_id AS visit_occurrence_id,
-    khfall.arbnr AS person_id,
+    khfall.psid AS person_id,
     COALESCE(
         tmp_khdia_diagnosis.condition_target_concept_id,
         0
@@ -210,7 +210,7 @@ SELECT
     32810 AS observation_type_concept_id,
     --Claim
     nextval('{target_schema}.observation_id'),
-    khfall.arbnr AS person_id,
+    khfall.psid AS person_id,
     COALESCE(
         tmp_khdia_diagnosis.condition_target_concept_id,
         0
@@ -274,7 +274,7 @@ INSERT INTO
     )
 SELECT
     nextval('{target_schema}.measurement_id'),
-    khfall.arbnr AS person_id,
+    khfall.psid AS person_id,
     COALESCE(
         tmp_khdia_diagnosis.condition_target_concept_id,
         0

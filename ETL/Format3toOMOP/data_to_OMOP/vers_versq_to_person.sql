@@ -1,12 +1,12 @@
 WITH tmp AS (
     SELECT
-        versq.arbnr,
-        LAST_VALUE(versq.geschlecht) OVER(PARTITION BY versq.arbnr ORDER BY versq.versq DESC) AS latest_gender,
+        versq.psid,
+        LAST_VALUE(versq.geschlecht) OVER(PARTITION BY versq.psid ORDER BY versq.versq DESC) AS latest_gender,
         vers.gebjahr AS year_of_birth,
         vers.plz::int AS plz
     FROM 
     versicherte.vers vers
-    LEFT JOIN  versicherte.versq versq ON vers.arbnr = versq.arbnr
+    LEFT JOIN  versicherte.versq versq ON vers.psid = versq.psid
 )
 INSERT INTO
     {target_schema}.person (
@@ -30,7 +30,7 @@ INSERT INTO
         ethnicity_source_concept_id
     )
 SELECT
-    DISTINCT ON (tmp.arbnr) tmp.arbnr AS person_id,
+    DISTINCT ON (tmp.psid) tmp.psid AS person_id,
     CASE
         WHEN tmp.latest_gender = 1 THEN 8532 --female
         WHEN tmp.latest_gender = 2 THEN 8507 --male

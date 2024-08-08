@@ -29,7 +29,7 @@ SELECT
     32810 AS visit_type_concept_id,
     --claim
     nextval('{target_schema}.visit_occurrence_id'),
-    khfall.arbnr AS person_id,
+    khfall.psid AS person_id,
     -- pseudonym of admisison physican  
     khfall.einweispseudo AS provider_id,
     -- pseudonym of hospital  

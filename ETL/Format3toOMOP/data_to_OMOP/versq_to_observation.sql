@@ -28,7 +28,7 @@ INSERT INTO
     )
 SELECT
     nextval('{target_schema}.observation_id'),
-    versq_.arbnr AS person_id,
+    versq_.psid AS person_id,
     -- 1st of quarter ((quarter-1)*3)+1 Format JJJJQ
     make_date(
         LEFT(versq_.versq :: VARCHAR, 4) :: int,

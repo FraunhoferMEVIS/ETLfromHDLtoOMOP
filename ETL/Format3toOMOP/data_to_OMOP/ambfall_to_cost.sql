@@ -49,7 +49,7 @@ SELECT
     NULL AS drg_source_value
 FROM
     ambulante_faelle.ambfall ambfall
-    LEFT JOIN {target_schema}.payer_plan_period ppp ON ambfall.arbnr = ppp.person_id
+    LEFT JOIN {target_schema}.payer_plan_period ppp ON ambfall.psid = ppp.person_id
     and make_date(
         LEFT(ambfall.abrq :: VARCHAR, 4) :: integer,
         (RIGHT(ambfall.abrq :: VARCHAR, 1) :: integer -1) * 3 + 1,
@@ -116,7 +116,7 @@ SELECT
     NULL AS drg_source_value
 FROM
     ambulante_faelle.ambfall ambfall
-    LEFT JOIN {target_schema}.payer_plan_period ppp ON ambfall.arbnr = ppp.person_id
+    LEFT JOIN {target_schema}.payer_plan_period ppp ON ambfall.psid = ppp.person_id
     and make_date(
         LEFT(ambfall.abrq :: VARCHAR, 4) :: integer,
         (RIGHT(ambfall.abrq :: VARCHAR, 1) :: integer -1) * 3 + 1,
