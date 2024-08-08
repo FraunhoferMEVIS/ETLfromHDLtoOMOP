@@ -6,12 +6,10 @@ DROP TABLE IF EXISTS icd_tmp;
 CREATE TEMP TABLE icd_tmp AS with sec_tmp as(
     SELECT
         khdiag.fallidkh,
-        khdiag.sekicd as source_icd,
+        khdiag.sekicd_code as source_icd,
         khdiag.sekicdlokal as lokal,
         2 as diagnois_typ,
         --secondary diagnosis
-        regexp_replace(khdiag.sekicd, '[^\w\s^.]', '') as icd,
-        --the test data has either special characters nor '.', This must be checked for real data 
         32908 AS diagart_concept,
         --since it is reported asin column secondary diagnosis (Nebendiagnose)
         'N' as source_diagart
@@ -23,12 +21,10 @@ CREATE TEMP TABLE icd_tmp AS with sec_tmp as(
 prim_tmp as (
     SELECT
         khdiag.fallidkh,
-        khdiag.icdkh as source_icd,
+        khdiag.icdkh_code as source_icd,
         khdiag.icdlokal as lokal,
         1 as diagnois_typ,
         --primary diagnosis
-        regexp_replace(khdiag.icdkh, '[^\w\s^.]', '') as icd,
-        --the test data has either special characters nor '.', This must be checked for real data 
         CASE
             khdiag.diagart
             WHEN 'A' then 32890 --A (Aufhnahmediagnose) => Admission diagnosis

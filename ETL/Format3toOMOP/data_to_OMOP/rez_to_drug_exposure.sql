@@ -51,11 +51,7 @@ SELECT
    NULL AS drug_exposure_end_datetime,
    NULL AS verbatim_end_date,
    -- If 1=> dental claim o.w. claim  
-   case
-      rez.begruendung
-      when 1 then 32816 --dental claim 
-      else 32810 --claim 
-   END AS drug_type_concept_id,
+   32810 AS drug_type_concept_id,
    NULL AS stop_reason,
    NULL AS refills,
    NULL AS days_supply,

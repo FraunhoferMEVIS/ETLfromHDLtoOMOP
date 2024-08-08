@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS tmp_ambdiag_diagnosis CASCADE;
 CREATE TEMP TABLE tmp_ambdiag_diagnosis AS
 SELECT
    ambdiag.diagdat,
-   ambdiag.icdamb,
+   ambdiag.icdamb_code,
    ambdiag.diaglokal,
    ambdiag.diagsich,
    ambdiag.fallidamb,
