@@ -1,6 +1,6 @@
 WITH tmp AS (
     SELECT
-        versq.arbnr,
+        vers.arbnr,
         LAST_VALUE(versq.geschlecht) OVER(PARTITION BY versq.arbnr ORDER BY versq.versq DESC) AS latest_gender,
         vers.gebjahr AS year_of_birth,
         vers.plz::int AS plz
@@ -64,16 +64,16 @@ ON CONFLICT (person_id)
 DO UPDATE SET 
     year_of_birth = EXCLUDED.year_of_birth,
     gender_concept_id = CASE
-        WHEN EXCLUDED.latest_gender = 1 THEN 8532 --female
-        WHEN EXCLUDED.latest_gender = 2 THEN 8507 --male
+        WHEN EXCLUDED.gender_source_concept_id = 1 THEN 8532 --female   
+        WHEN EXCLUDED.gender_source_concept_id = 2 THEN 8507 --male     
         ELSE 0
     END,
-    location_id = EXCLUDED.plz,
+    location_id = EXCLUDED.location_id,                                  
     gender_source_value = CASE
-        WHEN EXCLUDED.latest_gender = 1 THEN '1: Female'
-        WHEN EXCLUDED.latest_gender = 2 THEN '2: Male'
-        WHEN EXCLUDED.latest_gender = 3 THEN '3: Missing'
-        WHEN EXCLUDED.latest_gender = 4 THEN '4: Divers'
-        ELSE EXCLUDED.latest_gender::varchar
+        WHEN EXCLUDED.gender_source_concept_id = 1 THEN '1: Female'      
+        WHEN EXCLUDED.gender_source_concept_id = 2 THEN '2: Male'        
+        WHEN EXCLUDED.gender_source_concept_id = 3 THEN '3: Missing'     
+        WHEN EXCLUDED.gender_source_concept_id = 4 THEN '4: Divers'      
+        ELSE EXCLUDED.gender_source_concept_id::varchar                  
     END
 ;
