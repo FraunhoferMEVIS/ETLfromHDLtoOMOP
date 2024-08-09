@@ -44,11 +44,14 @@ logger.info('is inserted: ' + str(is_inserted))
 conn.close()
 
 # create temporary columns in visit_occurrence such that several joints can be avoided, since we need to create new identfier visit_occurrence_id
-execute_query("""
+execute_query(
+    """
 ALTER TABLE {target_schema}.visit_occurrence 
-ADD COLUMN fallid_temp BIGINT,
-ADD COLUMN vsid_temp BIGINT;""".format(target_schema=target_schema), dbname, user,
-                      host, port, password, logger)
+ADD COLUMN fallidkh_temp BIGINT,
+ADD COLUMN fallidzahn_temp BIGINT,
+ADD COLUMN fallidamb_temp BIGINT,
+ADD COLUMN vsid_temp BIGINT;""".format(target_schema=target_schema), dbname,
+    user, host, port, password, logger)
 
 
 #run ETL
@@ -90,7 +93,7 @@ if not is_inserted:
         'verstageausl': 'versichertentageausland',
         'verstagekg': 'versichertentagekg',
         'verstagekosterstwahlt': 'versichertentage_wahltarif'
-   }
+    }
     for column_name, value in columns.items():
         query = read_sql_file(file_versq_to_observation, folder_load)
         execute_query(
@@ -108,11 +111,14 @@ if not is_inserted:
     logger.info(
         'Meta information inserted into <sourceschema>.inserted_tables')
 
-execute_query("""
+execute_query(
+    """
 ALTER TABLE {target_schema}.visit_occurrence 
-DROP  COLUMN fallid_temp,
+DROP  COLUMN fallidkh_temp,
+DROP  COLUMN fallidzahn_temp,
+DROP  COLUMN fallidamb_temp,
 DROP  COLUMN vsid_temp;""".format(target_schema=target_schema), dbname, user,
-                      host, port, password, logger)
+    host, port, password, logger)
 
 logger.info('Run constraints')
 files_constraints = [
