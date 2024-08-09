@@ -68,5 +68,5 @@ SELECT
   ambfall.vsid as vsid_temp
 FROM
   ambulante_faelle.ambfall ambfall
-  LEFT JOIN ambulante_faelle.ambleist ambleist ON ambfall.fallidamb = ambleist.fallidamb -- and ambfall.vsid = ambleist.vsid
+  LEFT JOIN ambulante_faelle.ambleist ambleist ON ambfall.fallidamb = ambleist.fallidamb and ambfall.vsid = ambleist.vsid
 ;

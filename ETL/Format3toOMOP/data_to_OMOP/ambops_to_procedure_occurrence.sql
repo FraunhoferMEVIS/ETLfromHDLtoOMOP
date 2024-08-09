@@ -5,6 +5,7 @@ SELECT
   ambops.ops,
   ambops.opslokal,
   ambops.fallidamb,
+  ambops.vsid,
   mv_ops.procedure_source_concept_id,
   mv_ops.procedure_target_concept_id,
   mv_ops.domain_id
@@ -60,8 +61,8 @@ SELECT
   NULL AS modifier_source_value
 FROM
   tmp_ambops
-  LEFT JOIN ambulante_faelle.ambfall ambfall ON tmp_ambops.fallidamb = ambfall.fallidamb
-  LEFT JOIN {target_schema}.visit_occurrence vo  ON tmp_ambops.fallidamb = vo.fallid_temp -- and ambfall.vsid = vo.vsid_temp
+  LEFT JOIN ambulante_faelle.ambfall ambfall ON tmp_ambops.fallidamb = ambfall.fallidamb and tmp_ambops.vsid = ambfall.vsid
+  LEFT JOIN {target_schema}.visit_occurrence vo  ON tmp_ambops.fallidamb = vo.fallid_temp and tmp_ambops.vsid = vo.vsid_temp 
 WHERE
   tmp_ambops.domain_id = 'Procedure'
   OR tmp_ambops.domain_id IS NULL;
@@ -125,8 +126,8 @@ SELECT
   NULL AS obs_event_field_concept_id
 FROM
   tmp_ambops
-  LEFT JOIN ambulante_faelle.ambfall ambfall ON tmp_ambops.fallidamb = ambfall.fallidamb
-  LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_ambops.fallidamb = vo.fallid_temp -- and ambfall.vsid = vo.vsid_temp
+  LEFT JOIN ambulante_faelle.ambfall ambfall ON tmp_ambops.fallidamb = ambfall.fallidamb and tmp_ambops.vsid = ambfall.vsid
+  LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_ambops.fallidamb = vo.fallid_temp and tmp_ambops.vsid = vo.vsid_temp
 WHERE
   tmp_ambops.domain_id = 'Observation';
 
@@ -189,8 +190,8 @@ SELECT
   NULL AS meas_event_field_concept_id
 FROM
   tmp_ambops
-  LEFT JOIN ambulante_faelle.ambfall ambfall ON tmp_ambops.fallidamb = ambfall.fallidamb
-  LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_ambops.fallidamb = vo.fallid_temp -- and ambfall.vsid = vo.vsid_temp
+  LEFT JOIN ambulante_faelle.ambfall ambfall ON tmp_ambops.fallidamb = ambfall.fallidamb and tmp_ambops.vsid = ambfall.vsid
+  LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_ambops.fallidamb = vo.fallid_temp and tmp_ambops.vsid = vo.vsid_temp
 WHERE
   tmp_ambops.domain_id = 'Measurement';
 
@@ -264,8 +265,8 @@ SELECT
   NULL AS dose_unit_source_value
 FROM
   tmp_ambops
-  LEFT JOIN ambulante_faelle.ambfall ambfall ON tmp_ambops.fallidamb = ambfall.fallidamb
-  LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_ambops.fallidamb = vo.fallid_temp -- and ambfall.vsid = vo.vsid_temp
+  LEFT JOIN ambulante_faelle.ambfall ambfall ON tmp_ambops.fallidamb = ambfall.fallidamb and tmp_ambops.vsid = ambfall.vsid
+  LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_ambops.fallidamb = vo.fallid_temp and tmp_ambops.vsid = vo.vsid_temp
 WHERE
   tmp_ambops.domain_id = 'Drug';
 

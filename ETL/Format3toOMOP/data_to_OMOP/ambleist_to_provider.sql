@@ -46,7 +46,7 @@ SELECT
     NULL AS gender_source_concept_id
 FROM
     ambulante_faelle.ambleist ambleist
-    LEFT JOIN ambulante_faelle.ambfall ambfall ON ambleist.fallidamb = ambfall.fallidamb
+    LEFT JOIN ambulante_faelle.ambfall ambfall ON ambleist.fallidamb = ambfall.fallidamb and ambleist.vsid = ambfall.vsid 
     LEFT JOIN pg ON ambleist.lanrfg = pg.concept_code
 WHERE
     ambleist.lanrpseudo IS NOT NULL ON CONFLICT (provider_id) DO NOTHING;
