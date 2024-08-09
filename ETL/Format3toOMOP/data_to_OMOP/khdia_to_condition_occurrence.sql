@@ -118,7 +118,7 @@ SELECT
 FROM
     tmp_khdia_diagnosis
     LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh and tmp_khdia_diagnosis.vsid= khfall.vsid
-    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khdia_diagnosis.fallidkh = vo.fallid_temp and tmp_khdia_diagnosis.vsid = vo.vsid_temp 
+    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khdia_diagnosis.fallidkh = vo.fallidkh_temp and tmp_khdia_diagnosis.vsid = vo.vsid_temp 
 WHERE
     tmp_khdia_diagnosis.domain_id = 'Condition'
     OR tmp_khdia_diagnosis.domain_id IS NULL;
@@ -176,7 +176,7 @@ SELECT
 FROM
     tmp_khdia_diagnosis
     LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh and tmp_khdia_diagnosis.vsid= khfall.vsid
-    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khdia_diagnosis.fallidkh = vo.fallid_temp and tmp_khdia_diagnosis.vsid = vo.vsid_temp 
+    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khdia_diagnosis.fallidkh = vo.fallidkh_temp and tmp_khdia_diagnosis.vsid = vo.vsid_temp 
 WHERE
     tmp_khdia_diagnosis.domain_id = 'Procedure';
 
@@ -241,7 +241,7 @@ SELECT
 FROM
     tmp_khdia_diagnosis
     LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh and tmp_khdia_diagnosis.vsid= khfall.vsid
-    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khdia_diagnosis.fallidkh = vo.fallid_temp and tmp_khdia_diagnosis.vsid = vo.vsid_temp 
+    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khdia_diagnosis.fallidkh = vo.fallidkh_temp and tmp_khdia_diagnosis.vsid = vo.vsid_temp 
 WHERE
     tmp_khdia_diagnosis.domain_id = 'Observation';
 
@@ -308,7 +308,7 @@ SELECT
 FROM
     tmp_khdia_diagnosis
     LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh and tmp_khdia_diagnosis.vsid= khfall.vsid
-    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khdia_diagnosis.fallidkh = vo.fallid_temp and tmp_khdia_diagnosis.vsid = vo.vsid_temp 
+    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khdia_diagnosis.fallidkh = vo.fallidkh_temp and tmp_khdia_diagnosis.vsid = vo.vsid_temp 
 WHERE
     tmp_khdia_diagnosis.domain_id = 'Measurement';
 

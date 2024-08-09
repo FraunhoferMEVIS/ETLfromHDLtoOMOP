@@ -22,7 +22,7 @@ INSERT INTO
         discharged_to_concept_id,
         discharged_to_source_value,
         preceding_visit_occurrence_id,
-        fallid_temp,
+        fallidkh_temp,
         vsid_temp
     )
 SELECT
@@ -77,7 +77,7 @@ SELECT
     end as discharged_to_concept_id,
     khfall.entlassgrund AS discharged_to_source_value,
     NULL AS preceding_visit_occurrence_id,
-    khfall.fallidkh as fallid_temp,
+    khfall.fallidkh as fallidkh_temp,
     khfall.vsid as vsid_temp
 FROM
     stationaere_faelle.khfall khfall

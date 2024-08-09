@@ -55,7 +55,7 @@ SELECT
 FROM
     tmp_khproz
     LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khproz.fallidkh = khfall.fallidkh and tmp_khproz.vsid = khfall.vsid 
-    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khproz.fallidkh = vo.fallid_temp  and tmp_khproz.vsid = vo.vsid_temp 
+    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khproz.fallidkh = vo.fallidkh_temp  and tmp_khproz.vsid = vo.vsid_temp 
 WHERE
     tmp_khproz.domain_id = 'Procedure'
     OR tmp_khproz.domain_id IS NULL;
@@ -110,7 +110,7 @@ SELECT
 FROM
     tmp_khproz
     LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khproz.fallidkh = khfall.fallidkh and tmp_khproz.vsid = khfall.vsid
-    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khproz.fallidkh = vo.fallid_temp and tmp_khproz.vsid = vo.vsid_temp 
+    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khproz.fallidkh = vo.fallidkh_temp and tmp_khproz.vsid = vo.vsid_temp 
 WHERE
     tmp_khproz.domain_id = 'Observation';
 
@@ -167,7 +167,7 @@ SELECT
 FROM
     tmp_khproz
     LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khproz.fallidkh = khfall.fallidkh and tmp_khproz.vsid = khfall.vsid
-    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khproz.fallidkh = vo.fallid_temp and tmp_khproz.vsid = vo.vsid_temp
+    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khproz.fallidkh = vo.fallidkh_temp and tmp_khproz.vsid = vo.vsid_temp
 WHERE
     tmp_khproz.domain_id = 'Measurement';
 
@@ -228,7 +228,7 @@ SELECT
 FROM
     tmp_khproz
     LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khproz.fallidkh = khfall.fallidkh and tmp_khproz.vsid = khfall.vsid
-    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khproz.fallidkh = vo.fallid_temp  andtmp_khproz.vsid = vo.vsid_temp
+    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khproz.fallidkh = vo.fallidkh_temp  andtmp_khproz.vsid = vo.vsid_temp
 WHERE
     tmp_khproz.domain_id = 'Drug';
 
