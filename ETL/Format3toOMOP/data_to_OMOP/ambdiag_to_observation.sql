@@ -76,7 +76,7 @@ SELECT
 FROM
     ambulante_faelle.ambdiag ambdiag
     INNER JOIN ambulante_faelle.ambfall ambfall ON ambfall.fallidamb = ambdiag.fallidamb and ambfall.vsid = ambdiag.vsid 
-    LEFT JOIN {target_schema}.visit_occurrence vo  ON ambfall.fallidamb = vo.fallid_temp and ambfall.vsid = vo.vsid_temp
+    LEFT JOIN {target_schema}.visit_occurrence vo  ON ambfall.fallidamb = vo.fallidamb_temp and ambfall.vsid = vo.vsid_temp
 
 WHERE
     ambdiag.diagsich = 'A';

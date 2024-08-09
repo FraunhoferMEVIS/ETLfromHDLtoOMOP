@@ -67,5 +67,5 @@ FROM
    ambulante_faelle.ambleist ambleist
    INNER JOIN ambulante_faelle.ambfall ambfall ON ambfall.fallidamb = ambleist.fallidamb and ambfall.vsid = ambleist.vsid
    LEFT JOIN tmp ON ambleist.gonr = tmp.gonr
-   LEFT JOIN {target_schema}.visit_occurrence vo  ON ambfall.fallidamb = vo.fallid_temp and ambfall.vsid = vo.vsid_temp 
+   LEFT JOIN {target_schema}.visit_occurrence vo  ON ambfall.fallidamb = vo.fallidamb_temp and ambfall.vsid = vo.vsid_temp 
       ;

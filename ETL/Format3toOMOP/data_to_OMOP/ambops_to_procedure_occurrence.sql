@@ -62,7 +62,7 @@ SELECT
 FROM
   tmp_ambops
   LEFT JOIN ambulante_faelle.ambfall ambfall ON tmp_ambops.fallidamb = ambfall.fallidamb and tmp_ambops.vsid = ambfall.vsid
-  LEFT JOIN {target_schema}.visit_occurrence vo  ON tmp_ambops.fallidamb = vo.fallid_temp and tmp_ambops.vsid = vo.vsid_temp 
+  LEFT JOIN {target_schema}.visit_occurrence vo  ON tmp_ambops.fallidamb = vo.fallidamb_temp and tmp_ambops.vsid = vo.vsid_temp 
 WHERE
   tmp_ambops.domain_id = 'Procedure'
   OR tmp_ambops.domain_id IS NULL;
@@ -127,7 +127,7 @@ SELECT
 FROM
   tmp_ambops
   LEFT JOIN ambulante_faelle.ambfall ambfall ON tmp_ambops.fallidamb = ambfall.fallidamb and tmp_ambops.vsid = ambfall.vsid
-  LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_ambops.fallidamb = vo.fallid_temp and tmp_ambops.vsid = vo.vsid_temp
+  LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_ambops.fallidamb = vo.fallidamb_temp and tmp_ambops.vsid = vo.vsid_temp
 WHERE
   tmp_ambops.domain_id = 'Observation';
 
@@ -191,7 +191,7 @@ SELECT
 FROM
   tmp_ambops
   LEFT JOIN ambulante_faelle.ambfall ambfall ON tmp_ambops.fallidamb = ambfall.fallidamb and tmp_ambops.vsid = ambfall.vsid
-  LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_ambops.fallidamb = vo.fallid_temp and tmp_ambops.vsid = vo.vsid_temp
+  LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_ambops.fallidamb = vo.fallidamb_temp and tmp_ambops.vsid = vo.vsid_temp
 WHERE
   tmp_ambops.domain_id = 'Measurement';
 
@@ -266,7 +266,7 @@ SELECT
 FROM
   tmp_ambops
   LEFT JOIN ambulante_faelle.ambfall ambfall ON tmp_ambops.fallidamb = ambfall.fallidamb and tmp_ambops.vsid = ambfall.vsid
-  LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_ambops.fallidamb = vo.fallid_temp and tmp_ambops.vsid = vo.vsid_temp
+  LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_ambops.fallidamb = vo.fallidamb_temp and tmp_ambops.vsid = vo.vsid_temp
 WHERE
   tmp_ambops.domain_id = 'Drug';
 

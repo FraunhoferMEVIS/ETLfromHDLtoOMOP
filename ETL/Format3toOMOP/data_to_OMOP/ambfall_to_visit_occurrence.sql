@@ -17,7 +17,7 @@ INSERT INTO
     discharged_to_concept_id,
     discharged_to_source_value,
     preceding_visit_occurrence_id,
-    fallid_temp,
+    fallidamb_temp,
     vsid_temp
   )
 SELECT
@@ -64,7 +64,7 @@ SELECT
   NULL AS discharged_to_concept_id,
   NULL AS discharged_to_source_value,
   NULL AS preceding_visit_occurrence_id,
-  ambfall.fallidamb as fallid_temp,
+  ambfall.fallidamb as fallidamb_temp,
   ambfall.vsid as vsid_temp
 FROM
   ambulante_faelle.ambfall ambfall

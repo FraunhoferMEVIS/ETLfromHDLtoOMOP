@@ -92,7 +92,7 @@ SELECT
 FROM
    tmp_ambdiag_diagnosis
    LEFT JOIN ambulante_faelle.ambfall ambfall ON tmp_ambdiag_diagnosis.fallidamb = ambfall.fallidamb and tmp_ambdiag_diagnosis.vsid = ambfall.vsid
-   LEFT JOIN {target_schema}.visit_occurrence vo ON ambfall.fallidamb = vo.fallid_temp and ambfall.vsid = vo.vsid_temp
+   LEFT JOIN {target_schema}.visit_occurrence vo ON ambfall.fallidamb = vo.fallidamb_temp and ambfall.vsid = vo.vsid_temp
 WHERE
    tmp_ambdiag_diagnosis.domain_id = 'Condition'
    OR tmp_ambdiag_diagnosis.domain_id IS NULL;
@@ -183,7 +183,7 @@ SELECT
 FROM
    tmp_ambdiag_diagnosis
    LEFT JOIN ambulante_faelle.ambfall ambfall ON tmp_ambdiag_diagnosis.fallidamb = ambfall.fallidamb and tmp_ambdiag_diagnosis.vsid = ambfall.vsid
-   LEFT JOIN {target_schema}.visit_occurrence vo ON ambfall.fallidamb = vo.fallid_temp and ambfall.vsid = vo.vsid_temp
+   LEFT JOIN {target_schema}.visit_occurrence vo ON ambfall.fallidamb = vo.fallidamb_temp and ambfall.vsid = vo.vsid_temp
 WHERE
    tmp_ambdiag_diagnosis.domain_id = 'Observation';
 
@@ -257,7 +257,7 @@ SELECT
 FROM
    tmp_ambdiag_diagnosis
    LEFT JOIN ambulante_faelle.ambfall ambfall ON tmp_ambdiag_diagnosis.fallidamb = ambfall.fallidamb and ambdiag_diagnosis.vsid = ambfall.vsid
-   LEFT JOIN {target_schema}.visit_occurrence vo ON ambfall.fallidamb = vo.fallid_temp and ambfall.vsid = vo.vsid_temp
+   LEFT JOIN {target_schema}.visit_occurrence vo ON ambfall.fallidamb = vo.fallidamb_temp and ambfall.vsid = vo.vsid_temp
 WHERE
    tmp_ambdiag_diagnosis.domain_id = 'Procedure';
 
@@ -342,7 +342,7 @@ SELECT
 FROM
    tmp_ambdiag_diagnosis
    LEFT JOIN ambulante_faelle.ambfall ambfall ON tmp_ambdiag_diagnosis.fallidamb = ambfall.fallidamb and  tmp_ambdiag_diagnosis.vsid = ambfall.vsid
-   LEFT JOIN {target_schema}.visit_occurrence vo  ON ambfall.fallidamb = vo.fallid_temp and ambfall.vsid = vo.vsid_temp
+   LEFT JOIN {target_schema}.visit_occurrence vo  ON ambfall.fallidamb = vo.fallidamb_temp and ambfall.vsid = vo.vsid_temp
 WHERE
    tmp_ambdiag_diagnosis.domain_id = 'Measurement';
 
