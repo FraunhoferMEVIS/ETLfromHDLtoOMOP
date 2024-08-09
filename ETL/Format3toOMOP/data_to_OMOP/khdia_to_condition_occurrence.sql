@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS icd_tmp;
 CREATE TEMP TABLE icd_tmp AS with sec_tmp as(
     SELECT
         khdiag.fallidkh,
+        khdiag.vsid,
         khdiag.sekicd_code as source_icd,
         khdiag.sekicdlokal as lokal,
         2 as diagnois_typ,
@@ -21,6 +22,7 @@ CREATE TEMP TABLE icd_tmp AS with sec_tmp as(
 prim_tmp as (
     SELECT
         khdiag.fallidkh,
+        khdiag.vsid,
         khdiag.icdkh_code as source_icd,
         khdiag.icdlokal as lokal,
         1 as diagnois_typ,
@@ -50,6 +52,7 @@ FROM
 CREATE TEMP TABLE tmp_khdia_diagnosis AS
 SELECT
     icd_tmp.fallidkh,
+    icd_tmp.vsid,
     icd_tmp.source_icd,
     icd_tmp.lokal,
     icd_tmp.diagnois_typ,
@@ -114,8 +117,8 @@ SELECT
     NULL AS visit_detail_id
 FROM
     tmp_khdia_diagnosis
-    LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh
-    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khdia_diagnosis.fallidkh = vo.fallid_temp 
+    LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh and tmp_khdia_diagnosis.vsid= khfall.vsid
+    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khdia_diagnosis.fallidkh = vo.fallid_temp and tmp_khdia_diagnosis.vsid = vo.vsid_temp 
 WHERE
     tmp_khdia_diagnosis.domain_id = 'Condition'
     OR tmp_khdia_diagnosis.domain_id IS NULL;
@@ -172,8 +175,8 @@ SELECT
     NULL AS modifier_source_value
 FROM
     tmp_khdia_diagnosis
-    LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh
-    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khdia_diagnosis.fallidkh = vo.fallid_temp 
+    LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh and tmp_khdia_diagnosis.vsid= khfall.vsid
+    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khdia_diagnosis.fallidkh = vo.fallid_temp and tmp_khdia_diagnosis.vsid = vo.vsid_temp 
 WHERE
     tmp_khdia_diagnosis.domain_id = 'Procedure';
 
@@ -237,8 +240,8 @@ SELECT
     NULL AS obs_event_field_concept_id
 FROM
     tmp_khdia_diagnosis
-    LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh
-    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khdia_diagnosis.fallidkh = vo.fallid_temp 
+    LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh and tmp_khdia_diagnosis.vsid= khfall.vsid
+    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khdia_diagnosis.fallidkh = vo.fallid_temp and tmp_khdia_diagnosis.vsid = vo.vsid_temp 
 WHERE
     tmp_khdia_diagnosis.domain_id = 'Observation';
 
@@ -304,8 +307,8 @@ SELECT
     NULL AS meas_event_field_concept_id
 FROM
     tmp_khdia_diagnosis
-    LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh
-    LEFT JOIN {target_schema}.visit_occurrence vo ON  tmp_khdia_diagnosis.fallidkh = vo.fallid_temp 
+    LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh and tmp_khdia_diagnosis.vsid= khfall.vsid
+    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khdia_diagnosis.fallidkh = vo.fallid_temp and tmp_khdia_diagnosis.vsid = vo.vsid_temp 
 WHERE
     tmp_khdia_diagnosis.domain_id = 'Measurement';
 

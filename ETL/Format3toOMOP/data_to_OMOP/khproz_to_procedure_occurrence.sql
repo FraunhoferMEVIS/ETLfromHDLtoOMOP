@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS tmp_khproz CASCADE;
 CREATE TEMP TABLE tmp_khproz AS
 SELECT
     khproz.fallidkh,
+    khproz.vsid,
     khproz.proz,
     khproz.prozdat,
     khproz.prozlokal,
@@ -53,8 +54,8 @@ SELECT
     NULL AS modifier_source_value
 FROM
     tmp_khproz
-    LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khproz.fallidkh = khfall.fallidkh
-    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khproz.fallidkh = vo.fallid_temp 
+    LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khproz.fallidkh = khfall.fallidkh and tmp_khproz.vsid = khfall.vsid 
+    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khproz.fallidkh = vo.fallid_temp  and tmp_khproz.vsid = vo.vsid_temp 
 WHERE
     tmp_khproz.domain_id = 'Procedure'
     OR tmp_khproz.domain_id IS NULL;
@@ -108,8 +109,8 @@ SELECT
     NULL AS obs_event_field_concept_id
 FROM
     tmp_khproz
-    LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khproz.fallidkh = khfall.fallidkh
-    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khproz.fallidkh = vo.fallid_temp 
+    LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khproz.fallidkh = khfall.fallidkh and tmp_khproz.vsid = khfall.vsid
+    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khproz.fallidkh = vo.fallid_temp and tmp_khproz.vsid = vo.vsid_temp 
 WHERE
     tmp_khproz.domain_id = 'Observation';
 
@@ -165,8 +166,8 @@ SELECT
     NULL AS meas_event_field_concept_id
 FROM
     tmp_khproz
-    LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khproz.fallidkh = khfall.fallidkh
-    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khproz.fallidkh = vo.fallid_temp 
+    LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khproz.fallidkh = khfall.fallidkh and tmp_khproz.vsid = khfall.vsid
+    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khproz.fallidkh = vo.fallid_temp and tmp_khproz.vsid = vo.vsid_temp
 WHERE
     tmp_khproz.domain_id = 'Measurement';
 
@@ -226,8 +227,8 @@ SELECT
     NULL AS dose_unit_source_value
 FROM
     tmp_khproz
-    LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khproz.fallidkh = khfall.fallidkh
-    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khproz.fallidkh = vo.fallid_temp 
+    LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khproz.fallidkh = khfall.fallidkh and tmp_khproz.vsid = khfall.vsid
+    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khproz.fallidkh = vo.fallid_temp  andtmp_khproz.vsid = vo.vsid_temp
 WHERE
     tmp_khproz.domain_id = 'Drug';
 
