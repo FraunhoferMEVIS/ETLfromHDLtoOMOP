@@ -63,7 +63,7 @@ SELECT
    zahnleist.gebpos AS modifier_source_value
 FROM
    ambulante_faelle.zahnleist zahnleist
-   LEFT JOIN ambulante_faelle.zahnfall zahnfall ON zahnleist.fallidzahn = zahnfall.fallidzahn 
+   LEFT JOIN ambulante_faelle.zahnfall zahnfall ON zahnleist.fallidzahn = zahnfall.fallidzahn and zahnleist.fallidzahn = zahnfall.vsid_temp
    LEFT JOIN tmp ON zahnleist.gebnr = tmp.gebnr
-   LEFT JOIN {target_schema}.visit_occurrence vo ON zahnleist.fallidzahn = vo.fallid_temp
+   LEFT JOIN {target_schema}.visit_occurrence vo ON zahnleist.fallidzahn = vo.fallid_temp and zahnleist.fallidzahn = vo.vsid_temp;
 ;
