@@ -6,6 +6,7 @@ SELECT
   ambops.opslokal,
   ambops.fallidamb,
   ambops.vsid,
+  ambops.psid,
   mv_ops.procedure_source_concept_id,
   mv_ops.procedure_target_concept_id,
   mv_ops.domain_id
@@ -48,7 +49,7 @@ SELECT
   COALESCE(tmp_ambops.procedure_source_concept_id, 0) AS procedure_source_concept_id,
   CONCAT(tmp_ambops.ops, ',', tmp_ambops.opslokal) AS procedure_source_value,
   nextval('{target_schema}.procedure_occurrence_id'),
-  ambfall.psid AS person_id,
+  tmp_ambops.psid AS person_id,
   NULL AS procedure_datetime,
   NULL AS procedure_end_date,
   NULL AS procedure_end_datetime,

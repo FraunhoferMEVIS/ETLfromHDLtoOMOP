@@ -60,4 +60,4 @@ FROM
     ambulante_faelle.ambfall ambfall
     LEFT JOIN versicherte.vers vers ON ambfall.psid = vers.psid
 GROUP BY
-    ambfall.psid, ambfall.vsid, vers.bnr;
+    ambfall.psid, ambfall.vsid, vers.bnr,ambfall.abrq, ambfall.svnr,ambfall.svtyp;

@@ -34,7 +34,7 @@ SELECT
     --Euro
     -- multiplikator* gonrbewert 
     -- Based on EBM "the value of the service"  in Euro  (Bewertung der Gebührenordnungsnummer) 
-    ambleist.multiplikator * ambleist.gonrbewert AS total_charge,
+    ambleist.multiplikator * CAST(ambleist.gonrbewert AS NUMERIC) AS total_charge,
     NULL AS total_cost,
     NULL AS total_paid,
     NULL AS paid_by_payer,

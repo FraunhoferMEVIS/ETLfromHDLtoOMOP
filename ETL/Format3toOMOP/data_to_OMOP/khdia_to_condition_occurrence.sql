@@ -7,7 +7,7 @@ CREATE TEMP TABLE icd_tmp AS with sec_tmp as(
     SELECT
         khdiag.fallidkh,
         khdiag.vsid,
-        khdiag.sekicd_code as source_icd,
+        khdiag.sekicd_code as icd,
         khdiag.sekicdlokal as lokal,
         2 as diagnois_typ,
         --secondary diagnosis
@@ -17,13 +17,13 @@ CREATE TEMP TABLE icd_tmp AS with sec_tmp as(
     FROM
         stationaere_faelle.khdiag khdiag
     WHERE
-        khdiag.sekicd IS NOT NULL
+        khdiag.sekicd_code IS NOT NULL
 ),
 prim_tmp as (
     SELECT
         khdiag.fallidkh,
         khdiag.vsid,
-        khdiag.icdkh_code as source_icd,
+        khdiag.icdkh_code as icd,
         khdiag.icdlokal as lokal,
         1 as diagnois_typ,
         --primary diagnosis
@@ -37,7 +37,7 @@ prim_tmp as (
     FROM
         stationaere_faelle.khdiag khdiag
     WHERE
-        khdiag.icdkh IS NOT NULL
+        khdiag.icdkh_code IS NOT NULL
 )
 SELECT
     *
@@ -53,10 +53,9 @@ CREATE TEMP TABLE tmp_khdia_diagnosis AS
 SELECT
     icd_tmp.fallidkh,
     icd_tmp.vsid,
-    icd_tmp.source_icd,
+    icd_tmp.icd,
     icd_tmp.lokal,
     icd_tmp.diagnois_typ,
-    icd_tmp.icd,
     icd_tmp.diagart_concept,
     icd_tmp.source_diagart,
     mv_diag.condition_source_concept_id,
@@ -100,7 +99,7 @@ SELECT
         0
     ) AS condition_source_concept_id,
     CONCAT(
-        tmp_khdia_diagnosis.source_icd,
+        tmp_khdia_diagnosis.icd,
         ',',
         tmp_khdia_diagnosis.lokal
     ) AS condition_source_value,
@@ -158,7 +157,7 @@ SELECT
         0
     ) AS procedure_source_concept_id,
     CONCAT(
-        tmp_khdia_diagnosis.source_icd,
+        tmp_khdia_diagnosis.icd,
         ',',
         tmp_khdia_diagnosis.lokal
     ) AS procedure_source_value,
@@ -225,7 +224,7 @@ SELECT
     vo.visit_occurrence_id AS visit_occurrence_id,
     NULL AS visit_detail_id,
     CONCAT(
-        tmp_khdia_diagnosis.source_icd,
+        tmp_khdia_diagnosis.icd,
         ',',
         tmp_khdia_diagnosis.lokal
     ) AS observation_source_value,
@@ -292,7 +291,7 @@ SELECT
     vo.visit_occurrence_id AS visit_occurrence_id,
     NULL AS visit_detail_id,
     CONCAT(
-        tmp_khdia_diagnosis.source_icd,
+        tmp_khdia_diagnosis.icd,
         ', ',
         tmp_khdia_diagnosis.lokal
     ) AS measurement_source_value,

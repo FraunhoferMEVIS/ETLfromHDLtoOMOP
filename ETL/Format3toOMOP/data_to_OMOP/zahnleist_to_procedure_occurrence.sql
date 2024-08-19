@@ -1,6 +1,12 @@
 with tmp as (
    SELECT
-      DISTINCT ON (zahnleist.gebnr) zahnleist.gebnr,
+      zahnleist.gebnr,
+      zahnleist.leistdat,
+      zahnleist.gebnrzahl,
+      zahnleist.gebpos,
+      zahnleist.vsid,
+      zahnleist.psid,
+      zahnleist.fallidzahn,
       rel.concept_id_2 AS procedure_target_concept_id,
       concept.concept_id AS procedure_source_concept_id
    FROM
@@ -36,34 +42,33 @@ INSERT INTO
 SELECT
    vo.visit_occurrence_id AS visit_occurrence_id,
    CASE
-      WHEN zahnleist.leistdat is NULL THEN CASE
-         WHEN zahnfall.leistq IS NULL THEN make_date(zahnfall.berjahr :: integer, 01, 01)
+      WHEN tmp.leistdat is NULL THEN CASE
+         WHEN zahnfall.leistq IS NULL THEN make_date(zahnfall.bjahr :: integer, 01, 01)
          ELSE make_date(
             LEFT(zahnfall.leistq :: VARCHAR, 4) :: integer,
             (RIGHT(zahnfall.leistq :: VARCHAR, 1) :: integer -1) * 3 + 1,
             01
          )
       END
-      ELSE TO_DATE(COALESCE(zahnleist.leistdat) :: VARCHAR, 'YYYYMMDD')
+      ELSE TO_DATE(COALESCE(tmp.leistdat) :: VARCHAR, 'YYYYMMDD')
    END as procedure_date,
    COALESCE(tmp.procedure_target_concept_id, 0) AS procedure_concept_id,
    COALESCE(tmp.procedure_source_concept_id, 0) AS procedure_source_concept_id,
-   zahnleist.gebnr AS procedure_source_value,
+   tmp.gebnr AS procedure_source_value,
    nextval('{target_schema}.procedure_occurrence_id'),
-   zahnfall.psid AS person_id,
+   tmp.psid AS person_id,
    NULL AS procedure_datetime,
    NULL AS procedure_end_date,
    NULL AS procedure_end_datetime,
    32816 AS procedure_type_concept_id,
    --Dental Claim 
    NULL AS modifier_concept_id,
-   zahnleist.gebnrzahl AS quantity,
+   tmp.gebnrzahl AS quantity,
    NULL AS provider_id,
    NULL AS visit_detail_id,
-   zahnleist.gebpos AS modifier_source_value
+   tmp.gebpos AS modifier_source_value
 FROM
-   ambulante_faelle.zahnleist zahnleist
-   LEFT JOIN ambulante_faelle.zahnfall zahnfall ON zahnleist.fallidzahn = zahnfall.fallidzahn and zahnleist.vsid = zahnfall.vsid
-   LEFT JOIN tmp ON zahnleist.gebnr = tmp.gebnr
-   LEFT JOIN {target_schema}.visit_occurrence vo ON zahnleist.fallidzahn = vo.fallidzahn_temp and zahnleist.vsid = vo.vsid_temp;
+   tmp 
+   LEFT JOIN ambulante_faelle.zahnfall zahnfall ON tmp.fallidzahn = zahnfall.fallidzahn and tmp.vsid = zahnfall.vsid
+   LEFT JOIN {target_schema}.visit_occurrence vo ON tmp.fallidzahn = vo.fallidzahn_temp and tmp.vsid = vo.vsid_temp;
 ;

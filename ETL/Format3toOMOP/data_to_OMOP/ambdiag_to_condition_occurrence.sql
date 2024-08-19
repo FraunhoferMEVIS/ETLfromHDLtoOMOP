@@ -8,12 +8,13 @@ SELECT
    ambdiag.diagsich,
    ambdiag.fallidamb,
    ambdiag.vsid,
+   ambdiag.psid,
    mv_diag.condition_source_concept_id,
    mv_diag.condition_target_concept_id,
    mv_diag.domain_id
 FROM
    ambulante_faelle.ambdiag ambdiag
-   LEFT JOIN {target_schema}.icd_standard_domain_lookup mv_diag ON ambdiag.icdamb = replace(mv_diag.source_code, '.', '')
+   LEFT JOIN {target_schema}.icd_standard_domain_lookup mv_diag ON ambdiag.icdamb_code = replace(mv_diag.source_code, '.', '')
 WHERE
    ambdiag.diagsich != 'A';
 
@@ -68,7 +69,7 @@ SELECT
       0
    ) AS condition_source_concept_id,
    CONCAT(
-      tmp_ambdiag_diagnosis.icdamb,
+      tmp_ambdiag_diagnosis.icdamb_code,
       ',',
       tmp_ambdiag_diagnosis.diaglokal
    ) AS condition_source_value,
@@ -79,7 +80,7 @@ SELECT
       WHEN 'G' then 32893 --  Confirmed diagnosis 
       ELSE 0 -- A = ausgeschlossene Diagnose (excluded diagnosis) => excluded here!
    END AS condition_status_concept_id,
-   ambfall.psid AS person_id,
+   tmp_ambdiag_diagnosis.psid AS person_id,
    NULL AS condition_start_datetime,
    NULL AS condition_end_date,
    NULL AS condition_end_datetime,
@@ -92,7 +93,7 @@ SELECT
 FROM
    tmp_ambdiag_diagnosis
    LEFT JOIN ambulante_faelle.ambfall ambfall ON tmp_ambdiag_diagnosis.fallidamb = ambfall.fallidamb and tmp_ambdiag_diagnosis.vsid = ambfall.vsid
-   LEFT JOIN {target_schema}.visit_occurrence vo ON ambfall.fallidamb = vo.fallidamb_temp and ambfall.vsid = vo.vsid_temp
+   LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_ambdiag_diagnosis.fallidamb = vo.fallidamb_temp and tmp_ambdiag_diagnosis.vsid = vo.vsid_temp
 WHERE
    tmp_ambdiag_diagnosis.domain_id = 'Condition'
    OR tmp_ambdiag_diagnosis.domain_id IS NULL;
@@ -144,11 +145,11 @@ SELECT
       )
    END AS observation_date,
    CONCAT(
-      tmp_ambdiag_diagnosis.icdamb,
+      tmp_ambdiag_diagnosis.icdamb_code,
       ',',
       tmp_ambdiag_diagnosis.diaglokal
    ) AS observation_source_value,
-   ambfall.psid AS person_id,
+   tmp_ambdiag_diagnosis.psid AS person_id,
    -- Disorder excluded
    COALESCE(
       tmp_ambdiag_diagnosis.condition_target_concept_id,
@@ -183,7 +184,7 @@ SELECT
 FROM
    tmp_ambdiag_diagnosis
    LEFT JOIN ambulante_faelle.ambfall ambfall ON tmp_ambdiag_diagnosis.fallidamb = ambfall.fallidamb and tmp_ambdiag_diagnosis.vsid = ambfall.vsid
-   LEFT JOIN {target_schema}.visit_occurrence vo ON ambfall.fallidamb = vo.fallidamb_temp and ambfall.vsid = vo.vsid_temp
+   LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_ambdiag_diagnosis.fallidamb = vo.fallidamb_temp and tmp_ambdiag_diagnosis.vsid = vo.vsid_temp
 WHERE
    tmp_ambdiag_diagnosis.domain_id = 'Observation';
 
@@ -238,12 +239,12 @@ SELECT
       0
    ) AS procedure_source_concept_id,
    CONCAT(
-      tmp_ambdiag_diagnosis.icdamb,
+      tmp_ambdiag_diagnosis.icdamb_code,
       ',',
       tmp_ambdiag_diagnosis.diaglokal
    ) AS procedure_source_value,
    nextval('{target_schema}.procedure_occurrence_id'),
-   ambfall.psid AS person_id,
+   tmp_ambdiag_diagnosis.psid AS person_id,
    NULL AS procedure_datetime,
    NULL AS procedure_end_date,
    NULL AS procedure_end_datetime,
@@ -256,8 +257,8 @@ SELECT
    NULL AS modifier_source_value
 FROM
    tmp_ambdiag_diagnosis
-   LEFT JOIN ambulante_faelle.ambfall ambfall ON tmp_ambdiag_diagnosis.fallidamb = ambfall.fallidamb and ambdiag_diagnosis.vsid = ambfall.vsid
-   LEFT JOIN {target_schema}.visit_occurrence vo ON ambfall.fallidamb = vo.fallidamb_temp and ambfall.vsid = vo.vsid_temp
+   LEFT JOIN ambulante_faelle.ambfall ambfall ON tmp_ambdiag_diagnosis.fallidamb = ambfall.fallidamb and tmp_ambdiag_diagnosis.vsid = ambfall.vsid
+   LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_ambdiag_diagnosis.fallidamb = vo.fallidamb_temp and tmp_ambdiag_diagnosis.vsid = vo.vsid_temp
 WHERE
    tmp_ambdiag_diagnosis.domain_id = 'Procedure';
 
@@ -289,7 +290,7 @@ INSERT INTO
    )
 SELECT
    nextval('{target_schema}.measurement_id'),
-   ambfall.psid AS person_id,
+   tmp_ambdiag_diagnosis.psid AS person_id,
    COALESCE(
       tmp_ambdiag_diagnosis.condition_target_concept_id,
       0
@@ -326,7 +327,7 @@ SELECT
    vo.visit_occurrence_id AS visit_occurrence_id,
    NULL AS visit_detail_id,
    CONCAT(
-      tmp_ambdiag_diagnosis.icdamb,
+      tmp_ambdiag_diagnosis.icdamb_code,
       ',',
       tmp_ambdiag_diagnosis.diaglokal
    ) AS measurement_source_value,
@@ -342,7 +343,7 @@ SELECT
 FROM
    tmp_ambdiag_diagnosis
    LEFT JOIN ambulante_faelle.ambfall ambfall ON tmp_ambdiag_diagnosis.fallidamb = ambfall.fallidamb and  tmp_ambdiag_diagnosis.vsid = ambfall.vsid
-   LEFT JOIN {target_schema}.visit_occurrence vo  ON ambfall.fallidamb = vo.fallidamb_temp and ambfall.vsid = vo.vsid_temp
+   LEFT JOIN {target_schema}.visit_occurrence vo  ON tmp_ambdiag_diagnosis.fallidamb = vo.fallidamb_temp and tmp_ambdiag_diagnosis.vsid = vo.vsid_temp
 WHERE
    tmp_ambdiag_diagnosis.domain_id = 'Measurement';
 

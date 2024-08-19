@@ -11,10 +11,10 @@ description: Creating the postgres schema for HDL Format 3
 /*
 German Health Data Lab Format 3
 4 schema 
-- {versicherte} (insuree)
+- versicherte (insuree)
 - Ambulante Faelle (ambulatory cases)
 - Stationaere Faelle (inpatient cases)
-- {arzneimittel} (drugs) */
+- arzneimittel (drugs) */
 
 -- Create Schema
 DROP SCHEMA IF EXISTS {versicherte} CASCADE;
@@ -30,8 +30,8 @@ CREATE SCHEMA {stationaere_faelle};
 CREATE TABLE {versicherte}.VERS (
     "vsid" NUMERIC(9) NOT NULL,
     "bnr" VARCHAR(8) NOT NULL,
-    "psid" BYTEA NOT NULL,
-    "datenmodell" NUMERIC(1) NOT NULL,
+    "psid" NUMERIC NOT NULL,
+    "datenmodell" VARCHAR(3) NOT NULL,
     "bjahr" NUMERIC(4) NOT NULL,
     "gebjahr" NUMERIC(4) NOT NULL,
     "plz" VARCHAR(5) NOT NULL,
@@ -41,8 +41,8 @@ CREATE TABLE {versicherte}.VERS (
 
 CREATE TABLE {versicherte}.VERSQ (
     "vsid" NUMERIC(9) NOT NULL,
-    "psid" BYTEA NOT NULL,
-    "datenmodell" NUMERIC(1) NOT NULL,
+    "psid" NUMERIC NOT NULL,
+    "datenmodell" VARCHAR(3) NOT NULL,
     "bjahr" NUMERIC(4) NOT NULL,
     "bnr" VARCHAR(8) NOT NULL,
     "versq" NUMERIC(5) NOT NULL,
@@ -56,8 +56,8 @@ CREATE TABLE {versicherte}.VERSQ (
 
 CREATE TABLE {versicherte}.VERSQDMP (
     "vsid" NUMERIC(9) NOT NULL,
-    "psid" BYTEA NOT NULL,
-    "datenmodell" NUMERIC(1) NOT NULL,
+    "psid" NUMERIC NOT NULL,
+    "datenmodell" VARCHAR(3) NOT NULL,
     "bjahr" NUMERIC(4) NOT NULL,
     "versq" NUMERIC(5) NOT NULL,
     "dmpprog" VARCHAR(2) NOT NULL,
@@ -66,8 +66,8 @@ CREATE TABLE {versicherte}.VERSQDMP (
 
 CREATE TABLE {ambulante_faelle}.AMBDIAG (
     "vsid" NUMERIC(9) NOT NULL,
-    "psid" BYTEA NOT NULL,
-    "datenmodell" NUMERIC(1) NOT NULL,
+    "psid" NUMERIC NOT NULL,
+    "datenmodell" VARCHAR(3) NOT NULL,
     "bjahr" NUMERIC(4) NOT NULL,
     "fallidamb" NUMERIC(111),
     "icdamb_code" VARCHAR(12),
@@ -79,9 +79,9 @@ CREATE TABLE {ambulante_faelle}.AMBDIAG (
 
 CREATE TABLE {ambulante_faelle}.AMBFALL (
     "vsid" NUMERIC(9) NOT NULL,
-    "psid" BYTEA NOT NULL,
+    "psid" NUMERIC NOT NULL,
     "abrq" NUMERIC(5) NOT NULL,
-    "datenmodell" NUMERIC(1) NOT NULL,
+    "datenmodell" VARCHAR(3) NOT NULL,
     "bjahr" NUMERIC(4) NOT NULL,
     "fallidamb" NUMERIC(111) NOT NULL,
     "svnr" VARCHAR(25),
@@ -105,8 +105,8 @@ CREATE TABLE {ambulante_faelle}.AMBFALL (
 
 CREATE TABLE {ambulante_faelle}.AMBLEIST (
     "vsid" NUMERIC(9) NOT NULL,
-    "psid" BYTEA NOT NULL,
-    "datenmodell" NUMERIC(1) NOT NULL,
+    "psid" NUMERIC NOT NULL,
+    "datenmodell" VARCHAR(3) NOT NULL,
     "bjahr" NUMERIC(4) NOT NULL,
     "fallidamb" NUMERIC(111) NOT NULL,
     "nbsnrpseudo" NUMERIC(12),
@@ -128,8 +128,8 @@ CREATE TABLE {ambulante_faelle}.AMBLEIST (
 
 CREATE TABLE {ambulante_faelle}.AMBOPS (
     "vsid" NUMERIC(9) NOT NULL,
-    "psid" BYTEA NOT NULL,
-    "datenmodell" NUMERIC(1) NOT NULL,
+    "psid" NUMERIC NOT NULL,
+    "datenmodell" VARCHAR(3) NOT NULL,
     "bjahr" NUMERIC(4) NOT NULL,
     "fallidamb" NUMERIC(111) NOT NULL,
     "ops" VARCHAR(12) NOT NULL,
@@ -139,8 +139,8 @@ CREATE TABLE {ambulante_faelle}.AMBOPS (
 
 CREATE TABLE {ambulante_faelle}.ZAHNBEF (
     "vsid" NUMERIC(9) NOT NULL,
-    "psid" BYTEA NOT NULL,
-    "datenmodell" NUMERIC(1) NOT NULL,
+    "psid" NUMERIC NOT NULL,
+    "datenmodell" VARCHAR(3) NOT NULL,
     "bjahr" NUMERIC(4) NOT NULL,
     "fallidzahn" NUMERIC(111) NOT NULL,
     "befnr" VARCHAR(5) NOT NULL,
@@ -151,8 +151,8 @@ CREATE TABLE {ambulante_faelle}.ZAHNBEF (
 
 CREATE TABLE {ambulante_faelle}.ZAHNFALL (
     "vsid" NUMERIC(9) NOT NULL,
-    "psid" BYTEA NOT NULL,
-    "datenmodell" NUMERIC(1) NOT NULL,
+    "psid" NUMERIC NOT NULL,
+    "datenmodell" VARCHAR(3) NOT NULL,
     "bjahr" NUMERIC(4) NOT NULL,
     "leistq" NUMERIC(5),
     "fallidzahn" NUMERIC(111) NOT NULL,
@@ -170,8 +170,8 @@ CREATE TABLE {ambulante_faelle}.ZAHNFALL (
 
 CREATE TABLE {ambulante_faelle}.ZAHNLEIST (
     "vsid" NUMERIC(9) NOT NULL,
-    "psid" BYTEA NOT NULL,
-    "datenmodell" NUMERIC(1) NOT NULL,
+    "psid" NUMERIC NOT NULL,
+    "datenmodell" VARCHAR(3) NOT NULL,
     "bjahr" NUMERIC(4) NOT NULL,
     "fallidzahn" NUMERIC(111) NOT NULL,
     "leistdat" NUMERIC(8),
@@ -183,9 +183,9 @@ CREATE TABLE {ambulante_faelle}.ZAHNLEIST (
 
 CREATE TABLE {stationaere_faelle}.KHDIAG (
     "vsid" NUMERIC(9) NOT NULL,
-    "psid" BYTEA NOT NULL,
+    "psid" NUMERIC NOT NULL,
     "bjahr" NUMERIC(4) NOT NULL,
-    "datenmodell" NUMERIC(1) NOT NULL,
+    "datenmodell" VARCHAR(3) NOT NULL,
     "fallidkh" NUMERIC(111) NOT NULL,
     "diagart" VARCHAR(1) NOT NULL,
     "icdkh_code" VARCHAR(9) NOT NULL,
@@ -198,8 +198,8 @@ CREATE TABLE {stationaere_faelle}.KHDIAG (
 
 CREATE TABLE {stationaere_faelle}.KHENTG (
     "vsid" NUMERIC(9) NOT NULL,
-    "psid" BYTEA NOT NULL,
-    "datenmodell" NUMERIC(1) NOT NULL,
+    "psid" NUMERIC NOT NULL,
+    "datenmodell" VARCHAR(3) NOT NULL,
     "bjahr" NUMERIC(4) NOT NULL,
     "fallidkh" NUMERIC(111) NOT NULL,
     "entgart" VARCHAR(8) NOT NULL,
@@ -212,9 +212,9 @@ CREATE TABLE {stationaere_faelle}.KHENTG (
 
 CREATE TABLE {stationaere_faelle}.KHFA (
     "vsid" NUMERIC(9) NOT NULL,
-    "psid" BYTEA NOT NULL,
+    "psid" NUMERIC NOT NULL,
     "bjahr" NUMERIC(4) NOT NULL,
-    "datenmodell" NUMERIC(1) NOT NULL,
+    "datenmodell" VARCHAR(3) NOT NULL,
     "fallidkh" NUMERIC(111) NOT NULL,
     "fa" VARCHAR(4) NOT NULL,
     "entlassdat" VARCHAR(8) NOT NULL,
@@ -223,8 +223,8 @@ CREATE TABLE {stationaere_faelle}.KHFA (
 
 CREATE TABLE {stationaere_faelle}.KHFALL (
     "vsid" NUMERIC(9) NOT NULL,
-    "psid" BYTEA NOT NULL,
-    "datenmodell" NUMERIC(1) NOT NULL,
+    "psid" NUMERIC NOT NULL,
+    "datenmodell" VARCHAR(3) NOT NULL,
     "bjahr" NUMERIC(4) NOT NULL,
     "fallidkh" NUMERIC(111) NOT NULL,
     "khpseudo" NUMERIC(12) NOT NULL,
@@ -245,8 +245,8 @@ CREATE TABLE {stationaere_faelle}.KHFALL (
 
 CREATE TABLE {stationaere_faelle}.KHPROZ (
     "vsid" NUMERIC(9) NOT NULL,
-    "psid" BYTEA NOT NULL,
-    "datenmodell" NUMERIC(1) NOT NULL,
+    "psid" NUMERIC NOT NULL,
+    "datenmodell" VARCHAR(3) NOT NULL,
     "bjahr" NUMERIC(4) NOT NULL,
     "fallidkh" NUMERIC(111) NOT NULL,
     "proz" VARCHAR(11) NOT NULL,
@@ -256,8 +256,8 @@ CREATE TABLE {stationaere_faelle}.KHPROZ (
 
 CREATE TABLE {arzneimittel}.EZD (
     "vsid" NUMERIC(9) NOT NULL,
-    "psid" BYTEA NOT NULL,
-    "datenmodell" NUMERIC(1) NOT NULL,
+    "psid" NUMERIC NOT NULL,
+    "datenmodell" VARCHAR(3) NOT NULL,
     "bjahr" NUMERIC(4) NOT NULL,
     "reznr" NUMERIC(19) NOT NULL,
     "pznezd" VARCHAR(8) NOT NULL,
@@ -267,8 +267,8 @@ CREATE TABLE {arzneimittel}.EZD (
 
 CREATE TABLE {arzneimittel}.REZ (
     "vsid" NUMERIC(9) NOT NULL,
-    "psid" BYTEA NOT NULL,
-    "datenmodell" NUMERIC(1) NOT NULL,
+    "psid" NUMERIC NOT NULL,
+    "datenmodell" VARCHAR(3) NOT NULL,
     "bjahr" NUMERIC(4) NOT NULL,
     "reznr" NUMERIC(19) NOT NULL,
     "pznrez" VARCHAR(10) NOT NULL,

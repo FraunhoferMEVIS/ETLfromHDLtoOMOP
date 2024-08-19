@@ -28,7 +28,7 @@ SELECT
    zahnfall.psid AS person_id,
    CASE
       WHEN COALESCE(zahnfall.beginndatzahn, zahnfall.endedatzahn) is NULL THEN CASE
-         WHEN zahnfall.leistq IS NULL THEN make_date(zahnfall.berjahr :: integer, 01, 01)
+         WHEN zahnfall.leistq IS NULL THEN make_date(zahnfall.bjahr :: integer, 01, 01)
          ELSE make_date(
             LEFT(zahnfall.leistq :: VARCHAR, 4) :: integer,
             (RIGHT(zahnfall.leistq :: VARCHAR, 1) :: integer -1) * 3 + 1,
@@ -43,7 +43,7 @@ SELECT
    NULL AS visit_start_datetime,
    CASE
       WHEN COALESCE(zahnfall.endedatzahn, zahnfall.beginndatzahn) is NULL THEN CASE
-         WHEN zahnfall.leistq IS NULL THEN make_date(zahnfall.berjahr :: integer, 01, 01)
+         WHEN zahnfall.leistq IS NULL THEN make_date(zahnfall.bjahr :: integer, 01, 01)
          ELSE make_date(
             LEFT(zahnfall.leistq :: VARCHAR, 4) :: integer,
             (RIGHT(zahnfall.leistq :: VARCHAR, 1) :: integer -1) * 3 + 1,

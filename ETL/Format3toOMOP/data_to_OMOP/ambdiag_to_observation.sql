@@ -48,7 +48,7 @@ SELECT
         )
     END AS observation_date,
     CONCAT(
-        ambdiag.icdamb,
+        ambdiag.icdamb_code,
         ',',
         ambdiag.diagsich,
         ': Excluded Diagnosis'

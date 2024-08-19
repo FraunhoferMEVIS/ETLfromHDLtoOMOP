@@ -32,7 +32,7 @@ SELECT
     nextval('{target_schema}.observation_id'),
     CASE
         WHEN COALESCE(zahnfall.beginndatzahn, zahnfall.endedatzahn) is NULL THEN CASE
-            WHEN zahnfall.leistq IS NULL THEN make_date(zahnfall.berjahr :: integer, 01, 01)
+            WHEN zahnfall.leistq IS NULL THEN make_date(zahnfall.bjahr :: integer, 01, 01)
             ELSE make_date(
                 LEFT(zahnfall.leistq :: VARCHAR, 4) :: integer,
                 (RIGHT(zahnfall.leistq :: VARCHAR, 1) :: integer -1) * 3 + 1,
