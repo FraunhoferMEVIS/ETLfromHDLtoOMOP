@@ -1,0 +1,35 @@
+2024-08-23 09:25:25	[Main thread]	INFO	DataQualityDashboard	executeDqChecks	CDM Tables skipped: CONCEPT, VOCABULARY, CONCEPT_ANCESTOR, CONCEPT_RELATIONSHIP, CONCEPT_CLASS, CONCEPT_SYNONYM, RELATIONSHIP, DOMAIN
+2024-08-23 09:25:25	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-08-23 09:25:25	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: cdmTable
+2024-08-23 09:26:19	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: measurePersonCompleteness
+2024-08-23 09:29:28	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: measureConditionEraCompleteness
+2024-08-23 10:38:43	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: cdmField
+2024-08-23 10:43:14	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: isRequired
+2024-08-23 10:44:19	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: cdmDatatype
+2024-08-23 10:57:47	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: isPrimaryKey
+2024-08-23 10:59:01	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: isForeignKey
+2024-08-23 11:05:38	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: fkDomain
+2024-08-23 11:06:59	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: fkClass
+2024-08-23 11:07:01	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: isStandardValidConcept
+2024-08-23 11:08:44	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: measureValueCompleteness
+2024-08-23 11:13:59	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: standardConceptRecordCompleteness
+2024-08-23 11:14:42	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: sourceConceptRecordCompleteness
+2024-08-23 11:14:58	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: sourceValueCompleteness
+2024-08-23 11:19:02	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: plausibleValueLow
+2024-08-23 11:19:58	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: plausibleValueHigh
+2024-08-23 11:21:16	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: plausibleTemporalAfter
+2024-08-23 11:24:01	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: plausibleDuringLife
+2024-08-23 11:25:04	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: withinVisitDates
+2024-08-23 11:26:36	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: plausibleGender
+2024-08-23 11:27:01	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: plausibleUnitConceptIds
+2024-08-23 11:28:58	[Main thread]	INFO	DataQualityDashboard	.writeResultsToJson	Writing results to file: C:/Users/mfinster/KI-FDZ-repos/SQL-data/QualityAssessment/format3/DQD/results/outputfile.json
+2024-08-23 11:28:58	[Main thread]	INFO	DataQualityDashboard	executeDqChecks	Execution Complete
+2024-08-23 11:28:58	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-08-23 11:28:58	[Main thread]	INFO	DataQualityDashboard	.writeResultsToTable	Writing results to table OMOP3_results.dqdashboard_results
+2024-08-23 11:29:00	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 1.68 secs
+2024-08-23 11:29:00	[Main thread]	WARN	DatabaseConnector	convertLogicalFields	Column 'warning' is of type 'logical', but this is not supported by many DBMSs. Converting to numeric (1 = TRUE, 0 = FALSE)
+2024-08-23 11:29:00	[Main thread]	WARN	DatabaseConnector	convertLogicalFields	Column 'error' is of type 'logical', but this is not supported by many DBMSs. Converting to numeric (1 = TRUE, 0 = FALSE)
+2024-08-23 11:29:01	[Main thread]	INFO	DatabaseConnector	insertTable.default	Inserting data took 1.36 secs
+2024-08-23 11:29:01	[Main thread]	INFO	DataQualityDashboard	.writeResultsToTable	Finished writing table
+2024-08-23 11:29:01	[Main thread]	INFO	DataQualityDashboard	.writeResultsToCsv	Writing results to CSV file C:/Users/mfinster/KI-FDZ-repos/SQL-data/QualityAssessment/format3/DQD/results/DQD_format3.csv
+2024-08-23 11:29:02	[Main thread]	INFO	DataQualityDashboard	.writeResultsToCsv	Finished writing to CSV file

@@ -1,2 +1,2 @@
-2024-05-02 10:36:44	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
-2024-05-02 10:36:50	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 4.99 secs
+2024-08-20 19:23:07	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2024-08-20 19:23:16	[Main thread]	INFO	DatabaseConnector	executeSql	Executing SQL took 7.81 secs
