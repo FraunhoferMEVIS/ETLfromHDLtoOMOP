@@ -14,7 +14,7 @@ SELECT
    mv_diag.domain_id
 FROM
    ambulante_faelle.ambdiag ambdiag
-   LEFT JOIN {target_schema}.icd_standard_domain_lookup mv_diag ON ambdiag.icdamb_code = replace(mv_diag.source_code, '.', '')
+   LEFT JOIN {target_schema}.icd_standard_domain_lookup mv_diag ON ambdiag.icdamb_code = mv_diag.source_code
 WHERE
    ambdiag.diagsich != 'A';
 

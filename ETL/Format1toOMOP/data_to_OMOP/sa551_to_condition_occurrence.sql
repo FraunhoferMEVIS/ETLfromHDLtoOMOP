@@ -13,7 +13,7 @@ DROP TABLE IF EXISTS tmp_sa551_diagnosis CASCADE;
 
 CREATE TEMP TABLE tmp_sa551_diagnosis AS
 SELECT
-    sa551.sa551_diagnose,
+    sa551.sa551_icd_code,
     sa551.sa551_artdiagnose,
     mv_diag.condition_source_concept_id,
     mv_diag.condition_target_concept_id,
@@ -21,7 +21,7 @@ SELECT
     CONCAT(sa551.sa551_entlassungsmonat,sa551.sa551_fallzaehler,'_',sa551_psid) as idx_sa551
 FROM
     {source_schema}.{table}sa551 sa551
-    LEFT JOIN {target_schema}.icd_standard_domain_lookup mv_diag ON regexp_replace(sa551.sa551_diagnose, '[^\w\s^.]', '') = mv_diag.source_code;
+    LEFT JOIN {target_schema}.icd_standard_domain_lookup mv_diag ON sa551.sa551_icd_code = mv_diag.source_code;
 
 INSERT INTO
     {target_schema}.condition_occurrence (
@@ -59,7 +59,7 @@ SELECT
     end AS condition_status_concept_id,
     32810 AS condition_type_concept_id,
     --claim
-    tmp_sa551_diagnosis.sa551_diagnose AS condition_source_value,
+    tmp_sa551_diagnosis.sa551_icd_code AS condition_source_value,
     COALESCE(
         tmp_sa551_diagnosis.condition_target_concept_id,
         0
@@ -114,7 +114,7 @@ SELECT
         0
     ) AS observation_source_concept_id,
     --0 AS observation_source_concept_id,
-    tmp_sa551_diagnosis.sa551_diagnose AS observation_source_value,
+    tmp_sa551_diagnosis.sa551_icd_code AS observation_source_value,
     NULL AS observation_datetime,
     32810 AS observation_type_concept_id,
     -- 32810  Claim 
@@ -178,7 +178,7 @@ SELECT
     NULL AS modifier_concept_id,
     NULL AS quantity,
     NULL AS provider_id,
-    tmp_sa551_diagnosis.sa551_diagnose AS procedure_source_value,
+    tmp_sa551_diagnosis.sa551_icd_code AS procedure_source_value,
     NULL AS modifier_source_value
 FROM
     tmp_sa551_diagnosis
@@ -232,7 +232,7 @@ SELECT
     NULL AS provider_id,
     vo.visit_occurrence_id AS visit_occurrence_id,
     NULL AS visit_detail_id,
-    tmp_sa551_diagnosis.sa551_diagnose AS measurement_source_value,
+    tmp_sa551_diagnosis.sa551_icd_code AS measurement_source_value,
     COALESCE(
         tmp_sa551_diagnosis.condition_source_concept_id,
         0

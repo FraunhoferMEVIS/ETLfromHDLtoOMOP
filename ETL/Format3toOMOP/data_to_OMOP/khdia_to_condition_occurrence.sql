@@ -63,7 +63,7 @@ SELECT
     mv_diag.domain_id
 FROM
     icd_tmp
-    LEFT JOIN {target_schema}.icd_standard_domain_lookup mv_diag ON icd_tmp.icd = replace(mv_diag.source_code, '.', '');
+    LEFT JOIN {target_schema}.icd_standard_domain_lookup mv_diag ON icd_tmp.icd = mv_diag.source_code ;
 
 INSERT INTO
     {target_schema}.condition_occurrence (

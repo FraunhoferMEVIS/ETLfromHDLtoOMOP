@@ -9,14 +9,14 @@
 CREATE TEMP TABLE tmp_sa651_diagnosis AS
 SELECT
     sa651.sa651_qualifizierung,
-    sa651.sa651_diagnose,
+    sa651.sa651_icd_code
     mv_diag.condition_source_concept_id,
     mv_diag.condition_target_concept_id,
     mv_diag.domain_id,
     CONCAT(sa651.sa651_berichtsjahr, sa651.sa651_leistungsquartal,'_',sa651_psid) as idx_sa651
 FROM
     {source_schema}.{table}sa651 sa651
-    LEFT JOIN {target_schema}.icd_standard_domain_lookup mv_diag ON regexp_replace(sa651.sa651_diagnose, '[^\w\s^.]', '') = mv_diag.source_code
+    LEFT JOIN {target_schema}.icd_standard_domain_lookup mv_diag ON sa651.sa651_icd_code = mv_diag.source_code
 WHERE
     sa651.sa651_qualifizierung != 'A';
 
@@ -58,7 +58,7 @@ SELECT
     end AS condition_status_concept_id,
     32810 AS condition_type_concept_id,
     --claim
-    tmp_sa651_diagnosis.sa651_diagnose AS condition_source_value,
+    tmp_sa651_diagnosis.sa651_icd_code AS condition_source_value,
     COALESCE(
         tmp_sa651_diagnosis.condition_target_concept_id,
         0
@@ -113,7 +113,7 @@ SELECT
         tmp_sa651_diagnosis.condition_source_concept_id,
         0
     ) AS observation_source_concept_id,
-    tmp_sa651_diagnosis.sa651_diagnose AS observation_source_value,
+    tmp_sa651_diagnosis.sa651_icd_code AS observation_source_value,
     NULL AS observation_datetime,
     32810 AS observation_type_concept_id,
     -- 32810  Claim 
@@ -177,7 +177,7 @@ SELECT
     NULL AS modifier_concept_id,
     NULL AS quantity,
     NULL AS provider_id,
-    tmp_sa651_diagnosis.sa651_diagnose AS procedure_source_value,
+    tmp_sa651_diagnosis.sa651_icd_code AS procedure_source_value,
     NULL AS modifier_source_value
 FROM
     tmp_sa651_diagnosis
@@ -231,7 +231,7 @@ SELECT
     NULL AS provider_id,
     vo.visit_occurrence_id AS visit_occurrence_id,
     NULL AS visit_detail_id,
-    tmp_sa651_diagnosis.sa651_diagnose AS measurement_source_value,
+    tmp_sa651_diagnosis.sa651_icd_code AS measurement_source_value,
     COALESCE(
         tmp_sa651_diagnosis.condition_source_concept_id,
         0

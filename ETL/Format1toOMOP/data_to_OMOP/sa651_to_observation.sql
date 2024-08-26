@@ -34,7 +34,7 @@ SELECT
     -- Disorder excluded
     4199812 AS observation_concept_id,
     NULL AS observation_source_concept_id,
-    sa651.sa651_diagnose AS observation_source_value,
+    sa651.sa651_icd_code AS observation_source_value,
     NULL AS observation_datetime,
     32810 AS observation_type_concept_id,
     --  32810 Claim 
