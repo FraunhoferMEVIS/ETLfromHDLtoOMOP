@@ -1,6 +1,7 @@
 import logging
 import os, sys
 import psycopg2
+import time
 
 sys.path.append(os.environ['DATA_FOLDER_ETL'])
 from helper_func import *
@@ -38,7 +39,7 @@ replacements_format3={
 "concept_name varchar(255)":" concept_name varchar(2000)"
 }
 
-
+start_script_time = time.time()
 ##Settings logging
 logging.basicConfig(
     level=logging.INFO,
@@ -103,3 +104,6 @@ if query:
     execute_query(
         query.format(source_schema=source_schema, target_schema=target_schema),
         dbname, user, host, port, password, logger)
+end_script_time = time.time()
+total_script_time = end_script_time - start_script_time
+logger.info(f"Total script execution time create OMOP and load vocabulary: {total_script_time:.4f} seconds")

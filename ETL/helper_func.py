@@ -1,13 +1,29 @@
 import logging
+import time
 import os
 import psycopg2
 import chardet
+from functools import wraps
 from psycopg2 import ProgrammingError, IntegrityError, OperationalError,InternalError
 
 
 def get_environment_values(variable):
     return os.environ[variable] if variable in os.environ else None
 
+def measure_performance(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        execution_time = end_time - start_time
+        logger = kwargs.get('logger', logging.getLogger(__name__))  # Change: Default Logger
+        if logger:
+            logger.info(f"{func.__name__} executed in {execution_time:.4f} seconds")
+        else:
+            print(f"{func.__name__} executed in {execution_time:.4f} seconds")
+        return result
+    return wrapper
 
 def read_sql_file(file, folder):
     table_ = os.path.join(folder, file)
@@ -35,6 +51,7 @@ def read_ddl_sql_file(file, folder, target_schema, replacement=None):
         logging.info('Read SQL: ' + table_)
         return sqlFile
 
+@measure_performance
 def execute_query(query, dbname, user, host, port, password, logger):
     if query:
         with psycopg2.connect(dbname=dbname,
@@ -74,7 +91,7 @@ def detect_encoding(file_path):
         result = chardet.detect(file.read())
     return result['encoding']
 
-
+@measure_performance
 def write_from_csv(dbname,
                    user,
                    host,

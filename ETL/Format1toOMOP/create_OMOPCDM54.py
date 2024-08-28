@@ -1,5 +1,6 @@
 import logging
 import os, sys
+import time
 
 sys.path.append(os.environ['DATA_FOLDER_ETL'])
 from helper_func import *
@@ -40,6 +41,7 @@ logging.basicConfig(
               logging.StreamHandler()])
 logger = logging.getLogger()
 
+start_script_time = time.time()
 ##Create schema
 logger.info('Create Schema ' + target_schema)
 create_schema = """DROP SCHEMA IF EXISTS {target_schema} CASCADE;
@@ -94,3 +96,7 @@ if query:
     execute_query(
         query.format(source_schema=source_schema, target_schema=target_schema),
         dbname, user, host, port, password, logger)
+
+end_script_time = time.time()
+total_script_time = end_script_time - start_script_time
+logger.info(f"Total script execution time create OMOP and load vocabulary: {total_script_time:.4f} seconds")

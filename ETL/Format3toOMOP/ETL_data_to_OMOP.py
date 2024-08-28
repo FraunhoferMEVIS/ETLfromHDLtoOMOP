@@ -1,5 +1,6 @@
 import logging
 import os, sys
+import time
 import psycopg2
 
 sys.path.append(os.environ['DATA_FOLDER_ETL'])
@@ -26,6 +27,7 @@ logging.basicConfig(
               logging.StreamHandler()])
 logger = logging.getLogger()
 
+start_script_time = time.time()
 #Check if data is already in the database
 conn = psycopg2.connect(dbname=dbname,
                         user=user,
@@ -120,13 +122,22 @@ DROP  COLUMN fallidamb_temp,
 DROP  COLUMN vsid_temp;""".format(target_schema=target_schema), dbname, user,
     host, port, password, logger)
 
+end_script_time = time.time()
+total_script_time = end_script_time - start_script_time
+logger.info(f"Total ETL script execution time: {total_script_time:.4f} seconds")
+start_script_time = time.time()
+
 logger.info('Run constraints')
 files_constraints = [
     'OMOPCDM_postgresql_5.4_indices.sql',
     'OMOPCDM_postgresql_5.4_constraints.sql'
 ]
 for file in files_constraints:
-    queries = read_ddl_sql_file(file, folder_constraint,target_schema)
+    queries = read_ddl_sql_file(file, folder_constraint, target_schema)
     for query in split_query(queries):
         execute_query(query.format(target_schema=target_schema), dbname, user,
                       host, port, password, logger)
+
+end_script_time = time.time()
+total_script_time = end_script_time - start_script_time
+logger.info(f"Total execution time constraints and indices: {total_script_time:.4f} seconds")

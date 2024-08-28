@@ -9,7 +9,7 @@
 CREATE TEMP TABLE tmp_sa651_diagnosis AS
 SELECT
     sa651.sa651_qualifizierung,
-    sa651.sa651_icd_code
+    sa651.sa651_icd_code,
     mv_diag.condition_source_concept_id,
     mv_diag.condition_target_concept_id,
     mv_diag.domain_id,
