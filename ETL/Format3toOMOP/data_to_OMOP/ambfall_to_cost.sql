@@ -65,8 +65,7 @@ FROM
         SELECT DISTINCT ON (fallidamb_temp, vsid_temp)
             fallidamb_temp,
             vsid_temp,
-            visit_occurrence_id,
-            dialysesachko
+            visit_occurrence_id
         FROM {target_schema}.visit_occurrence
     ) vo ON ambfall.fallidamb = vo.fallidamb_temp AND ambfall.vsid = vo.vsid_temp
 WHERE
@@ -147,9 +146,7 @@ FROM
         SELECT DISTINCT ON (fallidamb_temp, vsid_temp)
             fallidamb_temp,
             vsid_temp,
-            visit_occurrence_id,
-            punktzahl,
-            fallkoamb
+            visit_occurrence_id
         FROM {target_schema}.visit_occurrence
     ) vo ON ambfall.fallidamb = vo.fallidamb_temp AND ambfall.vsid = vo.vsid_temp
 WHERE

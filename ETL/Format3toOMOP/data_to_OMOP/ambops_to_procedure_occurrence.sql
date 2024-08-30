@@ -263,7 +263,7 @@ SELECT
     CONCAT(ambops_transformed.ops, ',', ambops_transformed.opslokal) AS drug_source_value,
     NULL AS quantity,
     NULL AS drug_exposure_start_datetime,
-    drug_exposure_start_date AS drug_exposure_end_date,
+    transformed_date AS drug_exposure_end_date,
     NULL AS drug_exposure_end_datetime,
     NULL AS verbatim_end_date,
     32810 AS drug_type_concept_id,
