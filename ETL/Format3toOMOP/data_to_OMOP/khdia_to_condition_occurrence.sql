@@ -119,7 +119,9 @@ SELECT
     NULL AS visit_detail_id
 FROM
     tmp_khdia_diagnosis
-    LEFT JOIN (SELECT DISTINCT ON (khfall.fallidkh,khfall.vsid,khfall.aufndat,khfall)khfall.fallidkh,khfall.vsid,khfall.aufndat,khfall FROM stationaere_faelle.khfall) khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh and tmp_khdia_diagnosis.vsid= khfall.vsid
+    LEFT JOIN (SELECT DISTINCT ON (khfall.fallidkh,khfall.vsid,khfall.aufndat,khfall)
+    fallidkh,vsid,aufndat,einweispseudo 
+    FROM stationaere_faelle.khfall) khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh and tmp_khdia_diagnosis.vsid= khfall.vsid
     LEFT JOIN (
         SELECT DISTINCT ON (fallidkh_temp, vsid_temp, visit_occurrence_id)
             fallidkh_temp,
@@ -184,7 +186,9 @@ SELECT
     NULL AS modifier_source_value
 FROM
     tmp_khdia_diagnosis
-    LEFT JOIN (SELECT DISTINCT ON (khfall.fallidkh,khfall.vsid,khfall.aufndat,khfall)khfall.fallidkh,khfall.vsid,khfall.aufndat,khfall FROM stationaere_faelle.khfall) khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh and tmp_khdia_diagnosis.vsid= khfall.vsid
+    LEFT JOIN (SELECT DISTINCT ON (khfall.fallidkh,khfall.vsid,khfall.aufndat,khfall)
+    fallidkh,vsid,aufndat,einweispseudo 
+    FROM stationaere_faelle.khfall) khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh and tmp_khdia_diagnosis.vsid= khfall.vsid
     LEFT JOIN (
         SELECT DISTINCT ON (fallidkh_temp, vsid_temp, visit_occurrence_id)
             fallidkh_temp,
@@ -255,7 +259,9 @@ SELECT
     NULL AS obs_event_field_concept_id
 FROM
     tmp_khdia_diagnosis
-    LEFT JOIN (SELECT DISTINCT ON (khfall.fallidkh,khfall.vsid,khfall.aufndat,khfall)khfall.fallidkh,khfall.vsid,khfall.aufndat,khfall FROM stationaere_faelle.khfall) khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh and tmp_khdia_diagnosis.vsid= khfall.vsid
+    LEFT JOIN (SELECT DISTINCT ON (khfall.fallidkh,khfall.vsid,khfall.aufndat,khfall)
+    fallidkh,vsid,aufndat,einweispseudo 
+    FROM stationaere_faelle.khfall) khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh and tmp_khdia_diagnosis.vsid= khfall.vsid
     LEFT JOIN (
         SELECT DISTINCT ON (fallidkh_temp, vsid_temp, visit_occurrence_id)
             fallidkh_temp,
@@ -328,7 +334,9 @@ SELECT
     NULL AS meas_event_field_concept_id
 FROM
     tmp_khdia_diagnosis
-    LEFT JOIN (SELECT DISTINCT ON (khfall.fallidkh,khfall.vsid,khfall.aufndat,khfall)khfall.fallidkh,khfall.vsid,khfall.aufndat,khfall FROM stationaere_faelle.khfall) khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh and tmp_khdia_diagnosis.vsid= khfall.vsid
+    LEFT JOIN (SELECT DISTINCT ON (khfall.fallidkh,khfall.vsid,khfall.aufndat,khfall)
+    fallidkh,vsid,aufndat,einweispseudo 
+    FROM stationaere_faelle.khfall) khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh and tmp_khdia_diagnosis.vsid= khfall.vsid
     LEFT JOIN (
         SELECT DISTINCT ON (fallidkh_temp, vsid_temp, visit_occurrence_id)
             fallidkh_temp,

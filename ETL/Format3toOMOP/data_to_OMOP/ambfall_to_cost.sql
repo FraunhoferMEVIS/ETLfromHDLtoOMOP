@@ -133,7 +133,8 @@ FROM
         fallidamb,
         vsid,
         psid,
-        dialysesachko,
+        punktzahl,
+        fallkoamb,
         make_date(
             LEFT(abrq :: VARCHAR, 4) :: integer,
             (RIGHT(abrq :: VARCHAR, 1) :: integer - 1) * 3 + 1,
