@@ -55,6 +55,7 @@ CREATE TEMP TABLE tmp_khdia_diagnosis AS
 SELECT
     icd_tmp.fallidkh,
     icd_tmp.vsid,
+    icd_tmp.psid,
     icd_tmp.icd,
     icd_tmp.lokal,
     icd_tmp.diagnosis_typ,
