@@ -7,9 +7,10 @@ CREATE TEMP TABLE icd_tmp AS with sec_tmp as(
     SELECT
         khdiag.fallidkh,
         khdiag.vsid,
+        khdiag.psid,
         khdiag.sekicd_code as icd,
         khdiag.sekicdlokal as lokal,
-        2 as diagnois_typ,
+        2 as diagnosis_typ,
         --secondary diagnosis
         32908 AS diagart_concept,
         --since it is reported asin column secondary diagnosis (Nebendiagnose)
@@ -23,9 +24,10 @@ prim_tmp as (
     SELECT
         khdiag.fallidkh,
         khdiag.vsid,
+        khdiag.psid,
         khdiag.icdkh_code as icd,
         khdiag.icdlokal as lokal,
-        1 as diagnois_typ,
+        1 as diagnosis_typ,
         --primary diagnosis
         CASE
             khdiag.diagart
@@ -55,7 +57,7 @@ SELECT
     icd_tmp.vsid,
     icd_tmp.icd,
     icd_tmp.lokal,
-    icd_tmp.diagnois_typ,
+    icd_tmp.diagnosis_typ,
     icd_tmp.diagart_concept,
     icd_tmp.source_diagart,
     mv_diag.condition_source_concept_id,
@@ -89,7 +91,7 @@ INSERT INTO
 SELECT
     vo.visit_occurrence_id AS visit_occurrence_id,
     nextval('{target_schema}.condition_occurrence_id'),
-    khfall.psid AS person_id,
+    tmp_khdia_diagnosis.psid AS person_id,
     COALESCE(
         tmp_khdia_diagnosis.condition_target_concept_id,
         0
@@ -116,11 +118,18 @@ SELECT
     NULL AS visit_detail_id
 FROM
     tmp_khdia_diagnosis
-    LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh and tmp_khdia_diagnosis.vsid= khfall.vsid
-    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khdia_diagnosis.fallidkh = vo.fallidkh_temp and tmp_khdia_diagnosis.vsid = vo.vsid_temp 
+    LEFT JOIN (SELECT DISTINCT ON (khfall.fallidkh,khfall.vsid,khfall.aufndat,khfall)khfall.fallidkh,khfall.vsid,khfall.aufndat,khfall FROM stationaere_faelle.khfall) khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh and tmp_khdia_diagnosis.vsid= khfall.vsid
+    LEFT JOIN (
+        SELECT DISTINCT ON (fallidkh_temp, vsid_temp, visit_occurrence_id)
+            fallidkh_temp,
+            vsid_temp,
+            visit_occurrence_id
+        FROM {target_schema}.visit_occurrence
+    ) vo ON tmp_khdia_diagnosis.fallidkh = vo.fallidkh_temp and tmp_khdia_diagnosis.vsid = vo.vsid_temp 
 WHERE
     tmp_khdia_diagnosis.domain_id = 'Condition'
     OR tmp_khdia_diagnosis.domain_id IS NULL;
+
 
 --All ICD10 Codes of domain procedure 
 INSERT INTO
@@ -147,7 +156,7 @@ INSERT INTO
 SELECT
     nextval('{target_schema}.procedure_occurrence_id'),
     vo.visit_occurrence_id AS visit_occurrence_id,
-    khfall.psid AS person_id,
+    tmp_khdia_diagnosis.psid AS person_id,
     COALESCE(
         tmp_khdia_diagnosis.condition_target_concept_id,
         0
@@ -174,8 +183,14 @@ SELECT
     NULL AS modifier_source_value
 FROM
     tmp_khdia_diagnosis
-    LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh and tmp_khdia_diagnosis.vsid= khfall.vsid
-    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khdia_diagnosis.fallidkh = vo.fallidkh_temp and tmp_khdia_diagnosis.vsid = vo.vsid_temp 
+    LEFT JOIN (SELECT DISTINCT ON (khfall.fallidkh,khfall.vsid,khfall.aufndat,khfall)khfall.fallidkh,khfall.vsid,khfall.aufndat,khfall FROM stationaere_faelle.khfall) khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh and tmp_khdia_diagnosis.vsid= khfall.vsid
+    LEFT JOIN (
+        SELECT DISTINCT ON (fallidkh_temp, vsid_temp, visit_occurrence_id)
+            fallidkh_temp,
+            vsid_temp,
+            visit_occurrence_id
+        FROM {target_schema}.visit_occurrence
+    ) vo ON tmp_khdia_diagnosis.fallidkh = vo.fallidkh_temp and tmp_khdia_diagnosis.vsid = vo.vsid_temp 
 WHERE
     tmp_khdia_diagnosis.domain_id = 'Procedure';
 
@@ -208,7 +223,7 @@ SELECT
     32810 AS observation_type_concept_id,
     --Claim
     nextval('{target_schema}.observation_id'),
-    khfall.psid AS person_id,
+    tmp_khdia_diagnosis.psid AS person_id,
     COALESCE(
         tmp_khdia_diagnosis.condition_target_concept_id,
         0
@@ -239,8 +254,14 @@ SELECT
     NULL AS obs_event_field_concept_id
 FROM
     tmp_khdia_diagnosis
-    LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh and tmp_khdia_diagnosis.vsid= khfall.vsid
-    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khdia_diagnosis.fallidkh = vo.fallidkh_temp and tmp_khdia_diagnosis.vsid = vo.vsid_temp 
+    LEFT JOIN (SELECT DISTINCT ON (khfall.fallidkh,khfall.vsid,khfall.aufndat,khfall)khfall.fallidkh,khfall.vsid,khfall.aufndat,khfall FROM stationaere_faelle.khfall) khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh and tmp_khdia_diagnosis.vsid= khfall.vsid
+    LEFT JOIN (
+        SELECT DISTINCT ON (fallidkh_temp, vsid_temp, visit_occurrence_id)
+            fallidkh_temp,
+            vsid_temp,
+            visit_occurrence_id
+        FROM {target_schema}.visit_occurrence
+    ) vo ON tmp_khdia_diagnosis.fallidkh = vo.fallidkh_temp and tmp_khdia_diagnosis.vsid = vo.vsid_temp 
 WHERE
     tmp_khdia_diagnosis.domain_id = 'Observation';
 
@@ -272,7 +293,7 @@ INSERT INTO
     )
 SELECT
     nextval('{target_schema}.measurement_id'),
-    khfall.psid AS person_id,
+    tmp_khdia_diagnosis.psid AS person_id,
     COALESCE(
         tmp_khdia_diagnosis.condition_target_concept_id,
         0
@@ -306,8 +327,14 @@ SELECT
     NULL AS meas_event_field_concept_id
 FROM
     tmp_khdia_diagnosis
-    LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh and tmp_khdia_diagnosis.vsid= khfall.vsid
-    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khdia_diagnosis.fallidkh = vo.fallidkh_temp and tmp_khdia_diagnosis.vsid = vo.vsid_temp 
+    LEFT JOIN (SELECT DISTINCT ON (khfall.fallidkh,khfall.vsid,khfall.aufndat,khfall)khfall.fallidkh,khfall.vsid,khfall.aufndat,khfall FROM stationaere_faelle.khfall) khfall ON tmp_khdia_diagnosis.fallidkh = khfall.fallidkh and tmp_khdia_diagnosis.vsid= khfall.vsid
+    LEFT JOIN (
+        SELECT DISTINCT ON (fallidkh_temp, vsid_temp, visit_occurrence_id)
+            fallidkh_temp,
+            vsid_temp,
+            visit_occurrence_id
+        FROM {target_schema}.visit_occurrence
+    ) vo ON tmp_khdia_diagnosis.fallidkh = vo.fallidkh_temp and tmp_khdia_diagnosis.vsid = vo.vsid_temp 
 WHERE
     tmp_khdia_diagnosis.domain_id = 'Measurement';
 

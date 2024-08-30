@@ -4,6 +4,7 @@ CREATE TEMP TABLE tmp_khproz AS
 SELECT
     khproz.fallidkh,
     khproz.vsid,
+    khproz.psid,
     khproz.proz,
     khproz.prozdat,
     khproz.prozlokal,
@@ -25,7 +26,6 @@ INSERT INTO
         procedure_date,
         provider_id,
         procedure_type_concept_id,
-        -- 32810 Claim
         procedure_datetime,
         procedure_end_date,
         procedure_end_datetime,
@@ -37,14 +37,13 @@ INSERT INTO
 SELECT
     nextval('{target_schema}.procedure_occurrence_id'),
     vo.visit_occurrence_id AS visit_occurrence_id,
-    khfall.psid AS person_id,
+    tmp_khproz.psid AS person_id,
     COALESCE(tmp_khproz.procedure_target_concept_id, 0) AS procedure_concept_id,
     COALESCE(tmp_khproz.procedure_source_concept_id, 0) AS procedure_source_concept_id,
     CONCAT(tmp_khproz.proz, ',', tmp_khproz.prozlokal) AS procedure_source_value,
     TO_DATE(tmp_khproz.prozdat :: VARCHAR, 'YYYYMMDD') AS procedure_date,
     khfall.einweispseudo AS provider_id,
     32810 AS procedure_type_concept_id,
-    --claim 
     NULL AS procedure_datetime,
     NULL AS procedure_end_date,
     NULL AS procedure_end_datetime,
@@ -54,8 +53,21 @@ SELECT
     NULL AS modifier_source_value
 FROM
     tmp_khproz
-    LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khproz.fallidkh = khfall.fallidkh and tmp_khproz.vsid = khfall.vsid 
-    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khproz.fallidkh = vo.fallidkh_temp  and tmp_khproz.vsid = vo.vsid_temp 
+    LEFT JOIN (
+        SELECT DISTINCT ON (khfall.fallidkh, khfall.vsid)
+            khfall.fallidkh,
+            khfall.vsid,
+            khfall.einweispseudo
+        FROM stationaere_faelle.khfall
+        WHERE khfall.einweispseudo IS NOT NULL
+    ) khfall ON tmp_khproz.fallidkh = khfall.fallidkh AND tmp_khproz.vsid = khfall.vsid
+    LEFT JOIN (
+        SELECT DISTINCT ON (fallidkh_temp, vsid_temp, visit_occurrence_id)
+            fallidkh_temp,
+            vsid_temp,
+            visit_occurrence_id
+        FROM {target_schema}.visit_occurrence
+    ) vo ON tmp_khproz.fallidkh = vo.fallidkh_temp AND tmp_khproz.vsid = vo.vsid_temp
 WHERE
     tmp_khproz.domain_id = 'Procedure'
     OR tmp_khproz.domain_id IS NULL;
@@ -88,7 +100,7 @@ SELECT
     vo.visit_occurrence_id AS visit_occurrence_id,
     TO_DATE(tmp_khproz.prozdat :: VARCHAR, 'YYYYMMDD') AS observation_date,
     CONCAT(tmp_khproz.proz, ',', tmp_khproz.prozlokal) AS observation_source_value,
-    khfall.psid AS person_id,
+    tmp_khproz.psid AS person_id,
     COALESCE(tmp_khproz.procedure_target_concept_id, 0) AS observation_concept_id,
     NULL AS value_as_string,
     NULL AS value_as_concept_id,
@@ -96,7 +108,6 @@ SELECT
     khfall.einweispseudo AS provider_id,
     NULL AS observation_datetime,
     32810 AS observation_type_concept_id,
-    --Claim
     NULL AS value_as_number,
     NULL AS qualifier_concept_id,
     NULL AS unit_concept_id,
@@ -109,8 +120,21 @@ SELECT
     NULL AS obs_event_field_concept_id
 FROM
     tmp_khproz
-    LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khproz.fallidkh = khfall.fallidkh and tmp_khproz.vsid = khfall.vsid
-    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khproz.fallidkh = vo.fallidkh_temp and tmp_khproz.vsid = vo.vsid_temp 
+    LEFT JOIN (
+        SELECT DISTINCT ON (khfall.fallidkh, khfall.vsid)
+            khfall.fallidkh,
+            khfall.vsid,
+            khfall.einweispseudo
+        FROM stationaere_faelle.khfall
+        WHERE khfall.einweispseudo IS NOT NULL
+    ) khfall ON tmp_khproz.fallidkh = khfall.fallidkh AND tmp_khproz.vsid = khfall.vsid
+    LEFT JOIN (
+        SELECT DISTINCT ON (fallidkh_temp, vsid_temp, visit_occurrence_id)
+            fallidkh_temp,
+            vsid_temp,
+            visit_occurrence_id
+        FROM {target_schema}.visit_occurrence
+    ) vo ON tmp_khproz.fallidkh = vo.fallidkh_temp AND tmp_khproz.vsid = vo.vsid_temp
 WHERE
     tmp_khproz.domain_id = 'Observation';
 
@@ -142,7 +166,7 @@ INSERT INTO
     )
 SELECT
     nextval('{target_schema}.measurement_id'),
-    khfall.psid AS person_id,
+    tmp_khproz.psid AS person_id,
     COALESCE(tmp_khproz.procedure_target_concept_id, 0) AS measurement_concept_id,
     TO_DATE(tmp_khproz.prozdat :: VARCHAR, 'YYYYMMDD') AS measurement_date,
     NULL AS measurement_datetime,
@@ -155,7 +179,7 @@ SELECT
     NULL AS range_low,
     NULL AS range_high,
     khfall.einweispseudo AS provider_id,
-    vo.visit_occurrence_id  AS visit_occurrence_id,
+    vo.visit_occurrence_id AS visit_occurrence_id,
     NULL AS visit_detail_id,
     CONCAT(tmp_khproz.proz, ',', tmp_khproz.prozlokal) AS measurement_source_value,
     COALESCE(tmp_khproz.procedure_source_concept_id, 0) AS measurement_source_concept_id,
@@ -166,8 +190,21 @@ SELECT
     NULL AS meas_event_field_concept_id
 FROM
     tmp_khproz
-    LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khproz.fallidkh = khfall.fallidkh and tmp_khproz.vsid = khfall.vsid
-    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khproz.fallidkh = vo.fallidkh_temp and tmp_khproz.vsid = vo.vsid_temp
+    LEFT JOIN (
+        SELECT DISTINCT ON (khfall.fallidkh, khfall.vsid)
+            khfall.fallidkh,
+            khfall.vsid,
+            khfall.einweispseudo
+        FROM stationaere_faelle.khfall
+        WHERE khfall.einweispseudo IS NOT NULL
+    ) khfall ON tmp_khproz.fallidkh = khfall.fallidkh AND tmp_khproz.vsid = khfall.vsid
+    LEFT JOIN (
+        SELECT DISTINCT ON (fallidkh_temp, vsid_temp, visit_occurrence_id)
+            fallidkh_temp,
+            vsid_temp,
+            visit_occurrence_id
+        FROM {target_schema}.visit_occurrence
+    ) vo ON tmp_khproz.fallidkh = vo.fallidkh_temp AND tmp_khproz.vsid = vo.vsid_temp
 WHERE
     tmp_khproz.domain_id = 'Measurement';
 
@@ -200,35 +237,44 @@ INSERT INTO
 SELECT
     nextval('{target_schema}.drug_exposure_id'),
     khfall.einweispseudo AS provider_id,
-    khfall.psid AS person_id,
-    -- JJJJMMTT ; ist es auf Verordnungsblatt nicht angegeben, nicht maschinell verarbeitbar oder ergibt keinen plausiblen Wert, ist Abrechnungsmonat im Format ”JJJJMM00” anzugeben 
+    tmp_khproz.psid AS person_id,
     TO_DATE(tmp_khproz.prozdat :: VARCHAR, 'YYYYMMDD') AS drug_exposure_start_date,
-    --  Map from PZN to RxNorm (no mapping available yet)
     COALESCE(tmp_khproz.procedure_target_concept_id, 0) as drug_concept_id,
     CONCAT(tmp_khproz.proz, ',', tmp_khproz.prozlokal) AS drug_source_value,
     NULL AS quantity,
     NULL AS drug_exposure_start_datetime,
     TO_DATE(tmp_khproz.prozdat :: VARCHAR, 'YYYYMMDD') AS drug_exposure_end_date,
-    -- drug_exposure_start_datetime=drug_exposure_end_date if no end date is available (OMOP recommendation)
     NULL AS drug_exposure_end_datetime,
     NULL AS verbatim_end_date,
-    --  If 1=> dental claim o.w. claim  
-    32810 drug_type_concept_id,
+    32810 AS drug_type_concept_id,
     NULL AS stop_reason,
     NULL AS refills,
     NULL AS days_supply,
     NULL AS sig,
     NULL AS route_concept_id,
     NULL AS lot_number,
-    vo.visit_occurrence_id  AS visit_occurrence_id,
+    vo.visit_occurrence_id AS visit_occurrence_id,
     NULL AS visit_detail_id,
     COALESCE(tmp_khproz.procedure_source_concept_id, 0) AS drug_source_concept_id,
     NULL AS route_source_value,
     NULL AS dose_unit_source_value
 FROM
     tmp_khproz
-    LEFT JOIN stationaere_faelle.khfall khfall ON tmp_khproz.fallidkh = khfall.fallidkh and tmp_khproz.vsid = khfall.vsid
-    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_khproz.fallidkh = vo.fallidkh_temp  and tmp_khproz.vsid = vo.vsid_temp
+    LEFT JOIN (
+        SELECT DISTINCT ON (khfall.fallidkh, khfall.vsid)
+            khfall.fallidkh,
+            khfall.vsid,
+            khfall.einweispseudo
+        FROM stationaere_faelle.khfall
+        WHERE khfall.einweispseudo IS NOT NULL
+    ) khfall ON tmp_khproz.fallidkh = khfall.fallidkh AND tmp_khproz.vsid = khfall.vsid
+    LEFT JOIN (
+        SELECT DISTINCT ON (fallidkh_temp, vsid_temp, visit_occurrence_id)
+            fallidkh_temp,
+            vsid_temp,
+            visit_occurrence_id
+        FROM {target_schema}.visit_occurrence
+    ) vo ON tmp_khproz.fallidkh = vo.fallidkh_temp AND tmp_khproz.vsid = vo.vsid_temp
 WHERE
     tmp_khproz.domain_id = 'Drug';
 

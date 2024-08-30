@@ -81,5 +81,7 @@ SELECT
     khfall.vsid as vsid_temp
 FROM
     stationaere_faelle.khfall khfall
-    LEFT JOIN stationaere_faelle.khfa khfa ON khfall.fallidkh = khfa.fallidkh  and khfall.vsid = khfa.vsid
+    LEFT JOIN ( SELECT DISTINCT ON(khfa.fallidkh,khfa.vsid, khfa.entlassdat,khfa.entlasszeit )
+     khfa.fallidkh,khfa.vsid, khfa.entlassdat,khfa.entlasszeit 
+      FROM stationaere_faelle.khfa ) khfa ON khfall.fallidkh = khfa.fallidkh  and khfall.vsid = khfa.vsid
 ;

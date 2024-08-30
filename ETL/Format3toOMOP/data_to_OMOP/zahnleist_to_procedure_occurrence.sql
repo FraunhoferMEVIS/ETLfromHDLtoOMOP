@@ -1,4 +1,4 @@
-with tmp as (
+WITH tmp AS (
    SELECT
       zahnleist.gebnr,
       zahnleist.leistdat,
@@ -42,16 +42,17 @@ INSERT INTO
 SELECT
    vo.visit_occurrence_id AS visit_occurrence_id,
    CASE
-      WHEN tmp.leistdat is NULL THEN CASE
-         WHEN zahnfall.leistq IS NULL THEN make_date(zahnfall.bjahr :: integer, 01, 01)
-         ELSE make_date(
-            LEFT(zahnfall.leistq :: VARCHAR, 4) :: integer,
-            (RIGHT(zahnfall.leistq :: VARCHAR, 1) :: integer -1) * 3 + 1,
-            01
-         )
-      END
-      ELSE TO_DATE(COALESCE(tmp.leistdat) :: VARCHAR, 'YYYYMMDD')
-   END as procedure_date,
+      WHEN tmp.leistdat IS NULL THEN 
+         CASE
+            WHEN zahnfall.leistq IS NULL THEN make_date(zahnfall.bjahr :: integer, 01, 01)
+            ELSE make_date(
+               LEFT(zahnfall.leistq :: VARCHAR, 4) :: integer,
+               (RIGHT(zahnfall.leistq :: VARCHAR, 1) :: integer -1) * 3 + 1,
+               01
+            )
+         END
+      ELSE TO_DATE(tmp.leistdat :: VARCHAR, 'YYYYMMDD')
+   END AS procedure_date,
    COALESCE(tmp.procedure_target_concept_id, 0) AS procedure_concept_id,
    COALESCE(tmp.procedure_source_concept_id, 0) AS procedure_source_concept_id,
    tmp.gebnr AS procedure_source_value,
@@ -61,7 +62,7 @@ SELECT
    NULL AS procedure_end_date,
    NULL AS procedure_end_datetime,
    32816 AS procedure_type_concept_id,
-   --Dental Claim 
+   -- Dental Claim 
    NULL AS modifier_concept_id,
    tmp.gebnrzahl AS quantity,
    NULL AS provider_id,
@@ -69,6 +70,18 @@ SELECT
    tmp.gebpos AS modifier_source_value
 FROM
    tmp 
-   LEFT JOIN ambulante_faelle.zahnfall zahnfall ON tmp.fallidzahn = zahnfall.fallidzahn and tmp.vsid = zahnfall.vsid
-   LEFT JOIN {target_schema}.visit_occurrence vo ON tmp.fallidzahn = vo.fallidzahn_temp and tmp.vsid = vo.vsid_temp;
-;
+   LEFT JOIN (
+      SELECT DISTINCT ON (fallidzahn, vsid)
+         fallidzahn,
+         vsid,
+         bjahr,
+         leistq
+      FROM ambulante_faelle.zahnfall
+   ) zahnfall ON tmp.fallidzahn = zahnfall.fallidzahn AND tmp.vsid = zahnfall.vsid AND tmp.leistdat IS NULL
+   LEFT JOIN (
+      SELECT DISTINCT ON (fallidzahn_temp, vsid_temp, visit_occurrence_id)
+         fallidzahn_temp,
+         vsid_temp,
+         visit_occurrence_id
+      FROM {target_schema}.visit_occurrence
+   ) vo ON tmp.fallidzahn = vo.fallidzahn_temp AND tmp.vsid = vo.vsid_temp;

@@ -39,7 +39,13 @@ SELECT
     NULL AS modifier_source_value
 FROM
     stationaere_faelle.khfall khfall
-    LEFT JOIN {target_schema}.visit_occurrence vo ON khfall.fallidkh = vo.fallidkh_temp and  khfall.vsid = vo.vsid_temp 
+    LEFT JOIN (
+        SELECT DISTINCT ON (fallidkh_temp, vsid_temp, visit_occurrence_id)
+            fallidkh_temp,
+            vsid_temp,
+            visit_occurrence_id
+        FROM {target_schema}.visit_occurrence
+    ) vo ON khfall.fallidkh = vo.fallidkh_temp and  khfall.vsid = vo.vsid_temp 
 WHERE
     khfall.beatstd IS NOT NULL
     AND khfall.beatstd :: NUMERIC > 0;

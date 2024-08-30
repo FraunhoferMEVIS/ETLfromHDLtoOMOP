@@ -48,16 +48,31 @@ SELECT
     NULL AS drg_concept_id,
     NULL AS drg_source_value
 FROM
-    ambulante_faelle.ambfall ambfall
+    (SELECT
+        fallidamb,
+        vsid,
+        psid,
+        dialysesachko,
+        make_date(
+            LEFT(abrq :: VARCHAR, 4) :: integer,
+            (RIGHT(abrq :: VARCHAR, 1) :: integer - 1) * 3 + 1,
+            01
+        ) AS abrq_date
+    FROM ambulante_faelle.ambfall) ambfall
     LEFT JOIN {target_schema}.payer_plan_period ppp ON ambfall.psid = ppp.person_id
-    and make_date(
-        LEFT(ambfall.abrq :: VARCHAR, 4) :: integer,
-        (RIGHT(ambfall.abrq :: VARCHAR, 1) :: integer -1) * 3 + 1,
-        01
-    ) BETWEEN ppp.payer_plan_period_start_date AND ppp.payer_plan_period_end_date
-    LEFT JOIN {target_schema}.visit_occurrence vo  ON ambfall.fallidamb = vo.fallidamb_temp and ambfall.vsid = vo.vsid_temp
+    AND ambfall.abrq_date BETWEEN ppp.payer_plan_period_start_date AND ppp.payer_plan_period_end_date
+    LEFT JOIN (
+        SELECT DISTINCT ON (fallidamb_temp, vsid_temp)
+            fallidamb_temp,
+            vsid_temp,
+            visit_occurrence_id,
+            dialysesachko
+        FROM {target_schema}.visit_occurrence
+    ) vo ON ambfall.fallidamb = vo.fallidamb_temp AND ambfall.vsid = vo.vsid_temp
 WHERE
     ambfall.dialysesachko IS NOT NULL;
+
+
 
 --All other costs of type visit
 INSERT INTO
@@ -115,15 +130,28 @@ SELECT
     NULL AS drg_concept_id,
     NULL AS drg_source_value
 FROM
-    ambulante_faelle.ambfall ambfall
+    (SELECT
+        fallidamb,
+        vsid,
+        psid,
+        dialysesachko,
+        make_date(
+            LEFT(abrq :: VARCHAR, 4) :: integer,
+            (RIGHT(abrq :: VARCHAR, 1) :: integer - 1) * 3 + 1,
+            01
+        ) AS abrq_date
+    FROM ambulante_faelle.ambfall) ambfall
     LEFT JOIN {target_schema}.payer_plan_period ppp ON ambfall.psid = ppp.person_id
-    and make_date(
-        LEFT(ambfall.abrq :: VARCHAR, 4) :: integer,
-        (RIGHT(ambfall.abrq :: VARCHAR, 1) :: integer -1) * 3 + 1,
-        01
-    ) BETWEEN ppp.payer_plan_period_start_date
-    AND ppp.payer_plan_period_end_date
-    LEFT JOIN {target_schema}.visit_occurrence vo  ON ambfall.fallidamb = vo.fallidamb_temp and ambfall.vsid = vo.vsid_temp
+    AND ambfall.abrq_date BETWEEN ppp.payer_plan_period_start_date AND ppp.payer_plan_period_end_date
+    LEFT JOIN (
+        SELECT DISTINCT ON (fallidamb_temp, vsid_temp)
+            fallidamb_temp,
+            vsid_temp,
+            visit_occurrence_id,
+            punktzahl,
+            fallkoamb
+        FROM {target_schema}.visit_occurrence
+    ) vo ON ambfall.fallidamb = vo.fallidamb_temp AND ambfall.vsid = vo.vsid_temp
 WHERE
     ambfall.punktzahl IS NOT NULL
     OR ambfall.fallkoamb IS NOT NULL;

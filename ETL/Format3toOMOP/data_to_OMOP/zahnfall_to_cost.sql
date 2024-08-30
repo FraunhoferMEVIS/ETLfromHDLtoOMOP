@@ -53,7 +53,13 @@ SELECT
     NULL AS drg_source_value
 FROM
     ambulante_faelle.zahnfall zahnfall
-    LEFT JOIN {target_schema}.visit_occurrence vo ON zahnfall.fallidzahn = vo.fallidzahn_temp and zahnfall.vsid = vo.vsid_temp
+    LEFT JOIN (
+        SELECT DISTINCT ON (fallidzahn_temp, vsid_temp, visit_occurrence_id)
+            fallidzahn_temp,
+            vsid_temp,
+            visit_occurrence_id
+        FROM {target_schema}.visit_occurrence
+    ) vo  ON zahnfall.fallidzahn = vo.fallidzahn_temp and zahnfall.vsid = vo.vsid_temp
 WHERE
     zahnfall.fallkozahn IS NOT NULL
     OR zahnfall.eigenlabor IS NOT NULL

@@ -42,23 +42,19 @@ SELECT
    vo.visit_occurrence_id AS visit_occurrence_id,
    nextval('{target_schema}.condition_occurrence_id'),
    CASE
-      WHEN COALESCE(
-         tmp_ambdiag_diagnosis.diagdat,
-         ambfall.beginndatamb,
-         ambfall.endedatamb
-      ) is NULL THEN make_date(
-         LEFT(ambfall.abrq :: VARCHAR, 4) :: integer,
-         (RIGHT(ambfall.abrq :: VARCHAR, 1) :: integer -1) * 3 + 1,
-         01
-      )
-      ELSE TO_DATE(
-         COALESCE(
-            tmp_ambdiag_diagnosis.diagdat,
-            ambfall.beginndatamb,
-            ambfall.endedatamb
-         ) :: VARCHAR,
-         'YYYYMMDD'
-      )
+      WHEN tmp_ambdiag_diagnosis.diagdat IS NULL THEN 
+         CASE
+            WHEN COALESCE(ambfall.beginndatamb, ambfall.endedatamb) is NULL THEN make_date(
+               LEFT(ambfall.abrq :: VARCHAR, 4) :: integer,
+               (RIGHT(ambfall.abrq :: VARCHAR, 1) :: integer -1) * 3 + 1,
+               01
+            )
+            ELSE TO_DATE(
+               COALESCE(ambfall.beginndatamb, ambfall.endedatamb) :: VARCHAR,
+               'YYYYMMDD'
+            )
+         END
+      ELSE TO_DATE(tmp_ambdiag_diagnosis.diagdat :: VARCHAR, 'YYYYMMDD')
    END AS condition_start_date,
    COALESCE(
       tmp_ambdiag_diagnosis.condition_target_concept_id,
@@ -92,11 +88,26 @@ SELECT
    NULL AS condition_status_source_value
 FROM
    tmp_ambdiag_diagnosis
-   LEFT JOIN ambulante_faelle.ambfall ambfall ON tmp_ambdiag_diagnosis.fallidamb = ambfall.fallidamb and tmp_ambdiag_diagnosis.vsid = ambfall.vsid
-   LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_ambdiag_diagnosis.fallidamb = vo.fallidamb_temp and tmp_ambdiag_diagnosis.vsid = vo.vsid_temp
+   LEFT JOIN (
+      SELECT DISTINCT ON (fallidamb, vsid, abrq, beginndatamb, endedatamb)
+         fallidamb,
+         vsid,
+         abrq,
+         beginndatamb,
+         endedatamb
+      FROM ambulante_faelle.ambfall
+   ) ambfall ON tmp_ambdiag_diagnosis.fallidamb = ambfall.fallidamb AND tmp_ambdiag_diagnosis.vsid = ambfall.vsid AND tmp_ambdiag_diagnosis.diagdat IS NULL
+   LEFT JOIN (
+        SELECT DISTINCT ON (fallidamb_temp, vsid_temp, visit_occurrence_id)
+            fallidamb_temp,
+            vsid_temp,
+            visit_occurrence_id
+        FROM {target_schema}.visit_occurrence
+    ) vo  ON tmp_ambdiag_diagnosis.fallidamb = vo.fallidamb_temp AND tmp_ambdiag_diagnosis.vsid = vo.vsid_temp
 WHERE
    tmp_ambdiag_diagnosis.domain_id = 'Condition'
    OR tmp_ambdiag_diagnosis.domain_id IS NULL;
+
 
 INSERT INTO
    {target_schema}.observation (
@@ -126,23 +137,19 @@ INSERT INTO
 SELECT
    vo.visit_occurrence_id AS visit_occurrence_id,
    CASE
-      WHEN COALESCE(
-         tmp_ambdiag_diagnosis.diagdat,
-         ambfall.beginndatamb,
-         ambfall.endedatamb
-      ) is NULL THEN make_date(
-         LEFT(ambfall.abrq :: VARCHAR, 4) :: integer,
-         (RIGHT(ambfall.abrq :: VARCHAR, 1) :: integer -1) * 3 + 1,
-         01
-      )
-      ELSE TO_DATE(
-         COALESCE(
-            tmp_ambdiag_diagnosis.diagdat,
-            ambfall.beginndatamb,
-            ambfall.endedatamb
-         ) :: VARCHAR,
-         'YYYYMMDD'
-      )
+      WHEN tmp_ambdiag_diagnosis.diagdat IS NULL THEN 
+         CASE
+            WHEN COALESCE(ambfall.beginndatamb, ambfall.endedatamb) is NULL THEN make_date(
+               LEFT(ambfall.abrq :: VARCHAR, 4) :: integer,
+               (RIGHT(ambfall.abrq :: VARCHAR, 1) :: integer -1) * 3 + 1,
+               01
+            )
+            ELSE TO_DATE(
+               COALESCE(ambfall.beginndatamb, ambfall.endedatamb) :: VARCHAR,
+               'YYYYMMDD'
+            )
+         END
+      ELSE TO_DATE(tmp_ambdiag_diagnosis.diagdat :: VARCHAR, 'YYYYMMDD')
    END AS observation_date,
    CONCAT(
       tmp_ambdiag_diagnosis.icdamb_code,
@@ -150,7 +157,6 @@ SELECT
       tmp_ambdiag_diagnosis.diaglokal
    ) AS observation_source_value,
    tmp_ambdiag_diagnosis.psid AS person_id,
-   -- Disorder excluded
    COALESCE(
       tmp_ambdiag_diagnosis.condition_target_concept_id,
       0
@@ -183,8 +189,22 @@ SELECT
    NULL AS obs_event_field_concept_id
 FROM
    tmp_ambdiag_diagnosis
-   LEFT JOIN ambulante_faelle.ambfall ambfall ON tmp_ambdiag_diagnosis.fallidamb = ambfall.fallidamb and tmp_ambdiag_diagnosis.vsid = ambfall.vsid
-   LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_ambdiag_diagnosis.fallidamb = vo.fallidamb_temp and tmp_ambdiag_diagnosis.vsid = vo.vsid_temp
+   LEFT JOIN (
+      SELECT DISTINCT ON (fallidamb, vsid, abrq,beginndatamb,endedatamb)
+         fallidamb,
+         vsid,
+         abrq,
+         beginndatamb,
+         endedatamb
+      FROM ambulante_faelle.ambfall
+   ) ambfall ON tmp_ambdiag_diagnosis.fallidamb = ambfall.fallidamb AND tmp_ambdiag_diagnosis.vsid = ambfall.vsid AND tmp_ambdiag_diagnosis.diagdat IS NULL
+   LEFT JOIN (
+        SELECT DISTINCT ON (fallidamb_temp, vsid_temp, visit_occurrence_id)
+            fallidamb_temp,
+            vsid_temp,
+            visit_occurrence_id
+        FROM {target_schema}.visit_occurrence
+    ) vo ON tmp_ambdiag_diagnosis.fallidamb = vo.fallidamb_temp AND tmp_ambdiag_diagnosis.vsid = vo.vsid_temp
 WHERE
    tmp_ambdiag_diagnosis.domain_id = 'Observation';
 
@@ -212,23 +232,19 @@ INSERT INTO
 SELECT
    vo.visit_occurrence_id AS visit_occurrence_id,
    CASE
-      WHEN COALESCE(
-         tmp_ambdiag_diagnosis.diagdat,
-         ambfall.beginndatamb,
-         ambfall.endedatamb
-      ) is NULL THEN make_date(
-         LEFT(ambfall.abrq :: VARCHAR, 4) :: integer,
-         (RIGHT(ambfall.abrq :: VARCHAR, 1) :: integer -1) * 3 + 1,
-         01
-      )
-      ELSE TO_DATE(
-         COALESCE(
-            tmp_ambdiag_diagnosis.diagdat,
-            ambfall.beginndatamb,
-            ambfall.endedatamb
-         ) :: VARCHAR,
-         'YYYYMMDD'
-      )
+      WHEN tmp_ambdiag_diagnosis.diagdat IS NULL THEN 
+         CASE
+            WHEN COALESCE(ambfall.beginndatamb, ambfall.endedatamb) is NULL THEN make_date(
+               LEFT(ambfall.abrq :: VARCHAR, 4) :: integer,
+               (RIGHT(ambfall.abrq :: VARCHAR, 1) :: integer -1) * 3 + 1,
+               01
+            )
+            ELSE TO_DATE(
+               COALESCE(ambfall.beginndatamb, ambfall.endedatamb) :: VARCHAR,
+               'YYYYMMDD'
+            )
+         END
+      ELSE TO_DATE(tmp_ambdiag_diagnosis.diagdat :: VARCHAR, 'YYYYMMDD')
    END AS procedure_date,
    COALESCE(
       tmp_ambdiag_diagnosis.condition_target_concept_id,
@@ -257,8 +273,22 @@ SELECT
    NULL AS modifier_source_value
 FROM
    tmp_ambdiag_diagnosis
-   LEFT JOIN ambulante_faelle.ambfall ambfall ON tmp_ambdiag_diagnosis.fallidamb = ambfall.fallidamb and tmp_ambdiag_diagnosis.vsid = ambfall.vsid
-   LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_ambdiag_diagnosis.fallidamb = vo.fallidamb_temp and tmp_ambdiag_diagnosis.vsid = vo.vsid_temp
+   LEFT JOIN (
+      SELECT DISTINCT ON (fallidamb, vsid, abrq,beginndatamb,endedatamb)
+         fallidamb,
+         vsid,
+         abrq,
+         beginndatamb,
+         endedatamb
+      FROM ambulante_faelle.ambfall
+   ) ambfall ON tmp_ambdiag_diagnosis.fallidamb = ambfall.fallidamb AND tmp_ambdiag_diagnosis.vsid = ambfall.vsid AND tmp_ambdiag_diagnosis.diagdat IS NULL
+   LEFT JOIN (
+        SELECT DISTINCT ON (fallidamb_temp, vsid_temp, visit_occurrence_id)
+            fallidamb_temp,
+            vsid_temp,
+            visit_occurrence_id
+        FROM {target_schema}.visit_occurrence
+    ) vo ON tmp_ambdiag_diagnosis.fallidamb = vo.fallidamb_temp AND tmp_ambdiag_diagnosis.vsid = vo.vsid_temp
 WHERE
    tmp_ambdiag_diagnosis.domain_id = 'Procedure';
 
@@ -296,23 +326,19 @@ SELECT
       0
    ) AS measurement_concept_id,
    CASE
-      WHEN COALESCE(
-         tmp_ambdiag_diagnosis.diagdat,
-         ambfall.beginndatamb,
-         ambfall.endedatamb
-      ) is NULL THEN make_date(
-         LEFT(ambfall.abrq :: VARCHAR, 4) :: integer,
-         (RIGHT(ambfall.abrq :: VARCHAR, 1) :: integer -1) * 3 + 1,
-         01
-      )
-      ELSE TO_DATE(
-         COALESCE(
-            tmp_ambdiag_diagnosis.diagdat,
-            ambfall.beginndatamb,
-            ambfall.endedatamb
-         ) :: VARCHAR,
-         'YYYYMMDD'
-      )
+      WHEN tmp_ambdiag_diagnosis.diagdat IS NULL THEN 
+         CASE
+            WHEN COALESCE(ambfall.beginndatamb, ambfall.endedatamb) is NULL THEN make_date(
+               LEFT(ambfall.abrq :: VARCHAR, 4) :: integer,
+               (RIGHT(ambfall.abrq :: VARCHAR, 1) :: integer -1) * 3 + 1,
+               01
+            )
+            ELSE TO_DATE(
+               COALESCE(ambfall.beginndatamb, ambfall.endedatamb) :: VARCHAR,
+               'YYYYMMDD'
+            )
+         END
+      ELSE TO_DATE(tmp_ambdiag_diagnosis.diagdat :: VARCHAR, 'YYYYMMDD')
    END AS measurement_date,
    NULL AS measurement_datetime,
    NULL AS measurement_time,
@@ -342,8 +368,22 @@ SELECT
    NULL AS meas_event_field_concept_id
 FROM
    tmp_ambdiag_diagnosis
-   LEFT JOIN ambulante_faelle.ambfall ambfall ON tmp_ambdiag_diagnosis.fallidamb = ambfall.fallidamb and  tmp_ambdiag_diagnosis.vsid = ambfall.vsid
-   LEFT JOIN {target_schema}.visit_occurrence vo  ON tmp_ambdiag_diagnosis.fallidamb = vo.fallidamb_temp and tmp_ambdiag_diagnosis.vsid = vo.vsid_temp
+   LEFT JOIN (
+      SELECT DISTINCT ON (fallidamb, vsid, abrq,beginndatamb,endedatamb)
+         fallidamb,
+         vsid,
+         abrq,
+         beginndatamb,
+         endedatamb
+      FROM ambulante_faelle.ambfall
+   ) ambfall ON tmp_ambdiag_diagnosis.fallidamb = ambfall.fallidamb AND tmp_ambdiag_diagnosis.vsid = ambfall.vsid AND tmp_ambdiag_diagnosis.diagdat IS NULL
+   LEFT JOIN (
+        SELECT DISTINCT ON (fallidamb_temp, vsid_temp, visit_occurrence_id)
+            fallidamb_temp,
+            vsid_temp,
+            visit_occurrence_id
+        FROM {target_schema}.visit_occurrence
+    ) vo ON tmp_ambdiag_diagnosis.fallidamb = vo.fallidamb_temp AND tmp_ambdiag_diagnosis.vsid = vo.vsid_temp
 WHERE
    tmp_ambdiag_diagnosis.domain_id = 'Measurement';
 

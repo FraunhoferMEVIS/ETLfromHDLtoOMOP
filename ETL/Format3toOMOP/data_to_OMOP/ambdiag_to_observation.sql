@@ -29,23 +29,19 @@ INSERT INTO
 SELECT
     vo.visit_occurrence_id AS visit_occurrence_id,
     CASE
-        WHEN COALESCE(
-            ambdiag.diagdat,
-            ambfall.beginndatamb,
-            ambfall.endedatamb
-        ) is NULL THEN make_date(
-            LEFT(ambfall.abrq :: VARCHAR, 4) :: integer,
-            (RIGHT(ambfall.abrq :: VARCHAR, 1) :: integer -1) * 3 + 1,
-            01
-        )
-        ELSE TO_DATE(
-            COALESCE(
-                ambdiag.diagdat,
-                ambfall.beginndatamb,
-                ambfall.endedatamb
-            ) :: VARCHAR,
-            'YYYYMMDD'
-        )
+        WHEN ambdiag.diagdat IS NULL THEN 
+            CASE
+                WHEN COALESCE(ambfall.beginndatamb, ambfall.endedatamb) is NULL THEN make_date(
+                    LEFT(ambfall.abrq :: VARCHAR, 4) :: integer,
+                    (RIGHT(ambfall.abrq :: VARCHAR, 1) :: integer -1) * 3 + 1,
+                    01
+                )
+                ELSE TO_DATE(
+                    COALESCE(ambfall.beginndatamb, ambfall.endedatamb) :: VARCHAR,
+                    'YYYYMMDD'
+                )
+            END
+        ELSE TO_DATE(ambdiag.diagdat :: VARCHAR, 'YYYYMMDD')
     END AS observation_date,
     CONCAT(
         ambdiag.icdamb_code,
@@ -53,7 +49,7 @@ SELECT
         ambdiag.diagsich,
         ': Excluded Diagnosis'
     ) AS observation_source_value,
-    ambfall.psid AS person_id,
+    ambdiag.psid AS person_id,
     -- Disorder excluded
     4199812 AS observation_concept_id,
     NULL AS value_as_string,
@@ -75,8 +71,21 @@ SELECT
     NULL AS obs_event_field_concept_id
 FROM
     ambulante_faelle.ambdiag ambdiag
-    INNER JOIN ambulante_faelle.ambfall ambfall ON ambfall.fallidamb = ambdiag.fallidamb and ambfall.vsid = ambdiag.vsid 
-    LEFT JOIN {target_schema}.visit_occurrence vo  ON ambfall.fallidamb = vo.fallidamb_temp and ambfall.vsid = vo.vsid_temp
-
+    LEFT JOIN (
+        SELECT DISTINCT ON (fallidamb, vsid, abrq, beginndatamb, endedatamb)
+            fallidamb,
+            vsid,
+            abrq,
+            beginndatamb,
+            endedatamb
+        FROM ambulante_faelle.ambfall
+    ) ambfall ON ambdiag.fallidamb = ambfall.fallidamb AND ambdiag.vsid = ambfall.vsid AND ambdiag.diagdat IS NULL
+    LEFT JOIN (
+        SELECT DISTINCT ON (fallidamb_temp, vsid_temp, visit_occurrence_id)
+            fallidamb_temp,
+            vsid_temp,
+            visit_occurrence_id
+        FROM {target_schema}.visit_occurrence
+    ) vo ON ambdiag.fallidamb = vo.fallidamb_temp AND ambdiag.vsid = vo.vsid_temp
 WHERE
     ambdiag.diagsich = 'A';

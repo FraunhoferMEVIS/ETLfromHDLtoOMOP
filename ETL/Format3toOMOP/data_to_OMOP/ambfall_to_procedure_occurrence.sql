@@ -51,6 +51,12 @@ SELECT
     NULL AS modifier_source_value
 FROM
     ambulante_faelle.ambfall
-    LEFT JOIN {target_schema}.visit_occurrence vo  ON ambfall.fallidamb = vo.fallidamb_temp and ambfall.vsid = vo.vsid_temp
+    LEFT JOIN (
+        SELECT DISTINCT ON (fallidamb_temp, vsid_temp, visit_occurrence_id)
+            fallidamb_temp,
+            vsid_temp,
+            visit_occurrence_id
+        FROM {target_schema}.visit_occurrence
+    ) vo ON ambfall.fallidamb = vo.fallidamb_temp and ambfall.vsid = vo.vsid_temp
 WHERE
     ambfall.dialysesachko IS NOT NULL;

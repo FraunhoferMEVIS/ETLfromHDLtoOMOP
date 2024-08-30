@@ -44,7 +44,7 @@ SELECT
    -- tarif number (it defines the "service" (like consultation, examination) and  justifies the costs) 
    ambleist.gonr AS procedure_source_value,
    nextval('{target_schema}.procedure_occurrence_id'),
-   ambfall.psid AS person_id,
+   ambleist.psid AS person_id,
    Case
       when ambleist.ambleistzeit != '' then to_timestamp(
          CONCAT(
@@ -65,7 +65,12 @@ SELECT
    NULL AS modifier_source_value
 FROM
    ambulante_faelle.ambleist ambleist
-   INNER JOIN ambulante_faelle.ambfall ambfall ON ambfall.fallidamb = ambleist.fallidamb and ambfall.vsid = ambleist.vsid
    LEFT JOIN tmp ON ambleist.gonr = tmp.gonr
-   LEFT JOIN {target_schema}.visit_occurrence vo  ON ambfall.fallidamb = vo.fallidamb_temp and ambfall.vsid = vo.vsid_temp 
+   LEFT JOIN (
+        SELECT DISTINCT ON (fallidamb_temp, vsid_temp, visit_occurrence_id)
+            fallidamb_temp,
+            vsid_temp,
+            visit_occurrence_id
+        FROM {target_schema}.visit_occurrence
+    ) vo ON ambleist.fallidamb = vo.fallidamb_temp and ambleist.vsid = vo.vsid_temp 
       ;
