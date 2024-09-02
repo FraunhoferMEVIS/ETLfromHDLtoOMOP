@@ -39,7 +39,8 @@ SELECT
    END AS drug_exposure_start_date,
    --Map from PZN to RxNorm (no mapping available yet)
    0 as drug_concept_id,
-   COALESCE(ezd.pznezd, rez.pznrez) AS drug_source_value, --pznezd: actual drug, pznrez: described drug 
+   --COALESCE(ezd.pznezd, rez.pznrez) AS drug_source_value, --pznezd: actual drug, pznrez: described drug --currently we cannot use pznezd since reznr is not unique and without a PZN mapping we cannot know which picked up drug substitutes which prescribed drug 
+   rez.pznrez AS drug_source_value,
    rez.menge AS quantity,
    NULL AS drug_exposure_start_datetime,
    case
@@ -64,5 +65,5 @@ SELECT
    NULL AS route_source_value,
    NULL AS dose_unit_source_value
 FROM
-   arzneimittel.rez 
-   LEFT JOIN arzneimittel.ezd ezd ON rez.reznr=ezd.reznr ;
+   arzneimittel.rez ;
+   --LEFT JOIN arzneimittel.ezd ezd ON rez.reznr=ezd.reznr ;
