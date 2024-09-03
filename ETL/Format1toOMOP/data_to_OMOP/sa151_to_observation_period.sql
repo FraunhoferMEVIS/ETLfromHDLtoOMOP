@@ -40,7 +40,7 @@ SELECT
    32810 AS period_type_concept_id
 FROM
    {source_schema}.{table}sa151 sa151
-   LEFT JOIN {target_schema}.person per ON sa151.sa151_psid = per.person_source_value
+   INNER JOIN {target_schema}.person per ON sa151.sa151_psid = per.person_source_value
 WHERE
    NOT EXISTS (
       SELECT

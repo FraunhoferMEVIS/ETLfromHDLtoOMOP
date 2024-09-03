@@ -64,4 +64,4 @@ SELECT
   CONCAT(sa651.sa651_berichtsjahr, sa651.sa651_leistungsquartal,'_',sa651_psid) AS source_idx_outpatient
 FROM
   {source_schema}.{table}sa651 sa651
-  LEFT JOIN {target_schema}.person per ON sa651.sa651_psid = per.person_source_value;
+  INNER JOIN {target_schema}.person per ON sa651.sa651_psid = per.person_source_value;

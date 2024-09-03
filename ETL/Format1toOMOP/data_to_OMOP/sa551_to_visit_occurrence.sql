@@ -75,4 +75,4 @@ SELECT
     NULL as source_idx_outpatient
 FROM
     dismiss_day dd 
-    LEFT JOIN {target_schema}.person per ON dd.sa551_psid = per.person_source_value;
+    INNER JOIN {target_schema}.person per ON dd.sa551_psid = per.person_source_value;

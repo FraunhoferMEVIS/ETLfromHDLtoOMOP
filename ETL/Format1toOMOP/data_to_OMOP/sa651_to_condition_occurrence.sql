@@ -72,7 +72,7 @@ SELECT
     NULL AS visit_detail_id
 FROM
     tmp_sa651_diagnosis
-    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_sa651_diagnosis.idx_sa651 = vo.source_idx_outpatient
+    INNER JOIN {target_schema}.visit_occurrence vo ON tmp_sa651_diagnosis.idx_sa651 = vo.source_idx_outpatient
 WHERE
     tmp_sa651_diagnosis.domain_id = 'Condition'
     OR tmp_sa651_diagnosis.domain_id IS NULL;
@@ -132,7 +132,7 @@ SELECT
     NULL AS obs_event_field_concept_id
 FROM
     tmp_sa651_diagnosis
-    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_sa651_diagnosis.idx_sa651 = vo.source_idx_outpatient
+    INNER JOIN {target_schema}.visit_occurrence vo ON tmp_sa651_diagnosis.idx_sa651 = vo.source_idx_outpatient
 WHERE
     tmp_sa651_diagnosis.domain_id = 'Observation';
 
@@ -181,7 +181,7 @@ SELECT
     NULL AS modifier_source_value
 FROM
     tmp_sa651_diagnosis
-    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_sa651_diagnosis.idx_sa651 = vo.source_idx_outpatient
+    INNER JOIN {target_schema}.visit_occurrence vo ON tmp_sa651_diagnosis.idx_sa651 = vo.source_idx_outpatient
 WHERE
     tmp_sa651_diagnosis.domain_id = 'Procedure';
 
@@ -243,7 +243,7 @@ SELECT
     NULL AS meas_event_field_concept_id
 FROM
     tmp_sa651_diagnosis
-    LEFT JOIN {target_schema}.visit_occurrence vo ON tmp_sa651_diagnosis.idx_sa651 = vo.source_idx_outpatient
+    INNER JOIN {target_schema}.visit_occurrence vo ON tmp_sa651_diagnosis.idx_sa651 = vo.source_idx_outpatient
 WHERE
     tmp_sa651_diagnosis.domain_id = 'Measurement';
 

@@ -33,10 +33,9 @@ logging.basicConfig(
     ]
     )
 logger = logging.getLogger()
-
 for table_ in tables :
     table='V'+str(table_)
-    table_occurrence= 'V'+str(int(table_) +1)
+    table_occurrence= 'V'+str(int(table_) +1)   ### for table sa151 sa751 sa999 and sa951 reported year = compensation year. For all other tables reported year = compensation year + 1.  Tables are named as following v{compensationyear}_sa{tablename}
 
     #Check if data is already in the database
     conn= psycopg2.connect(dbname=dbname, user=user, host=host, port=port, password=password)
@@ -59,10 +58,13 @@ for table_ in tables :
 
         ## table observation
         observation_sa151_sa152=read_sql_file('sa151sa152_to_observation.sql',folder_load)
-        columns=[('SA151','versichertentagekg'),('sa152','erwerbsminderungs_vt'),('sa152','versichertentageausland'),('sa152','versichertentage13ii'),('sa152','versichertentage53iv')]
+        columns=[('SA151','versichertentagekg')]
         for prefix_, column_ in columns:
             execute_query(observation_sa151_sa152.format(source_schema=source_schema,target_schema=target_schema,table=table, prefix=prefix_, column=column_),dbname, user, host, port, password, logger)
 
+        columns=[('sa152','erwerbsminderungs_vt'),('sa152','versichertentageausland'),('sa152','versichertentage13ii'),('sa152','versichertentage53iv')]
+        for prefix_, column_ in columns:
+            execute_query(observation_sa151_sa152.format(source_schema=source_schema,target_schema=target_schema,table=table_occurrence, prefix=prefix_, column=column_),dbname, user, host, port, password, logger)
 
         ## table cost
         sa751_cost=read_sql_file('sa751_to_cost.sql',folder_load)
@@ -76,15 +78,17 @@ for table_ in tables :
         execute_query(query_add_source_idx.format( target_schema=target_schema),dbname, user, host, port, password, logger)
 
         ## all other tables
-        files=['sa551_to_visit_occurrence.sql','sa651_to_visit_occurrence.sql','sa551_to_condition_occurrence.sql','sa651_to_condition_occurrence.sql', 'sa153_to_procedure_occurrence.sql']
+        files=['sa551_to_visit_occurrence.sql','sa651_to_visit_occurrence.sql','sa551_to_condition_occurrence.sql','sa651_to_condition_occurrence.sql', 'sa153_to_procedure_occurrence.sql','sa651_to_observation.sql','sa451_to_drug_exposure.sql']
         for file in files:
             query=read_sql_file(file,folder_load)
             execute_query(query.format(source_schema=source_schema, target_schema=target_schema,table=table_occurrence),dbname, user, host, port, password, logger)
 
-        files=['sa651_to_observation.sql','sa151_to_observation_period.sql','sa151_to_death.sql','sa451_to_drug_exposure.sql','sa151_sa951_to_payer_plan_period.sql']
+
+        files=['sa151_to_observation_period.sql','sa151_to_death.sql','sa151_sa951_to_payer_plan_period.sql']
         for file in files:
             query=read_sql_file(file,folder_load)
             execute_query(query.format(source_schema=source_schema, target_schema=target_schema,table=table),dbname, user, host, port, password, logger)
+
 
 
         query_drop_source_idx="""ALTER TABLE {target_schema}.visit_occurrence DROP COLUMN source_idx_inpatient, DROP COLUMN source_idx_outpatient;"""
