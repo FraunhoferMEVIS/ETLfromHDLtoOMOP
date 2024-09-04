@@ -1,0 +1,27 @@
+2024-09-04 10:52:58	[Main thread]	INFO	DataQualityDashboard	executeDqChecks	CDM Tables skipped: CONCEPT, VOCABULARY, CONCEPT_ANCESTOR, CONCEPT_RELATIONSHIP, CONCEPT_CLASS, CONCEPT_SYNONYM, RELATIONSHIP, DOMAIN
+2024-09-04 10:52:58	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: cdmTable
+2024-09-04 10:53:37	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: measurePersonCompleteness
+2024-09-04 14:24:16	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: measureConditionEraCompleteness
+2024-09-04 14:24:28	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: cdmField
+2024-09-04 14:31:44	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: isRequired
+2024-09-04 14:33:30	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: cdmDatatype
+2024-09-04 14:54:38	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: isPrimaryKey
+2024-09-04 15:00:11	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: isForeignKey
+2024-09-04 15:08:07	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: fkDomain
+2024-09-04 15:09:52	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: fkClass
+2024-09-04 15:09:58	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: isStandardValidConcept
+2024-09-04 15:12:16	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: measureValueCompleteness
+2024-09-04 15:22:29	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: standardConceptRecordCompleteness
+2024-09-04 15:23:40	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: sourceConceptRecordCompleteness
+2024-09-04 15:24:00	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: sourceValueCompleteness
+2024-09-04 15:27:55	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: plausibleValueLow
+2024-09-04 15:29:17	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: plausibleValueHigh
+2024-09-04 15:31:11	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: plausibleTemporalAfter
+2024-09-04 15:36:38	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: plausibleDuringLife
+2024-09-04 15:41:18	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: withinVisitDates
+2024-09-04 15:43:22	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: plausibleGender
+2024-09-04 15:43:42	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: plausibleUnitConceptIds
+2024-09-04 15:46:00	[Main thread]	INFO	DataQualityDashboard	.writeResultsToJson	Writing results to file: C:/Users/mfinster/OMOP_CDM/FDZFormat_to_OMOP/FDZFormat1/Quality_checks/DQD/results/outputfile.json
+2024-09-04 15:46:01	[Main thread]	INFO	DataQualityDashboard	executeDqChecks	Execution Complete
+2024-09-04 15:46:01	[Main thread]	INFO	DataQualityDashboard	.writeResultsToTable	Writing results to table omop1_results.dqdashboard_results
+2024-09-04 15:46:04	[Main thread]	INFO	DataQualityDashboard	.writeResultsToTable	Finished writing table
