@@ -9,9 +9,8 @@ services:
       - postgres_conn.env    
     environment:
       - source_schema=datravexample
-      - years=2009
-      #- years=2009,2010
-      - target_schema=FDZ_format1_2009
+      - years=2009,2010
+      - target_schema=HDL_format1
       - DATA_FOLDER_OMOP1=/ETL/Format1toOMOP
       - logname=/ETL/Format1toOMOP/ETL.log
     command: sh -c "python /ETL/Format1toOMOP/create_OMOPCDM54.py && python /ETL/Format1toOMOP/ETL_data_to_OMOP.py "
@@ -29,7 +28,7 @@ services:
     env_file:
       - postgres_conn.env    
     environment:
-      - target_schema=FDZ_format3_2019
+      - target_schema=HDL_format3
       - years=2019
       - DATA_FOLDER_OMOP3=/ETL/Format3toOMOP
       - logname=/ETL/Format3toOMOP/ETL.log      

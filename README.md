@@ -55,3 +55,8 @@ Step 10. Run Docker
 ```bash
 docker-compose up 
 ```
+
+## Citation
+
+We are pleased if you use our ETL code. Please make sure you cite the paper that accompanies the code.
+"ETL: From the German Health Data Lab Data Formats to the OMOP Common Data Model" DOI: 
