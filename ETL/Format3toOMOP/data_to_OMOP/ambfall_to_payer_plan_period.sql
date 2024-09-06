@@ -30,7 +30,7 @@ SELECT
         LEFT(MIN(ambfall.abrq)::VARCHAR, 4)::int, 
         (1 + (RIGHT(MIN(ambfall.abrq)::VARCHAR, 1)::int - 1) * 3), 
         1
-    ) AS payer_plan_period_start_date,
+    ) AS payer_plan_period_start_date,  -- abrq format JJJJQ ->  Take the first 4 numbers and convert to year -> multiplicate quarter Q -1 by 3 and take the first day of the month
     make_date(
         LEFT(MAX(ambfall.abrq)::VARCHAR, 4)::int, 
         (RIGHT(MAX(ambfall.abrq)::VARCHAR, 1)::int * 3), 
