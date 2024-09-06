@@ -205,6 +205,7 @@ FROM
             visit_occurrence_id
         FROM {target_schema}.visit_occurrence
     ) vo ON tmp_ambdiag_diagnosis.fallidamb = vo.fallidamb_temp AND tmp_ambdiag_diagnosis.vsid = vo.vsid_temp
+
 WHERE
    tmp_ambdiag_diagnosis.domain_id = 'Observation';
 

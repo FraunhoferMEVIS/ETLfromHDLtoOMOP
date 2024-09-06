@@ -1,5 +1,6 @@
 WITH tmp AS (
     SELECT
+
         vers.psid,
         LAST_VALUE(versq.geschlecht) OVER(PARTITION BY versq.psid ORDER BY versq.versq DESC) AS latest_gender,
         vers.gebjahr AS year_of_birth,

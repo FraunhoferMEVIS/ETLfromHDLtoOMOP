@@ -87,5 +87,6 @@ FROM
             visit_occurrence_id
         FROM {target_schema}.visit_occurrence
     ) vo ON ambdiag.fallidamb = vo.fallidamb_temp AND ambdiag.vsid = vo.vsid_temp
+
 WHERE
     ambdiag.diagsich = 'A';
