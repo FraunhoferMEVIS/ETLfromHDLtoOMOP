@@ -1,0 +1,7 @@
+CONCEPT_ID	CONCEPT_NAME	DOMAIN_ID	VOCABULARY_ID	CONCEPT_CLASS_ID	STANDARD_CONCEPT	CONCEPT_CODE	VALID_START_DATE	VALID_END_DATE	INVALID_REASON
+2000000001	reduced-earning-capacity pension	Observation	Insured days	Observable Entity		erwerbsminderungs_vt	2008-01-01	2099-12-31	
+2000000002	habitual residence abroad	Observation	Insured days	Observable Entity		versichertentageausland	2008-01-01	2099-12-31	
+2000000003	Paragaph 13 Section 2 Sozialgesetzbuch V  according § 30 section 1 Nr. 9 RSAV	Observation	Insured days	Observable Entity		versichertentage13ii	2008-01-01	2099-12-31	
+2000000004	Paragaph 53 Section 4 Sozialgesetzbuch V	Observation	Insured days	Observable Entity		versichertentage53iv	2008-01-01	2099-12-31	
+2000000005	Paragaph 44 and 45 Sozialgesetzbuch V according to Section 1 Number 11 Risikostruktur-Ausgleichsverordnung	Observation	Insured days	Observable Entity		versichertentagekg	2008-01-01	2099-12-31	
+2000000006	Selective insurance contract	Observation	Insured days	Observable Entity		versichertentage_wahltarif	2008-01-01	2099-12-31	
