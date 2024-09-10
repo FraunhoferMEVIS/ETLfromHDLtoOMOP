@@ -1,5 +1,9 @@
 # German Health Data Lab (HDL) Format 1 and 3 to OMOP CDM 
 
+In the scripts, the HDL formats 1 and 3 (input formats) are transformed into the OMOP CDM output format. To do this, information is extracted from the tables of the original data formats (HDL), transformed, and loaded into the new data format (OMOP CDM). It is assumed that the data is stored in a PostgreSQL database and that certain terminology mappings are provided by the user or requested from an external, publicly available service. Links to the external repositories are provided. The ETL script can be started in a Docker container, which is provided as well. 
+
+The software is provided on "AS IS" basis, i.e. it comes without any warranty, express or implied including (without limitations) any warranty of merchantability and warranty of fitness for a particular purpose.
+
 ## Database set up HDL Data Format Database
 
 Step 1. Create HDL Database and Schema:
