@@ -63,4 +63,4 @@ docker-compose up
 ## Citation
 
 We are pleased if you use our ETL code. Please make sure you cite the paper (which is currently under revision) that accompanies the code.
-"ETL: From the German Health Data Lab Data Formats to the OMOP Common Data Model" (Melissa Finster & Maxim Moinat & Elham Taghizadeh) DOI: will be added soon
+"ETL: From the German Health Data Lab Data Formats to the OMOP Common Data Model" (Melissa Finster & Maxim Moinat & Elham Taghizadeh) DOI: 10.1371/journal.pone.0311511
