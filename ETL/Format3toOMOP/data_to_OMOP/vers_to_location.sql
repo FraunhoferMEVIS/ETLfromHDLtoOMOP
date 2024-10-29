@@ -29,5 +29,6 @@ SELECT
 FROM
     versicherte.vers 
 WHERE 
-vers.plz IS NOT NULL
+    vers.plz IS NOT NULL
+    AND vers.plz !=''
 ON CONFLICT (location_id) DO NOTHING;

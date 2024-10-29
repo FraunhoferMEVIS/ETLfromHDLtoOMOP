@@ -69,7 +69,8 @@ FROM
         FROM {target_schema}.visit_occurrence
     ) vo ON ambfall.fallidamb = vo.fallidamb_temp AND ambfall.vsid = vo.vsid_temp
 WHERE
-    ambfall.dialysesachko IS NOT NULL;
+    ambfall.dialysesachko IS NOT NULL
+    AND ambfall.dialysesachko != '';
 
 
 
@@ -151,5 +152,5 @@ FROM
         FROM {target_schema}.visit_occurrence
     ) vo ON ambfall.fallidamb = vo.fallidamb_temp AND ambfall.vsid = vo.vsid_temp
 WHERE
-    ambfall.punktzahl IS NOT NULL
-    OR ambfall.fallkoamb IS NOT NULL;
+    (ambfall.punktzahl IS NOT NULL AND ambfall.punktzahl != '')
+    OR (ambfall.fallkoamb IS NOT NULL AND  ambfall.punktzahl != '');

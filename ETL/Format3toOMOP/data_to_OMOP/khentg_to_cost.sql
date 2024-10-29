@@ -61,5 +61,5 @@ FROM
         FROM {target_schema}.visit_occurrence
     ) vo ON khentg.fallidkh = vo.fallidkh_temp and khentg.vsid = vo.vsid_temp 
 WHERE
-    khentg.entgbetrag is not NULL
-    AND khentg.entgzahl is not NULL;
+    khentg.entgbetrag is not NULL AND khentg.entgbetrag  !=''
+    AND khentg.entgzahl is not  AND AND khentg.entgzahl!='';

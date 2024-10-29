@@ -51,7 +51,7 @@ SELECT
         ELSE to_timestamp(
         CONCAT(
             khfa.entlassdat :: VARCHAR,
-            khfa.entlasszeit :: VARCHAR
+            LPAD(khfa.entlasszeit::VARCHAR, 4, '0') -- we assume 4 digits, in case only 2 digits are given, we assume the hours are reported (which means entlasszeit < 24)
         ),
         'YYYYMMDDHH24MI'
     )END AS visit_end_datetime,

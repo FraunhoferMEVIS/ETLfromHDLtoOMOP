@@ -23,4 +23,6 @@ SELECT
 FROM
    arzneimittel.rez rez
 WHERE
-   rez.bsnrvopseudo IS NOT NULL ON CONFLICT (care_site_id) DO NOTHING;
+   rez.bsnrvopseudo IS NOT NULL
+   AND  rez.bsnrvopseudo  !=''
+ON CONFLICT (care_site_id) DO NOTHING;

@@ -18,4 +18,6 @@ SELECT
 FROM
     ambulante_faelle.ambfall
 WHERE
-    ambfall.bsnrpseudo IS NOT NULL ON CONFLICT (care_site_id) DO NOTHING;
+    ambfall.bsnrpseudo IS NOT NULL
+    AND ambfall.bsnrpseudo != ''
+     ON CONFLICT (care_site_id) DO NOTHING;

@@ -64,4 +64,5 @@ FROM
 WHERE
     cpt.vocabulary_id = 'Insured days'
     AND cpt.invalid_reason is NULL
-    AND {prefix}.{prefix}_{column} is not NULL;
+    AND {prefix}.{prefix}_{column} is not NULL
+    AND {prefix}.{prefix}_{column} != '';

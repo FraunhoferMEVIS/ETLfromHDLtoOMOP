@@ -28,7 +28,9 @@ SELECT
     NULL AS longitude
 FROM
     stationaere_faelle.khfall 
-WHERE khfall.khregkz IS NOT NULL
+WHERE 
+    khfall.khregkz IS NOT NULL 
+    AND  khfall.khregkz != ''
 ON CONFLICT (location_id) DO NOTHING;
 
 INSERT INTO
@@ -62,5 +64,6 @@ SELECT
 FROM
     stationaere_faelle.khfall
 WHERE
-khfall.veranlasskhregknz IS NOT NULL
- ON CONFLICT (location_id) DO NOTHING;
+    khfall.veranlasskhregknz IS NOT NULL
+    AND khfall.veranlasskhregknz != ''
+ON CONFLICT (location_id) DO NOTHING;

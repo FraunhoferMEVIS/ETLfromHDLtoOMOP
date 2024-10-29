@@ -54,6 +54,8 @@ FROM
    arzneimittel.rez rez
    LEFT JOIN pg ON rez.lenrvofg = pg.concept_code
 WHERE
-   rez.lenrvopseudo IS NOT NULL ON CONFLICT (provider_id) DO NOTHING;
+   rez.lenrvopseudo IS NOT NULL
+   AND rez.lenrvopseudo !=''
+ON CONFLICT (provider_id) DO NOTHING;
 
 ;

@@ -18,7 +18,8 @@ CREATE TEMP TABLE icd_tmp AS with sec_tmp as(
     FROM
         stationaere_faelle.khdiag khdiag
     WHERE
-        khdiag.sekicd_code IS NOT NULL
+        khdiag.sekicd_code IS NOT NULL 
+        AND khdiag.sekicd_code !=''
 ),
 prim_tmp as (
     SELECT
@@ -40,6 +41,7 @@ prim_tmp as (
         stationaere_faelle.khdiag khdiag
     WHERE
         khdiag.icdkh_code IS NOT NULL
+        AND khdiag.icdkh_code !=''
 )
 SELECT
     *

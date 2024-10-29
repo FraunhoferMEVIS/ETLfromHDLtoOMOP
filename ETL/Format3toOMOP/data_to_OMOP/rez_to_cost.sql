@@ -57,7 +57,7 @@ FROM
     and TO_DATE(rez.abgabedat :: VARCHAR, 'YYYYMMDD') BETWEEN pp.payer_plan_period_start_date
     AND pp.payer_plan_period_end_date
 WHERE
-    rez.ambetrag IS NOT NULL
-    OR rez.abschlaege IS NOT NULL
-    OR rez.eigenbet IS NOT NULL
-    OR rez.zuzahlges IS NOT NULL;
+    (rez.ambetrag IS NOT NULL  AND  rez.ambetrag !='')
+    OR (rez.abschlaege IS NOT NULL AND rez.abschlaege !='')
+    OR (rez.eigenbet IS NOT NULL AND rez.eigenbet!='')
+    OR (rez.zuzahlges IS NOT NULL AND  rez.zuzahlges !='');

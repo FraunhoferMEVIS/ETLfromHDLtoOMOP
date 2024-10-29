@@ -78,4 +78,4 @@ FROM
         FROM {target_schema}.visit_occurrence
     ) vo  ON zahnfall.fallidzahn = vo.fallidzahn_temp and zahnfall.vsid = vo.vsid_temp
 WHERE
-  zahnfall.behandartzahn IS NOT NULL;
+  zahnfall.behandartzahn IS NOT NULL AND zahnfall.behandartzahn !='';

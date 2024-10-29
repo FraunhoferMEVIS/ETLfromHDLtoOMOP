@@ -29,5 +29,6 @@ SELECT
 FROM
     ambulante_faelle.ambfall 
 WHERE ambfall.bsnrkv IS NOT NULL
+    AND ambfall.bsnrkv  != ''
 ON CONFLICT (location_id) DO NOTHING
 ;

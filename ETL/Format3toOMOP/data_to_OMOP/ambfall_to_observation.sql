@@ -136,4 +136,5 @@ FROM
         FROM {target_schema}.visit_occurrence
     ) vo ON ambfall.fallidamb = vo.fallidamb_temp and ambfall.vsid = vo.vsid_temp
 WHERE
-    ambfall.entbindungsdat IS NOT NULL;
+    ambfall.entbindungsdat IS NOT NULL
+     AND  ambfall.entbindungsdat != '';

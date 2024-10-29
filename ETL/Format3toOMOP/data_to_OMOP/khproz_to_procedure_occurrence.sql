@@ -59,7 +59,9 @@ FROM
             khfall.vsid,
             khfall.einweispseudo
         FROM stationaere_faelle.khfall
-        WHERE khfall.einweispseudo IS NOT NULL
+        WHERE 
+            khfall.einweispseudo IS NOT NULL
+            AND khfall.einweispseudo !=''
     ) khfall ON tmp_khproz.fallidkh = khfall.fallidkh AND tmp_khproz.vsid = khfall.vsid
     LEFT JOIN (
         SELECT DISTINCT ON (fallidkh_temp, vsid_temp, visit_occurrence_id)
@@ -126,7 +128,9 @@ FROM
             khfall.vsid,
             khfall.einweispseudo
         FROM stationaere_faelle.khfall
-        WHERE khfall.einweispseudo IS NOT NULL
+        WHERE 
+            khfall.einweispseudo IS NOT NULL
+            AND khfall.einweispseudo !=''
     ) khfall ON tmp_khproz.fallidkh = khfall.fallidkh AND tmp_khproz.vsid = khfall.vsid
     LEFT JOIN (
         SELECT DISTINCT ON (fallidkh_temp, vsid_temp, visit_occurrence_id)
@@ -196,7 +200,9 @@ FROM
             khfall.vsid,
             khfall.einweispseudo
         FROM stationaere_faelle.khfall
-        WHERE khfall.einweispseudo IS NOT NULL
+        WHERE 
+            khfall.einweispseudo IS NOT NULL
+            AND khfall.einweispseudo !=''
     ) khfall ON tmp_khproz.fallidkh = khfall.fallidkh AND tmp_khproz.vsid = khfall.vsid
     LEFT JOIN (
         SELECT DISTINCT ON (fallidkh_temp, vsid_temp, visit_occurrence_id)
@@ -266,7 +272,9 @@ FROM
             khfall.vsid,
             khfall.einweispseudo
         FROM stationaere_faelle.khfall
-        WHERE khfall.einweispseudo IS NOT NULL
+        WHERE 
+            khfall.einweispseudo IS NOT NULL
+            AND  khfall.einweispseudo !=''
     ) khfall ON tmp_khproz.fallidkh = khfall.fallidkh AND tmp_khproz.vsid = khfall.vsid
     LEFT JOIN (
         SELECT DISTINCT ON (fallidkh_temp, vsid_temp, visit_occurrence_id)

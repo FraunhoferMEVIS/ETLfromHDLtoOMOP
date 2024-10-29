@@ -59,4 +59,5 @@ FROM
         FROM {target_schema}.visit_occurrence
     ) vo ON ambfall.fallidamb = vo.fallidamb_temp and ambfall.vsid = vo.vsid_temp
 WHERE
-    ambfall.dialysesachko IS NOT NULL;
+    ambfall.dialysesachko IS NOT NULL 
+    AND ambfall.dialysesachk != '';

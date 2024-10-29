@@ -48,4 +48,5 @@ FROM
     ) vo ON khfall.fallidkh = vo.fallidkh_temp and  khfall.vsid = vo.vsid_temp 
 WHERE
     khfall.beatstd IS NOT NULL
+    AND khfall.beatstd != ''
     AND khfall.beatstd :: NUMERIC > 0;
