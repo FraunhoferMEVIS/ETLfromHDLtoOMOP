@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS icd_tmp;
 CREATE TEMP TABLE icd_tmp AS with sec_tmp as(
     SELECT
         khdiag.fallidkh,
+        khdiag.bjahr,
         khdiag.vsid,
         khdiag.psid,
         khdiag.sekicd_code as icd,
@@ -25,6 +26,7 @@ prim_tmp as (
     SELECT
         khdiag.fallidkh,
         khdiag.vsid,
+        khdiag.bjahr,
         khdiag.psid,
         khdiag.icdkh_code as icd,
         khdiag.icdlokal as lokal,
@@ -109,7 +111,7 @@ SELECT
         tmp_khdia_diagnosis.lokal
     ) AS condition_source_value,
     tmp_khdia_diagnosis.diagart_concept AS condition_status_concept_id,
-    TO_DATE(khfall.aufndat :: VARCHAR, 'YYYYMMDD') AS condition_start_date,
+    COALESCE(TO_DATE(khfall.aufndat :: VARCHAR, 'YYYYMMDD'),TO_DATE(tmp_khdia_diagnosis.bjahr :: VARCHAR, 'YYYY')) AS condition_start_date,
     tmp_khdia_diagnosis.source_diagart AS condition_status_source_value,
     NULL AS condition_start_datetime,
     NULL AS condition_end_date,
