@@ -73,6 +73,5 @@ FROM
     lanrpseudo, vsid, fallidamb
     FROM ambulante_faelle.ambleist
     WHERE lanrpseudo IS NOT NULL
-    AND lanrpseudo != ''
   ) ambleist ON ambfall.fallidamb = ambleist.fallidamb and ambfall.vsid = ambleist.vsid
 ;

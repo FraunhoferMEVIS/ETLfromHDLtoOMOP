@@ -6,9 +6,9 @@ DROP TABLE IF EXISTS icd_tmp;
 CREATE TEMP TABLE icd_tmp AS with sec_tmp as(
     SELECT
         khdiag.fallidkh,
-        khdiag.bjahr,
         khdiag.vsid,
         khdiag.psid,
+        khdiag.bjahr,
         khdiag.sekicd_code as icd,
         khdiag.sekicdlokal as lokal,
         2 as diagnosis_typ,
@@ -26,8 +26,8 @@ prim_tmp as (
     SELECT
         khdiag.fallidkh,
         khdiag.vsid,
-        khdiag.bjahr,
         khdiag.psid,
+        khdiag.bjahr,
         khdiag.icdkh_code as icd,
         khdiag.icdlokal as lokal,
         1 as diagnosis_typ,
@@ -57,9 +57,11 @@ FROM
 
 CREATE TEMP TABLE tmp_khdia_diagnosis AS
 SELECT
+
     icd_tmp.fallidkh,
     icd_tmp.vsid,
     icd_tmp.psid,
+    icd_tmp.bjahr,
     icd_tmp.icd,
     icd_tmp.lokal,
     icd_tmp.diagnosis_typ,
@@ -177,7 +179,7 @@ SELECT
         ',',
         tmp_khdia_diagnosis.lokal
     ) AS procedure_source_value,
-    TO_DATE(khfall.aufndat :: VARCHAR, 'YYYYMMDD') AS procedure_date,
+    COALESCE(TO_DATE(khfall.aufndat :: VARCHAR, 'YYYYMMDD'),TO_DATE(tmp_khdia_diagnosis.bjahr :: VARCHAR, 'YYYY')) AS procedure_date,
     khfall.einweispseudo AS provider_id,
     32810 AS procedure_type_concept_id,
     --claim 
@@ -237,7 +239,7 @@ SELECT
         tmp_khdia_diagnosis.condition_target_concept_id,
         0
     ) observation_concept_id,
-    TO_DATE(khfall.aufndat :: VARCHAR, 'YYYYMMDD') AS observation_date,
+    COALESCE(TO_DATE(khfall.aufndat :: VARCHAR, 'YYYYMMDD'),TO_DATE(tmp_khdia_diagnosis.bjahr :: VARCHAR, 'YYYY')) AS observation_date,
     NULL AS observation_datetime,
     NULL AS value_as_number,
     NULL AS value_as_string,
@@ -309,7 +311,7 @@ SELECT
         tmp_khdia_diagnosis.condition_target_concept_id,
         0
     ) AS measurement_concept_id,
-    TO_DATE(khfall.aufndat :: VARCHAR, 'YYYYMMDD') AS measurement_date,
+    COALESCE(TO_DATE(khfall.aufndat :: VARCHAR, 'YYYYMMDD'),TO_DATE(tmp_khdia_diagnosis.bjahr :: VARCHAR, 'YYYY')) AS measurement_date,
     NULL AS measurement_datetime,
     NULL AS measurement_time,
     32810 AS measurement_type_concept_id,

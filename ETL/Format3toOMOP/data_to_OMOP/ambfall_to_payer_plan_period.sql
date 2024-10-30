@@ -23,13 +23,13 @@ SELECT
     nextval('{target_schema}.payer_plan_period_id'),
     versq.psid AS person_id,
     make_date(
-        LEFT(MIN(versq.abrq)::VARCHAR, 4)::int, 
-        (1 + (RIGHT(MIN(versq.abrq)::VARCHAR, 1)::int - 1) * 3), 
+        LEFT(MIN(versq.versq)::VARCHAR, 4)::int, 
+        (1 + (RIGHT(MIN(versq.versq)::VARCHAR, 1)::int - 1) * 3), 
         1
     ) AS payer_plan_period_start_date,  -- abrq format JJJJQ ->  Take the first 4 numbers and convert to year -> multiplicate quarter Q -1 by 3 and take the first day of the month
     make_date(
-        LEFT(MAX(versq.abrq)::VARCHAR, 4)::int, 
-        (RIGHT(MAX(versq.abrq)::VARCHAR, 1)::int * 3), 
+        LEFT(MAX(versq.versq)::VARCHAR, 4)::int, 
+        (RIGHT(MAX(versq.versq)::VARCHAR, 1)::int * 3), 
         1
     ) + interval '1 Month -1 day' AS payer_plan_period_end_date,
     NULL AS payer_concept_id,
@@ -49,4 +49,4 @@ SELECT
 FROM
     versicherte.versq versq
 GROUP BY
-    versq.psid, versq.vsid, versq.bnr,versq.abrq;
+    versq.psid, versq.vsid, versq.bnr,versq.versq;

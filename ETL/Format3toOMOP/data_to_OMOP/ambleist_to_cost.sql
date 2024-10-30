@@ -62,4 +62,4 @@ FROM
     ) vo ON ambleist.fallidamb = vo.fallidamb_temp and ambleist.vsid = vo.vsid_temp
 WHERE
     ambleist.gonrbewert IS NOT NULL AND ambleist.gonrbewert != ''
-    AND ambleist.multiplikator IS NOT NULL AND ambleist.multiplikator  !='';
+    AND ambleist.multiplikator IS NOT NULL ;

@@ -35,8 +35,7 @@ SELECT
 FROM
     ambulante_faelle.zahnfall 
     WHERE 
-        zahnfall.zanrabrpseudo IS NOT NULL 
-        AND zahnfall.zanrabrpseudo!='' 
+        zahnfall.zanrabrpseudo IS NOT NULL
     ON CONFLICT (provider_id) DO NOTHING;
 
 
@@ -77,7 +76,6 @@ SELECT
 FROM
     ambulante_faelle.zahnfall 
     WHERE 
-        zahnfall.zanrpseudo IS NOT NULL  
-        AND zahnfall.zanrpseudo  !=''
+        zahnfall.zanrpseudo IS NOT NULL 
     ON CONFLICT (provider_id) DO NOTHING;
 

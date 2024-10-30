@@ -30,5 +30,4 @@ FROM
     arzneimittel.rez rez 
 WHERE
     rez.bsnrvoregknz IS NOT NULL
-    AND rez.bsnrvoregknz !=''
 ON CONFLICT (location_id) DO NOTHING;

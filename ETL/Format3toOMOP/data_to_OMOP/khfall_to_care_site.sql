@@ -28,7 +28,6 @@ FROM
     stationaere_faelle.khfall
 WHERE
     khfall.khpseudo IS NOT NULL 
-    AND khfall.khpseudo != ''
 ON CONFLICT (care_site_id) DO NOTHING;
 
 -- transfering hospital 
@@ -55,5 +54,4 @@ FROM
     stationaere_faelle.khfall
 WHERE
     khfall.veranlasskhpseudo IS NOT NULL 
-    AND khfall.veranlasskhpseudo != ''
 ON CONFLICT (care_site_id) DO NOTHING;

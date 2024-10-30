@@ -3,7 +3,7 @@ CREATE TEMPORARY TABLE tmp_obs AS (
       versq.psid,
       make_date(LEFT(MIN(versq.versq)::VARCHAR, 4)::INT, (1 + (RIGHT(MIN(versq.versq)::VARCHAR, 1)::INT - 1) * 3), 01) AS update_start_date,
       CASE 
-       WHEN vers.vitalstatus = 1 THEN vers.sterbedat 
+       WHEN vers.vitalstatus = 1 THEN TO_DATE(vers.sterbedat :: text, 'YYYYMMDD')
        ELSE make_date(LEFT(MAX(versq.versq)::VARCHAR, 4)::INT, ((RIGHT(MAX(versq.versq)::VARCHAR, 1)::INT) * 3), 01) + INTERVAL '1 Month -1 day' 
       END AS update_end_date
    FROM
@@ -11,7 +11,7 @@ CREATE TEMPORARY TABLE tmp_obs AS (
       LEFT JOIN
       versicherte.vers vers ON versq.psid = vers.psid
    GROUP BY
-      versq.psid
+      versq.psid, vers.sterbedat,vers.vitalstatus
 );
 
 UPDATE

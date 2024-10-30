@@ -61,6 +61,6 @@ FROM
         FROM {target_schema}.visit_occurrence
     ) vo  ON zahnfall.fallidzahn = vo.fallidzahn_temp and zahnfall.vsid = vo.vsid_temp
 WHERE
-    (zahnfall.fallkozahn IS NOT NULL AND zahnfall.fallkozahn != '' )
-    OR (zahnfall.eigenlabor IS NOT NULL AND zahnfall.eigenlabor !='')
-    OR (zahnfall.fremdlabor IS NOT NULL AND zahnfall.fremdlabor !='');
+    zahnfall.fallkozahn IS NOT NULL
+    OR zahnfall.eigenlabor IS NOT NULL
+    OR zahnfall.fremdlabor IS NOT NULL;

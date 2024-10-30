@@ -24,5 +24,4 @@ FROM
    arzneimittel.rez rez
 WHERE
    rez.bsnrvopseudo IS NOT NULL
-   AND  rez.bsnrvopseudo  !=''
 ON CONFLICT (care_site_id) DO NOTHING;
