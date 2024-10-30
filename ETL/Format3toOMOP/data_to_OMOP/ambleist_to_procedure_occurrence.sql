@@ -49,7 +49,7 @@ SELECT
       when ambleist.ambleistzeit != '' then to_timestamp(
          CONCAT(
             ambleist.gonrdat :: VARCHAR,
-            LPAD(ambleist.ambleistzeit::VARCHAR, 4, '0')
+            RPAD(ambleist.ambleistzeit::VARCHAR, 4, '0')
          ),
          'YYYYMMDDHH24MI'
       )
