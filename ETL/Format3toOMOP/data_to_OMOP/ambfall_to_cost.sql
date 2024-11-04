@@ -151,5 +151,5 @@ FROM
         FROM {target_schema}.visit_occurrence
     ) vo ON ambfall.fallidamb = vo.fallidamb_temp AND ambfall.vsid = vo.vsid_temp
 WHERE
-    ambfall.punktzahl IS NOT NULL
+    ambfall.punktzahl IS NOT NULL 
     OR ambfall.fallkoamb IS NOT NULL;

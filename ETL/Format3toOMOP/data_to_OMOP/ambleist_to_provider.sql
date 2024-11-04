@@ -49,4 +49,5 @@ FROM
     LEFT JOIN ambulante_faelle.ambfall ambfall ON ambleist.fallidamb = ambfall.fallidamb and ambleist.vsid = ambfall.vsid 
     LEFT JOIN pg ON ambleist.lanrfg = pg.concept_code
 WHERE
-    ambleist.lanrpseudo IS NOT NULL ON CONFLICT (provider_id) DO NOTHING;
+    ambleist.lanrpseudo IS NOT NULL
+ON CONFLICT (provider_id) DO NOTHING;

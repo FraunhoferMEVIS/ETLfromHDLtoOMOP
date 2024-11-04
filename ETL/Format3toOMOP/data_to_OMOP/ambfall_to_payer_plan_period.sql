@@ -1,7 +1,3 @@
-/*
- Payer_plan_period captures the basic information of the health insurance contract which is identified by svnr
- */
-
 INSERT INTO
     {target_schema}.payer_plan_period (
         payer_plan_period_id,
@@ -23,41 +19,34 @@ INSERT INTO
         stop_reason_source_concept_id
     )
 SELECT
-    DISTINCT ON (ambfall.psid, ambfall.vsid, vers.bnr) 
+    DISTINCT ON (versq.psid, versq.vsid, versq.bnr) 
     nextval('{target_schema}.payer_plan_period_id'),
-    ambfall.psid AS person_id,
+    versq.psid AS person_id,
     make_date(
-        LEFT(MIN(ambfall.abrq)::VARCHAR, 4)::int, 
-        (1 + (RIGHT(MIN(ambfall.abrq)::VARCHAR, 1)::int - 1) * 3), 
+        LEFT(MIN(versq.versq)::VARCHAR, 4)::int, 
+        (1 + (RIGHT(MIN(versq.versq)::VARCHAR, 1)::int - 1) * 3), 
         1
     ) AS payer_plan_period_start_date,  -- abrq format JJJJQ ->  Take the first 4 numbers and convert to year -> multiplicate quarter Q -1 by 3 and take the first day of the month
     make_date(
-        LEFT(MAX(ambfall.abrq)::VARCHAR, 4)::int, 
-        (RIGHT(MAX(ambfall.abrq)::VARCHAR, 1)::int * 3), 
+        LEFT(MAX(versq.versq)::VARCHAR, 4)::int, 
+        (RIGHT(MAX(versq.versq)::VARCHAR, 1)::int * 3), 
         1
     ) + interval '1 Month -1 day' AS payer_plan_period_end_date,
     NULL AS payer_concept_id,
-    vers.bnr AS payer_source_value,
+    versq.bnr AS payer_source_value,
     NULL AS payer_source_concept_id,
     NULL AS plan_concept_id,
     -- only for selective contracts (more information is needed!) alphanumeric to numeric 
-    LAST_VALUE(ambfall.svnr) OVER(
-        PARTITION BY ambfall.psid
-        ORDER BY ambfall.abrq
-    ) AS plan_source_value,
+    NULL AS plan_source_value,
     NULL AS plan_source_concept_id,
     NULL AS sponsor_concept_id,
-    LAST_VALUE(ambfall.svtyp) OVER(
-        PARTITION BY ambfall.psid
-        ORDER BY ambfall.abrq
-    ) AS sponsor_source_value,
+    NULL AS sponsor_source_value,
     NULL AS sponsor_source_concept_id,
     NULL AS family_source_value,
     NULL AS stop_reason_concept_id,
     NULL AS stop_reason_source_value,
     NULL AS stop_reason_source_concept_id
 FROM
-    ambulante_faelle.ambfall ambfall
-    LEFT JOIN versicherte.vers vers ON ambfall.psid = vers.psid
+    versicherte.versq versq
 GROUP BY
-    ambfall.psid, ambfall.vsid, vers.bnr,ambfall.abrq, ambfall.svnr,ambfall.svtyp;
+    versq.psid, versq.vsid, versq.bnr,versq.versq;

@@ -55,5 +55,6 @@ FROM
    stationaere_faelle.khfall khfall
    LEFT JOIN pg ON khfall.einweisfg = pg.concept_code
 WHERE
-   khfall.einweispseudo is not NULL ON CONFLICT (provider_id) DO NOTHING -- it is an unique identifier by definition, but falsly not unique in example data set 
+   khfall.einweispseudo is not NULL 
+ON CONFLICT (provider_id) DO NOTHING -- it is an unique identifier by definition, but falsly not unique in example data set 
 ;

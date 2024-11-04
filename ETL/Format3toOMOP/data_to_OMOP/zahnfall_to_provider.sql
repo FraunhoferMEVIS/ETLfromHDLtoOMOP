@@ -34,7 +34,8 @@ SELECT
     NULL AS gender_source_concept_id
 FROM
     ambulante_faelle.zahnfall 
-    WHERE zahnfall.zanrabrpseudo IS NOT NULL    
+    WHERE 
+        zahnfall.zanrabrpseudo IS NOT NULL
     ON CONFLICT (provider_id) DO NOTHING;
 
 
@@ -74,6 +75,7 @@ SELECT
     NULL AS gender_source_concept_id
 FROM
     ambulante_faelle.zahnfall 
-    WHERE zahnfall.zanrpseudo IS NOT NULL    
+    WHERE 
+        zahnfall.zanrpseudo IS NOT NULL 
     ON CONFLICT (provider_id) DO NOTHING;
 

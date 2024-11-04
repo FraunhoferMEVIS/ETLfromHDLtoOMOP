@@ -27,7 +27,8 @@ SELECT
 FROM
     stationaere_faelle.khfall
 WHERE
-    khfall.khpseudo IS NOT NULL ON CONFLICT (care_site_id) DO NOTHING;
+    khfall.khpseudo IS NOT NULL 
+ON CONFLICT (care_site_id) DO NOTHING;
 
 -- transfering hospital 
 INSERT INTO
@@ -52,4 +53,5 @@ SELECT
 FROM
     stationaere_faelle.khfall
 WHERE
-    khfall.veranlasskhpseudo IS NOT NULL ON CONFLICT (care_site_id) DO NOTHING;
+    khfall.veranlasskhpseudo IS NOT NULL 
+ON CONFLICT (care_site_id) DO NOTHING;

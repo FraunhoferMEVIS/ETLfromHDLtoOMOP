@@ -28,5 +28,6 @@ SELECT
     NULL AS longitude
 FROM
     arzneimittel.rez rez 
-WHERE rez.bsnrvoregknz IS NOT NULL
+WHERE
+    rez.bsnrvoregknz IS NOT NULL
 ON CONFLICT (location_id) DO NOTHING;

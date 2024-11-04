@@ -8,6 +8,7 @@ CREATE TEMP TABLE icd_tmp AS with sec_tmp as(
         khdiag.fallidkh,
         khdiag.vsid,
         khdiag.psid,
+        khdiag.bjahr,
         khdiag.sekicd_code as icd,
         khdiag.sekicdlokal as lokal,
         2 as diagnosis_typ,
@@ -18,13 +19,15 @@ CREATE TEMP TABLE icd_tmp AS with sec_tmp as(
     FROM
         stationaere_faelle.khdiag khdiag
     WHERE
-        khdiag.sekicd_code IS NOT NULL
+        khdiag.sekicd_code IS NOT NULL 
+        AND khdiag.sekicd_code !=''
 ),
 prim_tmp as (
     SELECT
         khdiag.fallidkh,
         khdiag.vsid,
         khdiag.psid,
+        khdiag.bjahr,
         khdiag.icdkh_code as icd,
         khdiag.icdlokal as lokal,
         1 as diagnosis_typ,
@@ -40,6 +43,7 @@ prim_tmp as (
         stationaere_faelle.khdiag khdiag
     WHERE
         khdiag.icdkh_code IS NOT NULL
+        AND khdiag.icdkh_code !=''
 )
 SELECT
     *
@@ -53,9 +57,11 @@ FROM
 
 CREATE TEMP TABLE tmp_khdia_diagnosis AS
 SELECT
+
     icd_tmp.fallidkh,
     icd_tmp.vsid,
     icd_tmp.psid,
+    icd_tmp.bjahr,
     icd_tmp.icd,
     icd_tmp.lokal,
     icd_tmp.diagnosis_typ,
@@ -107,7 +113,7 @@ SELECT
         tmp_khdia_diagnosis.lokal
     ) AS condition_source_value,
     tmp_khdia_diagnosis.diagart_concept AS condition_status_concept_id,
-    TO_DATE(khfall.aufndat :: VARCHAR, 'YYYYMMDD') AS condition_start_date,
+    COALESCE(TO_DATE(khfall.aufndat :: VARCHAR, 'YYYYMMDD'),TO_DATE(tmp_khdia_diagnosis.bjahr :: VARCHAR, 'YYYY')) AS condition_start_date,
     tmp_khdia_diagnosis.source_diagart AS condition_status_source_value,
     NULL AS condition_start_datetime,
     NULL AS condition_end_date,
@@ -173,7 +179,7 @@ SELECT
         ',',
         tmp_khdia_diagnosis.lokal
     ) AS procedure_source_value,
-    TO_DATE(khfall.aufndat :: VARCHAR, 'YYYYMMDD') AS procedure_date,
+    COALESCE(TO_DATE(khfall.aufndat :: VARCHAR, 'YYYYMMDD'),TO_DATE(tmp_khdia_diagnosis.bjahr :: VARCHAR, 'YYYY')) AS procedure_date,
     khfall.einweispseudo AS provider_id,
     32810 AS procedure_type_concept_id,
     --claim 
@@ -233,7 +239,7 @@ SELECT
         tmp_khdia_diagnosis.condition_target_concept_id,
         0
     ) observation_concept_id,
-    TO_DATE(khfall.aufndat :: VARCHAR, 'YYYYMMDD') AS observation_date,
+    COALESCE(TO_DATE(khfall.aufndat :: VARCHAR, 'YYYYMMDD'),TO_DATE(tmp_khdia_diagnosis.bjahr :: VARCHAR, 'YYYY')) AS observation_date,
     NULL AS observation_datetime,
     NULL AS value_as_number,
     NULL AS value_as_string,
@@ -305,7 +311,7 @@ SELECT
         tmp_khdia_diagnosis.condition_target_concept_id,
         0
     ) AS measurement_concept_id,
-    TO_DATE(khfall.aufndat :: VARCHAR, 'YYYYMMDD') AS measurement_date,
+    COALESCE(TO_DATE(khfall.aufndat :: VARCHAR, 'YYYYMMDD'),TO_DATE(tmp_khdia_diagnosis.bjahr :: VARCHAR, 'YYYY')) AS measurement_date,
     NULL AS measurement_datetime,
     NULL AS measurement_time,
     32810 AS measurement_type_concept_id,
