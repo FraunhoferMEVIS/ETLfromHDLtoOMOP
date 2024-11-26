@@ -4,6 +4,8 @@ In the scripts, the HDL formats 1 and 3 (input formats) are transformed into the
 
 The software is provided on "AS IS" basis, i.e. it comes without any warranty, express or implied including (without limitations) any warranty of merchantability and warranty of fitness for a particular purpose.
 
+Due to the completion of the project, we are not pursuing extensions or adaptations. **If you are interested in a joint project or collaboration, we look forward to hearing from you.** Please contact melissa.finster@mevis.fraunhofer.de 
+
 ## Database set up HDL Data Format Database
 
 Step 1. Create HDL Database and Schema:
