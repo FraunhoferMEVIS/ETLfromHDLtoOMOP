@@ -28,7 +28,7 @@ SELECT
     sa999.sa999_gs AS location_source_value,
     sa999.sa999_gs AS city,
     sa999.sa999_gs_land AS state,
-    sa999.sa999_gs_rb AS zip,
+    sa999.sa999_gs AS zip,
     sa999.sa999_gs_kreis AS county,
     NULL AS country_concept_id,
     NULL AS country_source_value,
